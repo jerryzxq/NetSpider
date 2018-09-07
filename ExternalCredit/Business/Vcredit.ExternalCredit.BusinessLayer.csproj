@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AE5A193B-ECF5-4DF1-AE0A-B8033CD9E4E6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vcredit.ExternalCredit.BusinessLayer</RootNamespace>
+    <AssemblyName>Vcredit.ExternalCredit.BusinessLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NSoup">
+      <HintPath>..\packages\NSoup.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack">
+      <HintPath>..\packages\ServiceStack.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Client">
+      <HintPath>..\packages\ServiceStack.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e06fbc6124f57c43, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ServiceStack.OrmLite.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite.MySql">
+      <HintPath>..\packages\ServiceStack.OrmLite.MySql.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite.SqlServer, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ServiceStack.OrmLite.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Redis, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ServiceStack.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Server">
+      <HintPath>..\packages\ServiceStack.Server.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Vcredit.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Vcredit.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommonBusiness\BridgingBusiness.cs" />
+    <Compile Include="CommonBusiness\Businesshelper.cs" />
+    <Compile Include="CommonBusiness\ForeignComBus.cs" />
+    <Compile Include="CommonBusiness\JinCityComBus.cs" />
+    <Compile Include="CommonBusiness\NolmalBusinessHelper.cs" />
+    <Compile Include="CRD_AN_ANCINFOBusiness.cs" />
+    <Compile Include="CRD_AN_DSTINFOBusiness.cs" />
+    <Compile Include="CRD_CD_ASRREPAYBusiness.cs" />
+    <Compile Include="CRD_CD_ASSETDPSTBusiness.cs" />
+    <Compile Include="CRD_CD_AssureMaintainBalanceTransferBusiness.cs" />
+    <Compile Include="CRD_CD_AssureReportedAfterInfoBusiness.cs" />
+    <Compile Include="CRD_CD_AssureMaintainBusiness.cs" />
+    <Compile Include="CRD_CD_AssureReportedInfoBusiness.cs" />
+    <Compile Include="CRD_CD_CreditApplyLimitBusiness.cs" />
+    <Compile Include="CRD_CD_CreditUserInfoBusiness.cs" />
+    <Compile Include="CRD_CD_GUARANTEEBusiness.cs" />
+    <Compile Include="CRD_CD_LNBusiness.cs" />
+    <Compile Include="CRD_CD_LNDBusiness.cs" />
+    <Compile Include="CRD_CD_NoCancellLNDBusiness.cs" />
+    <Compile Include="CRD_CD_NoCancellSTNCARDBusiness.cs" />
+    <Compile Include="CRD_CD_OperatorLogBusiness.cs" />
+    <Compile Include="CRD_CD_OutstandeSummaryBusiness.cs" />
+    <Compile Include="CRD_CD_OverDueBreakeBusiness.cs" />
+    <Compile Include="CRD_CD_QueryResultBusiness.cs" />
+    <Compile Include="CRD_CD_STNCARDBusiness.cs" />
+    <Compile Include="CRD_HD_REPORTBusiness.cs" />
+    <Compile Include="CRD_IS_CREDITCUEBusiness.cs" />
+    <Compile Include="CRD_IS_GRTSUMMARYBusiness.cs" />
+    <Compile Include="CRD_IS_OVDSUMMARYBusiness.cs" />
+    <Compile Include="CRD_PI_ACCFUNDBusiness.cs" />
+    <Compile Include="CRD_PI_ADMINAWARDBusiness.cs" />
+    <Compile Include="CRD_PI_ADMINPNSHMBusiness.cs" />
+    <Compile Include="CRD_PI_CIVILJDGMBusiness.cs" />
+    <Compile Include="CRD_PI_COMPETENCEBusiness.cs" />
+    <Compile Include="CRD_PI_ENDINSDPTBusiness.cs" />
+    <Compile Include="CRD_PI_FORCEEXCTNBusiness.cs" />
+    <Compile Include="CRD_PI_IDENTITYBusiness.cs" />
+    <Compile Include="CRD_PI_PROFESSNLBusiness.cs" />
+    <Compile Include="CRD_PI_RESIDENCEBusiness.cs" />
+    <Compile Include="CRD_PI_SALVATIONBusiness.cs" />
+    <Compile Include="CRD_PI_TAXARREARBusiness.cs" />
+    <Compile Include="CRD_PI_TELPNTBusiness.cs" />
+    <Compile Include="CRD_PI_VEHICLEBusiness.cs" />
+    <Compile Include="CRD_QR_RECORDDTLBusiness.cs" />
+    <Compile Include="CRD_QR_RECORDDTLINFOBusiness.cs" />
+    <Compile Include="Data\BaseDao.cs" />
+    <Compile Include="Data\IDBHelper.cs" />
+    <Compile Include="Data\SqlServerHelper.cs" />
+    <Compile Include="OperatorLog.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CRD_CD_LND_OVDBusiness.cs" />
+    <Compile Include="CRD_CD_LND_SPLBusiness.cs" />
+    <Compile Include="CRD_CD_LN_OVDBusiness.cs" />
+    <Compile Include="CRD_CD_LN_SPLBusiness.cs" />
+    <Compile Include="CRD_CD_STN_OVDBusiness.cs" />
+    <Compile Include="CRD_CD_STN_SPLBusiness.cs" />
+    <Compile Include="RequestStateEnume.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonLayer\Vcredit.ExternalCredit.CommonLayer.csproj">
+      <Project>{327bc53e-0eb0-4abf-a2c0-1f914309e043}</Project>
+      <Name>Vcredit.ExternalCredit.CommonLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ModelLayer\Vcredit.ExternalCredit.ModelLayer.csproj">
+      <Project>{b6b3ce8b-b291-43f1-89cd-805f5f274a09}</Project>
+      <Name>Vcredit.ExternalCredit.ModelLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

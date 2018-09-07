@@ -1,0 +1,61 @@
+------------------------------------------------------------
+2018-08-16 10:45:03,498 [8] ERROR logerror [(null)] - 系统异常
+System.Web.HttpException (0x80004005): 未找到路径“/”的控制器或该控制器未实现 IController。
+   在 System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   在 System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   在 System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2018-08-16 10:45:16,495 [9] ERROR logerror [(null)] - 系统异常
+System.Web.HttpException (0x80004005): 未找到路径“/”的控制器或该控制器未实现 IController。
+   在 System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   在 System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   在 System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2018-08-16 10:45:35,421 [13] ERROR logerror [(null)] - 系统异常
+System.Web.HttpException (0x80004005): 未找到路径“/api”的控制器或该控制器未实现 IController。
+   在 System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   在 System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   在 System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2018-08-16 10:47:56,745 [8] INFO  loginfo [(null)] - OnActionExecuting ==> IP：::1，请求Url：http://localhost:7001/api/Assure/AddQueryInfo，Body参数为：{"CertType":"0","CertNo":"620525199503022035","Name":"马金宝","QueryReason":"01","BusType":"DOUDOUQIAN","ApplyID":6}
+2018-08-16 10:47:58,507 [8] INFO  loginfo [(null)] - creditType:AssureCredit,bustypeDOUDOUQIAN,ip:::1请求信息
+2018-08-16 10:49:23,183 [8] INFO  loginfo [(null)] - OnActionExecuted ==> IP：::1，请求Url：http://localhost:7001/api/Assure/AddQueryInfo，Body参数为：{"CertType":"0","CertNo":"620525199503022035","Name":"马金宝","QueryReason":"01","BusType":"DOUDOUQIAN","ApplyID":6}，请求返回结果：{"isSuccess":true,"statusCode":0,"statusDescription":"数据保存成功，正在等待查询！","result":{"failReason":100}}
+2018-08-16 10:49:42,910 [9] INFO  loginfo [(null)] - 【Application_End】
+------------------------------------------------------------
+2018-08-16 10:50:31,856 [11] INFO  loginfo [(null)] - OnActionExecuting ==> IP：::1，请求Url：http://localhost:7001/api/Assure/AddQueryInfo，Body参数为：{"CertType":"0","CertNo":"620525199503022035","Name":"马金宝","QueryReason":"01","BusType":"DOUDOUQIAN","ApplyID":6}
+2018-08-16 10:50:32,394 [11] INFO  loginfo [(null)] - creditType:AssureCredit,bustypeDOUDOUQIAN,ip:::1请求信息
+2018-08-16 10:50:48,460 [8] INFO  loginfo [(null)] - OnActionExecuted ==> IP：::1，请求Url：http://localhost:7001/api/Assure/AddQueryInfo，Body参数为：{"CertType":"0","CertNo":"620525199503022035","Name":"马金宝","QueryReason":"01","BusType":"DOUDOUQIAN","ApplyID":6}，请求返回结果：{"isSuccess":false,"statusCode":1,"statusDescription":"30 天内不能重复查询","result":{"failReason":102}}
+2018-08-16 10:51:01,969 [9] INFO  loginfo [(null)] - OnActionExecuting ==> IP：::1，请求Url：http://localhost:7001/api/Assure/AddQueryInfo，Body参数为：{"CertType":"0","CertNo":"441882198011181212","Name":"马金宝","QueryReason":"01","BusType":"DOUDOUQIAN","ApplyID":6}
+2018-08-16 10:51:01,969 [9] INFO  loginfo [(null)] - creditType:AssureCredit,bustypeDOUDOUQIAN,ip:::1请求信息
+2018-08-16 10:51:32,347 [9] INFO  loginfo [(null)] - 时间限制外无法操作
+2018-08-16 10:51:49,197 [13] INFO  loginfo [(null)] - OnActionExecuted ==> IP：::1，请求Url：http://localhost:7001/api/Assure/AddQueryInfo，Body参数为：{"CertType":"0","CertNo":"441882198011181212","Name":"马金宝","QueryReason":"01","BusType":"DOUDOUQIAN","ApplyID":6}，请求返回结果：{"isSuccess":false,"statusCode":1,"statusDescription":"时间限制外无法操作","result":{"failReason":105}}
+2018-08-16 10:55:11,427 [27] INFO  loginfo [(null)] - 【Application_End】
+------------------------------------------------------------
+2018-08-16 10:55:21,285 [7] INFO  loginfo [(null)] - OnActionExecuting ==> IP：::1，请求Url：http://localhost:7001/api/Assure/AddQueryInfo，Body参数为：{"CertType":"0","CertNo":"441882198011181212","Name":"马金宝","QueryReason":"01","BusType":"DOUDOUQIAN","ApplyID":6}
+2018-08-16 10:55:21,502 [7] INFO  loginfo [(null)] - creditType:AssureCredit,bustypeDOUDOUQIAN,ip:::1请求信息
+2018-08-16 10:55:22,035 [13] INFO  loginfo [(null)] - OnActionExecuted ==> IP：::1，请求Url：http://localhost:7001/api/Assure/AddQueryInfo，Body参数为：{"CertType":"0","CertNo":"441882198011181212","Name":"马金宝","QueryReason":"01","BusType":"DOUDOUQIAN","ApplyID":6}，请求返回结果：{"isSuccess":true,"statusCode":0,"statusDescription":"数据保存成功，正在等待查询！","result":{"failReason":100}}
+2018-08-16 10:55:48,806 [9] INFO  loginfo [(null)] - 【Application_End】
+------------------------------------------------------------
+2018-08-16 10:56:06,158 [33] INFO  loginfo [(null)] - OnActionExecuting ==> IP：::1，请求Url：http://localhost:7001/api/Assure/AddQueryInfo，Body参数为：{"CertType":"0","CertNo":"441882198011181212","Name":"马金","QueryReason":"01","BusType":"DOUDOUQIAN","ApplyID":6}
+2018-08-16 10:56:06,373 [33] INFO  loginfo [(null)] - creditType:AssureCredit,bustypeDOUDOUQIAN,ip:::1请求信息
+2018-08-16 10:56:06,900 [33] INFO  loginfo [(null)] - 时间限制外无法操作
+2018-08-16 10:56:06,932 [33] INFO  loginfo [(null)] - OnActionExecuted ==> IP：::1，请求Url：http://localhost:7001/api/Assure/AddQueryInfo，Body参数为：{"CertType":"0","CertNo":"441882198011181212","Name":"马金","QueryReason":"01","BusType":"DOUDOUQIAN","ApplyID":6}，请求返回结果：{"isSuccess":false,"statusCode":1,"statusDescription":"时间限制外无法操作","result":{"failReason":105}}
+2018-08-16 10:56:48,226 [29] INFO  loginfo [(null)] - 【Application_End】
+------------------------------------------------------------
+2018-08-16 11:00:28,919 [48] INFO  loginfo [(null)] - OnActionExecuting ==> IP：::1，请求Url：http://localhost:7001/api/Assure/AddQueryInfo，Body参数为：{"CertType":"0","CertNo":"441882198011181212","Name":"马金","QueryReason":"01","BusType":"DOUDOUQIAN","ApplyID":6}
+2018-08-16 11:00:29,369 [48] INFO  loginfo [(null)] - creditType:AssureCredit,bustypeDOUDOUQIAN,ip:::1请求信息
+2018-08-16 11:00:29,696 [48] INFO  loginfo [(null)] - 时间限制外无法操作
+2018-08-16 11:00:29,733 [29] INFO  loginfo [(null)] - OnActionExecuted ==> IP：::1，请求Url：http://localhost:7001/api/Assure/AddQueryInfo，Body参数为：{"CertType":"0","CertNo":"441882198011181212","Name":"马金","QueryReason":"01","BusType":"DOUDOUQIAN","ApplyID":6}，请求返回结果：{"isSuccess":false,"statusCode":1,"statusDescription":"时间限制外无法操作","result":{"failReason":105}}
+2018-08-16 11:00:48,202 [13] INFO  loginfo [(null)] - 【Application_End】

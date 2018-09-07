@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>征信查询次数管理 | Log in</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/fontawesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/admin-lte/css/AdminLTE.min.css" rel="stylesheet" />
+    <link href="~/Content/admin-lte/css/skins/_all-skins.min.css" rel="stylesheet" />
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+        </div><!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">维信金科.征信查询次数管理</p>
+            <form action="/Account/Login" method="post">
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control" placeholder="账号" name="LoginName">
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="password" class="form-control" placeholder="密码" name="Password">
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-8">
+                        @*<div class="checkbox icheck">
+                            <label>
+                                <input type="checkbox"> Remember Me
+                            </label>
+                        </div>*@
+                    </div><!-- /.col -->
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">登陆</button>
+                    </div><!-- /.col -->
+                </div>
+            </form>
+        </div><!-- /.login-box-body -->
+    </div><!-- /.login-box -->
+
+    <script src="~/Scripts/jquery-2.1.3.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+</body>
+</html>

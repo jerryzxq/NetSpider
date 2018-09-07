@@ -1,0 +1,374 @@
+﻿@{
+    ViewBag.Title = "征信查询次数管理";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">查询条件</h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <form role="form">
+                    <div class="box-body">
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-4 control-label" for="queryLimitCount">允许查询数量</label>
+                            <div class="input-group col-sm-8">
+                                <input type="text" class="form-control" name="queryLimitCount" id="queryLimitCount" placeholder="允许查询数量" required onkeyup="this.value=this.value.replace(/\D/g,'')" maxlength="9">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-4 control-label" for="querySourceType">数据来源</label>
+                            <div class="input-group col-sm-8">
+                                <select class="form-control" name="querySourceType" id="querySourceType">
+                                    <option value="">全部</option>
+                                    <option value="10">外贸征信</option>
+                                    <option value="11">担保征信</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-4 control-label" for="queryBusType">业务类型</label>
+                            <div class="input-group col-sm-8">
+                                @*<input type="text" class="form-control" name="queryBusType" id="queryBusType" placeholder="业务代码">*@
+                                <select class="form-control" name="queryBusType" id="queryBusType">
+                                    <option value="">全部</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div><!-- /.box-body -->
+                    <div class="box-footer text-right">
+                        <button type="button" class="btn btn-primary" id="btnSubmit">查询</button>
+                        <button type="button" class="btn btn-primary" id="btnReset">重置</button>
+                        <button type="button" class="btn btn-primary" id="btnAdd">新增</button>
+                    </div>
+                </form>
+            </div><!-- /.box -->
+        </div><!--/.col (left) -->
+    </div>   <!-- /.row -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-body">
+                    <table class="table table-bordered" id="tableData">
+                        <tr>
+                            <th style="width: 10px">#</th>
+                            <th>允许查询数量</th>
+                            <th>业务代码</th>
+                            <th>业务描述</th>
+                            <th>数据来源</th>
+                            <th>IP地址</th>
+                            <th>创建日期</th>
+                            <th>修改日期</th>
+                            <th>操作</th>
+                        </tr>
+                    </table>
+                </div><!-- /.box-body -->
+                <div class="box-footer clearfix">
+                    <ul class="pagination pagination-sm no-margin pull-right" id="data-pagination"></ul>
+                </div>
+            </div><!-- /.box -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+
+    <div class="modal fade" id="div_modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">提醒</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="p_msg"></p>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section><!-- /.content -->
+
+<div class="modal infomsg">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">新增数据</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="box-body">
+                        <div class="form-group col-sm-12">
+                            <label class="col-sm-4 control-label" for="addLimitCount">允许查询数量</label>
+                            <div class="input-group col-sm-8">
+                                <input type="text" class="form-control" name="addLimitCount" id="addLimitCount" placeholder="允许查询数量" required onkeyup="this.value=this.value.replace(/\D/g,'')" maxlength="9">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label class="col-sm-4 control-label" for="addBusType">业务类型</label>
+                            <div class="input-group col-sm-8">
+                                @*<input type="text" class="form-control" name="addBusType" id="addBusType" placeholder="业务代码">*@
+                                <select class="form-control" name="addBusType" id="addBusType">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label class="col-sm-4 control-label" for="addSourceType">数据来源</label>
+                            <div class="input-group col-sm-8">
+                                <select class="form-control" name="addSourceType" id="addSourceType">
+                                    <option value="10">外贸征信</option>
+                                    <option value="11">担保征信</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label class="col-sm-4 control-label" for="addIpAddr">IP地址</label>
+                            <div class="input-group col-sm-8">
+                                <input type="text" class="form-control" name="addIpAddr" id="addIpAddr" placeholder="IP地址">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btnSave">保存</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+
+        $(function ()
+        {
+            reportList.init();
+        });
+
+        var reportList = {
+            scope: {
+                pageIndex: 1,
+                pageSize: 10,
+                totalCount: 0,
+            },
+            init: function ()
+            {
+                var _this = this;
+
+                _this.bindEvent();
+                _this.queryData();
+            },
+            bindEvent: function ()
+            {
+                var _this = this;
+
+                $("#btnSubmit").on('click', function ()
+                {
+                    $("#p_msg").text("正在提交...");
+                    $("#btnSubmit").addClass("disabled")
+
+                    _this.scope.pageIndex = 1;
+                    _this.queryData();
+                });
+
+                $("#btnReset").on("click", function ()
+                {
+                    $("#queryLimitCount").val("")
+                    $("#queryBusType").val("")
+                    $("#queryBusDesc").val("")
+                    $("#querySourceType").val("")
+                    $("#queryBusIpAddr").val("")
+
+                    _this.scope.pageIndex = 1;
+                    _this.queryData();
+                });
+
+                $("#btnAdd").on('click', function ()
+                {
+                    $("div.infomsg").modal("toggle");
+                });
+                $("#btnSave").on('click', function ()
+                {
+                    _this.scope.pageIndex = 1;
+                    _this.addData();
+                });
+
+                $.ajax({ 
+                    url : '/ApplyLimitMaintain/Get_BusType', 
+                    success : function(result){ 
+                        $("#queryBusType").append(result);
+                        $("#addBusType").append(result);
+                    }
+                })
+            },
+            queryData: function (pageIndex)
+            {
+                var _this = this;
+
+                var data = {
+                    pageIndex: _this.scope.pageIndex,
+                    pageSize: _this.scope.pageSize,
+                    LimitCount: $("#queryLimitCount").val(),
+                    BusType: $("#queryBusType").val(),
+                    //BusDesc: $("#queryBusDesc").val(),
+                    SourceType: $("#querySourceType").val(),
+                };
+                console.log("data:" + JSON.stringify(data));
+
+                var l = layer.msg('加载中...', { icon: 16, time: 0 });
+                $.ajax({
+                    url: "/ApplyLimitMaintain/Get_ApplyLimitList",
+                    data: data,
+                    type: "post",
+                    dataType: "json",
+                    success: function (response)
+                    {
+                        console.log(response);
+                        if (!response.IsSuccess)
+                        {
+                            layer.alert(response.StatusDescription, { icon: 1 });
+                            return false;
+                        }
+
+                        var $tr = $(`
+                                 <tr class ="trDataTemplate">
+                                    <td>
+                                        1
+                                    </td>
+                                    <td>
+                                        <a title="" class ="text"></a>
+                                    </td>
+                                    <td>
+                                        <a title="" class ="text"></a>
+                                    </td>
+                                    <td>
+                                        <a title="" class ="text"></a>
+                                    </td>
+                                    <td>
+                                        <a title="" class ="text"></a>
+                                    </td>
+                                    <td>
+                                        <a title="" class ="text"></a>
+                                    </td>
+                                    <td>
+                                        <a title="" class ="text"></a>
+                                    </td>
+                                    <td>
+                                        <a title="" class ="text"></a>
+                                    </td>
+                                    <td>
+                                        <a type="button" class="btnModify">编辑</a>
+                                    </td>
+                                </tr>
+                            `);
+                        $("#tableData > tbody > .trDataTemplate").remove();
+                        response.Result.map(function (item, index)
+                        {
+                            if (index > 0)
+                                $tr = $tr.clone();
+                            var strSourceType;
+                            if(item.SourceType==10)
+                            {
+                                strSourceType="外贸征信";
+                            }
+                            else
+                            {
+                                strSourceType="担保征信";
+                            }
+                            $tr.find("td:eq(0)").text(++index);
+                            $tr.find("td:eq(1)> .text").text(item.LimitCount);
+                            $tr.find("td:eq(2)> .text").text(item.BusType);
+                            $tr.find("td:eq(3)> .text").text(item.BusDesc);
+                            $tr.find("td:eq(4)> .text").text(strSourceType);
+                            $tr.find("td:eq(5)> .text").text(item.IpAddr);
+                            $tr.find("td:eq(6)> .text").text(item.CreateTime);
+                            $tr.find("td:eq(7)> .text").text(item.UpdateTime);
+
+                            var $btn = $tr.find("td:eq(8)> .btnModify");
+                            $btn.val(item.Id);
+                            $btn.attr('href','/ApplyLimitMaintain/ApplyLimitModify?Id='+item.Id);
+                            
+                            $("#tableData > tbody").append($tr);
+                        });
+
+                        $("#data-pagination").zPagination({
+                            PageIndex: _this.scope.pageIndex,
+                            PageCount: Math.ceil(response.TotalCount / _this.scope.pageSize),
+                            CallBack: function (selectedPage)
+                            {
+                                _this.scope.pageIndex = selectedPage;
+                                _this.queryData();
+                            }
+                        });
+                    },
+                    error: function (xhr, textStatus, err)
+                    {
+                        console.log(err);
+                        layer.alert('出现错误，请稍后重试！', { icon: 2 });
+                    },
+                    complete: function ()
+                    {
+                        layer.close(l);
+                        $("#btnSubmit").removeClass("disabled")
+                    }
+                });
+            },
+
+            addData: function (pageIndex)
+            {
+                var _this = this;
+
+                var data = {
+                    pageIndex: _this.scope.pageIndex,
+                    pageSize: _this.scope.pageSize,
+                    LimitCount: $("#addLimitCount").val(),
+                    BusType: $("#addBusType").val(),
+                    BusDesc: $("#addBusType option:checked").text(),
+                    SourceType: $("#addSourceType").val(),
+                    IpAddr: $("#addIpAddr").val(),
+                };
+                console.log("data:" + JSON.stringify(data));
+
+                var l = layer.msg('加载中...', { icon: 16, time: 0 });
+                $.ajax({
+                    url: "/ApplyLimitMaintain/Add_ApplyLimit",
+                    data: data,
+                    type: "post",
+                    dataType: "json",
+                    success: function (response)
+                    {
+                        console.log(response);
+                        if (!response.IsSuccess)
+                        {
+                            layer.alert(response.StatusDescription, { icon: 1 });
+                            return false;
+                        }
+                        _this.queryData();
+                    },
+                    error: function (xhr, textStatus, err)
+                    {
+                        console.log(err);
+                        layer.alert('出现错误，请稍后重试！', { icon: 2 });
+                    },
+                    complete: function ()
+                    {
+                        layer.close(l);
+                        $("div.infomsg").modal("toggle");
+                    }
+                });
+            },
+        };
+    </script>
+}

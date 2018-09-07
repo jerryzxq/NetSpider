@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{38829619-5954-4A9F-8675-9B3F632690B8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vcredit.ExternalCredit.Dto</RootNamespace>
+    <AssemblyName>Vcredit.ExternalCredit.Dto</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\Vcredit.ExternalCredit.AssureApi\bin\Vcredit.ExternalCredit.Dto.XML</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>..\Vcredit.ExternalCredit.AssureApi\bin\Vcredit.ExternalCredit.Dto.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApiResultDto.cs" />
+    <Compile Include="Assure\AddQueryInfoResultDataDto.cs" />
+    <Compile Include="Assure\AssureFileQueryDto.cs" />
+    <Compile Include="Assure\AssureMaintainBalanceTransferQueryDto.cs" />
+    <Compile Include="Assure\AssureApplyParamDto.cs" />
+    <Compile Include="Assure\ApplyLimitMaintainDto.cs" />
+    <Compile Include="Assure\AssureReportedParamDto.cs" />
+    <Compile Include="Assure\AssureMaintainQueryDto.cs" />
+    <Compile Include="Assure\AssureReportAfterQueryDto.cs" />
+    <Compile Include="Assure\AssureReportedQueryDto.cs" />
+    <Compile Include="Assure\BaseAssureQueryDto.cs" />
+    <Compile Include="Assure\BusTypeDto.cs" />
+    <Compile Include="Common\WhiteBusTypeDto.cs" />
+    <Compile Include="DataRequestDto.cs" />
+    <Compile Include="DataResponseDto.cs" />
+    <Compile Include="OrgCreditModel\BasicEntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_CD_ASRREPAYEntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_CD_ASSETDPSTEntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_CD_GUARANTEEEntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_CD_LNDEntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_CD_LND_OVDEntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_CD_LND_SPLEntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_CD_LNEntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_CD_LN_OVDEntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_CD_LN_SPLEntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_CD_OverDueBreakeEntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_CD_STNCARDEntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_CD_STN_OVDEntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_CD_STN_SPLEntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_HD_REPORTEntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_IS_CREDITCUEEntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_IS_GRTSUMMARYEntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_IS_OVDSUMMARYEntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_IS_SHAREDEBTEntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_PI_ACCFUNDEntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_PI_ENDINSDLREntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_PI_ENDINSDPTEntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_PI_IDENTITYEntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_PI_PROFESSNLEntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_PI_RESIDENCEEntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_QR_RECORDDTLEntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_QR_RECORDDTLINFOEntity.cs" />
+    <Compile Include="OrgCreditModel\CRD_QR_REORDSMREntity.cs" />
+    <Compile Include="OrgCreditModel\NewForeignContainer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Assure\AssureQueryUserInfoParamDto.cs" />
+    <Compile Include="Assure\AssureLoginResultDto.cs" />
+    <Compile Include="UpdateApplyIDReq.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonLayer\Vcredit.ExternalCredit.CommonLayer.csproj">
+      <Project>{327BC53E-0EB0-4ABF-A2C0-1F914309E043}</Project>
+      <Name>Vcredit.ExternalCredit.CommonLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.ExternalCredit.Attributes\Vcredit.ExternalCredit.Attributes.csproj">
+      <Project>{8d6b1908-8f9c-40d8-99bf-6056c7a34390}</Project>
+      <Name>Vcredit.ExternalCredit.Attributes</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

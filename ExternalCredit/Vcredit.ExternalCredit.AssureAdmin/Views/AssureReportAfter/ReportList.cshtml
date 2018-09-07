@@ -1,0 +1,334 @@
+﻿@{
+    ViewBag.Title = "担保赔付后新增开户查询";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">查询条件</h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <form role="form">
+                    <div class="box-body">
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-4 control-label" for="certNo">担保业务编号</label>
+                            <div class="input-group col-sm-8">
+                                <input type="text" class="form-control" name="GuaranteeLetterCode" id="GuaranteeLetterCode" placeholder="担保业务编号" required>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-4 control-label" for="State">上报状态</label>
+                            <div class="input-group col-sm-8">
+                                <select class="form-control" name="State" id="State">
+                                    <option value="">全部</option>
+                                    <option value="0">等待上报</option>
+                                    <option value="1">上报失败</option>
+                                    <option value="2">上报成功</option>
+                                    <option value="3">等待重新上报</option>
+                                    <option value="6">正在上报中...</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-4 control-label" for="UpdateTimeBegin">上报日期</label>
+                            <div class="input-group col-sm-8">
+                                <div class="input-group date form_datetime"
+                                     data-date="" data-date-format="yyyy-MM-dd HH:ii:ss"
+                                     data-link-field="dtp_input1">
+                                    <input class="form-control" size="16" type="text"
+                                           id="UpdateTimeBegin" name="UpdateTimeBegin"
+                                           value="@(DateTime.Now.ToString("yyyy-MM-dd 00:00:00"))">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                </div>
+                            </div><!-- /.input group -->
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-4 control-label" for="UpdateTimeBegin">--</label>
+                            <div class="input-group col-sm-8">
+                                <div class="input-group date form_datetime"
+                                     data-date="" data-date-format="yyyy-MM-dd HH:ii:ss"
+                                     data-link-field="dtp_input1">
+                                    <input class="form-control" size="16" type="text"
+                                           id="UpdateTimeEnd" name="UpdateTimeEnd"
+                                           value="@(DateTime.Now.ToString("yyyy-MM-dd 16:29:59"))">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                </div>
+                            </div><!-- /.input group -->
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-4 control-label" for="certNo">放款方</label>
+                            <div class="input-group col-sm-8">
+                                <input type="text" class="form-control" name="CreditorName" id="CreditorName" placeholder="放款方" required>
+                            </div>
+                        </div>
+                    </div><!-- /.box-body -->
+                    <div class="box-footer text-right">
+                        <button type="button" class="btn btn-primary" id="btnSubmit">查询</button>
+                        <button type="button" class="btn btn-primary" id="btnReset">重置</button>
+                    </div>
+                </form>
+            </div><!-- /.box -->
+        </div><!--/.col (left) -->
+    </div>   <!-- /.row -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box" style="font-size:10px">
+                <div class="box-header with-border">
+                    <h3 class="box-title">数据列表</h3>
+                    <div class="tools" style="float:right">
+                        <button class="btn btn-default btnExportExcel">
+                            <i class="fa fa-cloud-download"></i>
+                            数据导出
+                        </button>
+                    </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <table class="table table-bordered" id="tableData">
+                        <tr>
+                            <th style="width: 10px">#</th>
+                            <th>担保业务编号</th>
+                            <th>担保合同号码</th>
+                            <th>姓名</th>
+                            <th>身份证号</th>
+                            <th>担保起始日期</th>
+                            <th>担保到期日期</th>
+                            <th>担保金额</th>
+                            <th>费率</th>
+                            <th>在保余额（剩余本金）</th>
+
+                            <th>代偿日期</th>
+                            <th>代偿金额</th>
+
+                            <th>上传日期</th>
+                            <th>状态</th>
+                            <th>放款方</th>
+
+                            <th>主合同<br />编号</th>
+                            <th>主合同<br />号码</th>
+
+                            <th style="width:200px">描述</th>
+                        </tr>
+                    </table>
+                </div><!-- /.box-body -->
+                <div class="box-footer clearfix">
+                    <ul class="pagination pagination-sm no-margin pull-right" id="data-pagination"></ul>
+                </div>
+            </div><!-- /.box -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+
+    <div class="modal fade" id="div_modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">提醒</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="p_msg"></p>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section><!-- /.content -->
+
+@section scripts{
+    <script type="text/javascript">
+
+        $(function () {
+            reportList.init();
+        });
+
+        var reportList = {
+            scope: {
+                pageIndex: 1,
+                pageSize: 10,
+                totalCount: 0,
+            },
+            init: function () {
+                var _this = this;
+
+                _this.bindEvent();
+                _this.queryData();
+            },
+            bindEvent: function () {
+                var _this = this;
+
+                $("#btnSubmit").on('click', function () {
+                    $("#p_msg").text("正在提交...");
+                    $("#btnSubmit").addClass("disabled")
+
+                    _this.scope.pageIndex = 1;
+                    _this.queryData();
+                });
+
+                $("#btnReset").on("click", function () {
+                    $("#GuaranteeLetterCode").val("")
+                    $("#State").val("")
+                    $("#UpdateTimeBegin").val("")
+                    $("#UpdateTimeEnd").val("")
+
+                    $("#CreditorName").val("")
+
+                    _this.scope.pageIndex = 1;
+                    _this.queryData();
+                });
+                $(".btnExportExcel").on("click", function () {
+                    window.open("/AssureReportAfter/ExportAssureReport" + "?GuaranteeLetterCode=" + $("#GuaranteeLetterCode").val() +
+                                                                "&State=" + $("#State").val() +
+                                                                "&CreditorName=" + $("#CreditorName").val() +
+                                                                "&UpdateTimeBegin=" + $("#UpdateTimeBegin").val() +
+                                                                "&UpdateTimeEnd=" + $("#UpdateTimeEnd").val());
+                });
+            },
+            queryData: function (pageIndex) {
+                var _this = this;
+
+                var data = {
+                    pageIndex: _this.scope.pageIndex,
+                    pageSize: _this.scope.pageSize,
+                    GuaranteeLetterCode: $("#GuaranteeLetterCode").val(),
+                    State: $("#State").val(),
+                    UpdateTimeBegin: $("#UpdateTimeBegin").val(),
+                    UpdateTimeEnd: $("#UpdateTimeEnd").val(),
+                    CreditorName: $("#CreditorName").val(),
+                };
+                console.log("data:" + JSON.stringify(data));
+
+                var l = layer.msg('加载中...', { icon: 16, time: 0 });
+                $.ajax({
+                    url: "/AssureReportAfter/Get_AssureReportList",
+                    data: data,
+                    type: "post",
+                    dataType: "json",
+                    success: function (response) {
+                        console.log(response);
+                        if (!response.IsSuccess) {
+                            layer.alert(response.StatusDescription, { icon: 1 });
+                            return false;
+                        }
+
+                        var $tr = $(`
+                                 <tr class ="trDataTemplate">
+                                    <td>
+                                        1
+                                    </td>
+                                    <td>
+                                        <span title="" class ="text"></span>
+                                    </td>
+                                    <td>
+                                        <span title="" class ="text"></span>
+                                    </td>
+                                    <td>
+                                        <span title="" class ="text"></span>
+                                    </td>
+                                    <td>
+                                        <span title="" class ="text"></span>
+                                    </td>
+                                    <td>
+                                        <span title="" class ="text"></span>
+                                    </td>
+                                    <td>
+                                        <span title="" class ="text"></span>
+                                    </td>
+                                    <td>
+                                        <span title="" class ="text"></span>
+                                    </td>
+                                    <td>
+                                        <span title="" class ="text"></span>
+                                    </td>
+                                    <td>
+                                        <span title="" class ="text"></span>
+                                    </td>
+                                     <td>
+                                        <span title="" class ="text"></span>
+                                    </td>
+                                     <td>
+                                        <span title="" class ="text"></span>
+                                    </td>
+                                    <td>
+                                        <span title="" class ="text"></span>
+                                    </td>
+                                    <td>
+                                        <span title="" class ="text"></span>
+                                    </td>
+                                    <td>
+                                        <span title="" class ="text"></span>
+                                    </td>
+                                    <td>
+                                        <span title="" class ="text"></span>
+                                    </td>
+                                     <td>
+                                        <span title="" class ="text"></span>
+                                    </td>
+                                    <td>
+                                        <span title="" class ="text"></span>
+                                    </td>
+                                </tr>
+                            `);
+                        $("#tableData > tbody > .trDataTemplate").remove();
+                        response.Result.map(function (item, index) {
+                            if (index > 0)
+                                $tr = $tr.clone();
+
+                            $tr.find("td:eq(0)").text(++index);
+                            $tr.find("td:eq(1)> .text").text(item.GuaranteeLetterCode);
+                            $tr.find("td:eq(2)> .text").text(item.GuaranteeContractCode);
+                            $tr.find("td:eq(3)> .text").text(item.WarranteeName);
+                            $tr.find("td:eq(4)> .text").text(item.WarranteeCertNo);
+                            $tr.find("td:eq(5)> .text").text(item.GuaranteeStartDate);
+                            $tr.find("td:eq(6)> .text").text(item.GuaranteeStopDate);
+                            $tr.find("td:eq(7)> .text").text(item.GuaranteeSum);
+
+                            $tr.find("td:eq(8)> .text").text(item.Rate);
+                            $tr.find("td:eq(9)> .text").text(item.InkeepBalance);
+
+                            $tr.find("td:eq(10)> .text").text(item.BalanceTransferDate);
+                            $tr.find("td:eq(11)> .text").text(item.BalanceTransferSum);
+
+                            $tr.find("td:eq(12)> .text").text(item.UpdateTime);
+                            $tr.find("td:eq(13)> .text").text(item.State);
+                            $tr.find("td:eq(14)> .text").text(item.CreditorName);
+
+                            $tr.find("td:eq(15)> .text").text(item.MainCreditorCode);
+                            $tr.find("td:eq(16)> .text").text(item.MainContractCode);
+
+                            $tr.find("td:eq(17)> .text").text(item.StateDescription);
+
+                            $("#tableData > tbody").append($tr);
+                        });
+
+                        $("#data-pagination").zPagination({
+                            PageIndex: _this.scope.pageIndex,
+                            PageCount: Math.ceil(response.TotalCount / _this.scope.pageSize),
+                            CallBack: function (selectedPage) {
+                                _this.scope.pageIndex = selectedPage;
+                                _this.queryData();
+                            }
+                        });
+                    },
+                    error: function (xhr, textStatus, err) {
+                        console.log(err);
+                        layer.alert('出现错误，请稍后重试！', { icon: 2 });
+                    },
+                    complete: function () {
+                        layer.close(l);
+                        $("#btnSubmit").removeClass("disabled")
+                    }
+                });
+            },
+        };
+    </script>
+}

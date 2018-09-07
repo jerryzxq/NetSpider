@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{44EB356F-6C07-4894-981D-8DA2E954315A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vcredit.ExternalCredit.CrawlerLayer</RootNamespace>
+    <AssemblyName>Vcredit.ExternalCredit.CrawlerLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FileTool-1.0">
+      <HintPath>..\packages\FileTool-1.0.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Core">
+      <HintPath>..\packages\IKVM.OpenJDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Util">
+      <HintPath>..\packages\IKVM.OpenJDK.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.Runtime">
+      <HintPath>..\packages\IKVM.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.Runtime.JNI">
+      <HintPath>..\packages\IKVM.Runtime.JNI.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NSoup">
+      <HintPath>..\packages\NSoup.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack">
+      <HintPath>..\packages\ServiceStack.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Client, Version=4.0.56.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ServiceStack.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e06fbc6124f57c43, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite">
+      <HintPath>..\packages\ServiceStack.OrmLite.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite.SqlServer, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ServiceStack.OrmLite.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Redis, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ServiceStack.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Server">
+      <HintPath>..\packages\ServiceStack.Server.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\packages\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Vcredit.Common">
+      <HintPath>..\packages\Vcredit.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcredit.Framework.Queue">
+      <HintPath>..\packages\Vcredit.Framework.Queue.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcredit.NetSpider.Cache, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Vcredit.NetSpider.Cache.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assure\AnalisisHtml\SpecialCreditField\DataTableOperator.cs" />
+    <Compile Include="Assure\AnalisisHtml\SpecialCreditField\HaCombineField.cs" />
+    <Compile Include="Assure\AnalisisHtml\SpecialCreditField\HaCombineTable.cs" />
+    <Compile Include="Assure\AnalisisHtml\SpecialCreditField\HaMixinType.cs" />
+    <Compile Include="Assure\AnalisisHtml\SpecialCreditField\HaSpecialWork.cs" />
+    <Compile Include="Assure\AnalisisHtml\SpecialCreditField\HaTypeCredit.cs" />
+    <Compile Include="Assure\AnalisisHtml\SpecialCreditField\MainReport.cs" />
+    <Compile Include="Assure\AnalisisHtml\SpecialCreditField\NomalDealingcs.cs" />
+    <Compile Include="Assure\AnalisisHtml\Analisis.cs" />
+    <Compile Include="Assure\AnalisisHtml\SpecialCreditField\ICreditSpecialWork.cs" />
+    <Compile Include="Assure\AnalisisHtml\SpecialCreditField\TeleCombineTr.cs" />
+    <Compile Include="Assure\AssureBase.cs" />
+    <Compile Include="Assure\AssureDelete.cs" />
+    <Compile Include="Assure\AssureMaintain.cs" />
+    <Compile Include="Assure\AssureReport.cs" />
+    <Compile Include="Assure\CreditQuery.cs" />
+    <Compile Include="Assure\Handlers\BaseCreditQueryHandler.cs" />
+    <Compile Include="Assure\Handlers\DoAnanysisDownloadHandler.cs" />
+    <Compile Include="Assure\Handlers\DoCommitHandler.cs" />
+    <Compile Include="Assure\Handlers\GetCookieHandler.cs" />
+    <Compile Include="Assure\Handlers\NeedDownloadUserInfoHandler.cs" />
+    <Compile Include="Assure\Handlers\NeedCommitUserInfoHandler.cs" />
+    <Compile Include="Assure\Handlers\ReqeustHelperClass.cs" />
+    <Compile Include="Assure\Handlers\TimeLimitHandler.cs" />
+    <Compile Include="BusTypeVerify.cs" />
+    <Compile Include="CreditInfoPush.cs" />
+    <Compile Include="CreditVariable\CRD_STAT_LNDEntity.cs" />
+    <Compile Include="CreditVariable\CRD_STAT_LNEntity.cs" />
+    <Compile Include="CreditVariable\CRD_STAT_QREntity.cs" />
+    <Compile Include="CreditVariable\PublicInformationSummary.cs" />
+    <Compile Include="CreditVariable\ReportCaculation.cs" />
+    <Compile Include="ForeignTrade\AbastractFileBase.cs" />
+    <Compile Include="ForeignTrade\CreditFile\CombineField.cs" />
+    <Compile Include="ForeignTrade\CreditFile\CombineTable.cs" />
+    <Compile Include="ForeignTrade\CreditFile\ICreditExcelMap.cs" />
+    <Compile Include="ForeignTrade\CreditFile\MixinType.cs" />
+    <Compile Include="ForeignTrade\CreditFile\SpecialWork.cs" />
+    <Compile Include="ForeignTrade\CreditFile\TypeCredit.cs" />
+    <Compile Include="ForeignTrade\CreditFile\ExtTradeFileBusiness\CreateRequestData\CreditUserInfo.cs" />
+    <Compile Include="ForeignTrade\CreditFile\ExtTradeFileBusiness\CreateRequestData\FileOperator.cs" />
+    <Compile Include="ForeignTrade\CreditFile\ExtTradeFileBusiness\CreateRequestData\TxtFileRequest.cs" />
+    <Compile Include="ForeignTrade\CreditFile\ExtTradeFileBusiness\DealingExcelData.cs" />
+    <Compile Include="ForeignTrade\CreditFile\ExtTradeFileBusiness\DownLoadFile.cs" />
+    <Compile Include="ForeignTrade\CreditFile\ExtTradeFileBusiness\ExcelFile.cs" />
+    <Compile Include="ForeignTrade\CreditFile\ExtTradeFileBusiness\FileFactory.cs" />
+    <Compile Include="ForeignTrade\CreditFile\ExtTradeFileBusiness\TxtFile.cs" />
+    <Compile Include="ForeignTrade\MappingModel.cs" />
+    <Compile Include="JinCityBank\JinXmlCredit.cs" />
+    <Compile Include="JinCityBank\VariableCaculater\CRD_STAT_LNDEntity.cs" />
+    <Compile Include="JinCityBank\VariableCaculater\CRD_STAT_LNEntity.cs" />
+    <Compile Include="JinCityBank\VariableCaculater\CRD_STAT_QREntity.cs" />
+    <Compile Include="NewForeignTrade\BatchRequest.cs" />
+    <Compile Include="NewForeignTrade\BatchResEntity.cs" />
+    <Compile Include="NewForeignTrade\ErrorData.cs" />
+    <Compile Include="ExtTradeJson.cs" />
+    <Compile Include="NewForeignTrade\ForeignTradeQuery.cs" />
+    <Compile Include="NewForeignTrade\Message.cs" />
+    <Compile Include="NewForeignTrade\NewForeignCommon.cs" />
+    <Compile Include="NewForeignTrade\NewForeignTrade.cs" />
+    <Compile Include="NewForeignTrade\RequestEntity.cs" />
+    <Compile Include="NewForeignTrade\ResponeEntity.cs" />
+    <Compile Include="NewForeignTrade\SingleRequest.cs" />
+    <Compile Include="NewForeignTrade\ReceiveFile.cs" />
+    <Compile Include="NewForeignTrade\UpLoadFile.cs" />
+    <Compile Include="NewForeignTrade\UpLoadXmlFile.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Assure\Impl\CreditQueryImpl.cs" />
+    <Compile Include="ShanghaiLoan\QueryRequestMessage.cs" />
+    <Compile Include="ShanghaiLoan\RequestHead.cs" />
+    <Compile Include="ShanghaiLoan\RequestMsg.cs" />
+    <Compile Include="ShanghaiLoan\RequestXml.cs" />
+    <Compile Include="ShanghaiLoan\ShangHaiCredit.cs" />
+    <Compile Include="ShanghaiLoan\TitleStrEntity.cs" />
+    <Compile Include="VariableCommonFun.cs" />
+    <Compile Include="CreditVariable\VariableInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Business\Vcredit.ExternalCredit.BusinessLayer.csproj">
+      <Project>{ae5a193b-ecf5-4df1-ae0a-b8033cd9e4e6}</Project>
+      <Name>Vcredit.ExternalCredit.BusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonLayer\Vcredit.ExternalCredit.CommonLayer.csproj">
+      <Project>{327bc53e-0eb0-4abf-a2c0-1f914309e043}</Project>
+      <Name>Vcredit.ExternalCredit.CommonLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ModelLayer\Vcredit.ExternalCredit.ModelLayer.csproj">
+      <Project>{b6b3ce8b-b291-43f1-89cd-805f5f274a09}</Project>
+      <Name>Vcredit.ExternalCredit.ModelLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.ExternalCredit.Dto\Vcredit.ExternalCredit.Dto.csproj">
+      <Project>{38829619-5954-4a9f-8675-9b3f632690b8}</Project>
+      <Name>Vcredit.ExternalCredit.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.ExternalCredit.Services\Vcredit.ExternalCredit.Services.csproj">
+      <Project>{c987bdb1-b997-4f3a-9033-60a99d9b39d1}</Project>
+      <Name>Vcredit.ExternalCredit.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
