@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{49C808F0-5E15-46F5-9F14-0420B59C9A57}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vcredit.NetSpider.Emall.Entity</RootNamespace>
+    <AssemblyName>Vcredit.NetSpider.Emall.Entity</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common">
+      <HintPath>..\Dll\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces">
+      <HintPath>..\Dll\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite">
+      <HintPath>..\Dll\ServiceStack.OrmLite.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite.SqlServer">
+      <HintPath>..\Dll\ServiceStack.OrmLite.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Redis">
+      <HintPath>..\Dll\ServiceStack.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Vcredit.Common">
+      <HintPath>..\Dll\Vcredit.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Alipay\AlipayAddressEntity.cs" />
+    <Compile Include="Alipay\AlipayBaicEntity.cs" />
+    <Compile Include="Alipay\AlipayBankEntity.cs" />
+    <Compile Include="Alipay\AlipayBillCreditPaymentEntity.cs" />
+    <Compile Include="Alipay\AlipayBillEntity.cs" />
+    <Compile Include="Alipay\AlipayBillExpenditureEntity.cs" />
+    <Compile Include="Alipay\AlipayBillFlowerEntity.cs" />
+    <Compile Include="Alipay\AlipayBillFlowerOrderDetailEntity.cs" />
+    <Compile Include="Alipay\AlipayBillFlowerRePaymentEntity.cs" />
+    <Compile Include="Alipay\AlipayBillOrderDetailEntity.cs" />
+    <Compile Include="Alipay\AlipayBillOrderEntity.cs" />
+    <Compile Include="Alipay\AlipayBillOrderLogisticsEntity.cs" />
+    <Compile Include="Alipay\AlipayBillPaymentEntity.cs" />
+    <Compile Include="Alipay\AlipayBillRefundsEntity.cs" />
+    <Compile Include="Alipay\AlipayBillTransferEntity.cs" />
+    <Compile Include="Alipay\AlipayConsumptionEntity.cs" />
+    <Compile Include="Alipay\AlipayElectronicBillEntity.cs" />
+    <Compile Include="Alipay\AlipayExpBankEntity.cs" />
+    <Compile Include="Alipay\AlipayExpSummaryEntity.cs" />
+    <Compile Include="Alipay\AlipayIncomeSummaryEntity.cs" />
+    <Compile Include="Alipay\spd_applyEntity.cs" />
+    <Compile Include="Alipay\spd_applyformEntity.cs" />
+    <Compile Include="Amazon\AmazonCartEntity.cs" />
+    <Compile Include="Amazon\AmazonCollectEntity.cs" />
+    <Compile Include="Amazon\AmazonGoodsEntity.cs" />
+    <Compile Include="Amazon\AmazonOrderEntity.cs" />
+    <Compile Include="Amazon\AmazonReceiveAddressEntity.cs" />
+    <Compile Include="Amazon\AmazonTradeRecordEntity.cs" />
+    <Compile Include="Amazon\AmazonUserInfoEntity.cs" />
+    <Compile Include="DangDang\DdCartEntity.cs" />
+    <Compile Include="DangDang\DdCollectgoodsEntity.cs" />
+    <Compile Include="DangDang\DdCollectshopsEntity.cs" />
+    <Compile Include="DangDang\DdGoodsEntity.cs" />
+    <Compile Include="DangDang\DdLogisticsEntity.cs" />
+    <Compile Include="DangDang\DdOrderEntity.cs" />
+    <Compile Include="DangDang\DdReceiveaddressEntity.cs" />
+    <Compile Include="DangDang\DdUserinfoEntity.cs" />
+    <Compile Include="Gome\GomeCartEntity.cs" />
+    <Compile Include="Gome\GomeCollectgoodsEntity.cs" />
+    <Compile Include="Gome\GomeCollectshopEntity.cs" />
+    <Compile Include="Gome\GomeGoodsEntity.cs" />
+    <Compile Include="Gome\GomeLogisticsEntity.cs" />
+    <Compile Include="Gome\GomeOrderEntity.cs" />
+    <Compile Include="Gome\GomeReceiveaddressEntity.cs" />
+    <Compile Include="Gome\GomeUserinfoEntity.cs" />
+    <Compile Include="JingDong\AttentionDataEntity.cs" />
+    <Compile Include="JingDong\BaseEntity.cs" />
+    <Compile Include="JingDong\BrowseHistoryEntity.cs" />
+    <Compile Include="JingDong\ExpenseRecordEntity.cs" />
+    <Compile Include="JingDong\FocusActivityEntity.cs" />
+    <Compile Include="JingDong\FocusBrandEntity.cs" />
+    <Compile Include="JingDong\FocusProductEntity.cs" />
+    <Compile Include="JingDong\FocusShopEntity.cs" />
+    <Compile Include="JingDong\GoodsEntity.cs" />
+    <Compile Include="JingDong\GrowthValueDetailEntity.cs" />
+    <Compile Include="JingDong\InstalmentEntity.cs" />
+    <Compile Include="JingDong\JDInfosEntity.cs" />
+    <Compile Include="JingDong\JDWhiteBarEntity.cs" />
+    <Compile Include="JingDong\LogisticsEntity.cs" />
+    <Compile Include="JingDong\OrderEntity.cs" />
+    <Compile Include="JingDong\QuickPaymentEntity.cs" />
+    <Compile Include="JingDong\ReceiveAddressEntity.cs" />
+    <Compile Include="JingDong\RequestParam.cs" />
+    <Compile Include="JingDong\ShareDetailEntity.cs" />
+    <Compile Include="JingDong\ShoppingCartEntity.cs" />
+    <Compile Include="JingDong\UserInfoEntity.cs" />
+    <Compile Include="JingDong\WhiteAllOrderEntity.cs" />
+    <Compile Include="JingDong\WhiteBarParam.cs" />
+    <Compile Include="JingDong\WhiteNeedPayEntity.cs" />
+    <Compile Include="JingDong\WhiteRefundedEntity.cs" />
+    <Compile Include="JingDong\WhiteRepayMentEntity.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Suning\SuningCampusAccountEntity.cs" />
+    <Compile Include="Suning\SuningCartEntity.cs" />
+    <Compile Include="Suning\SuningCloudVipEntity.cs" />
+    <Compile Include="Suning\SuningEFuBaoBaicEntity.cs" />
+    <Compile Include="Suning\SuningEFuBaoBankCardEntity.cs" />
+    <Compile Include="Suning\SuningEFuBaoBillCreditEntity.cs" />
+    <Compile Include="Suning\SuningEFuBaoBillPayRecordEntity.cs" />
+    <Compile Include="Suning\SuningEFuBaoTradeEntity.cs" />
+    <Compile Include="Suning\SuningEFuBaoTradeProcessEntity.cs" />
+    <Compile Include="Suning\SuningFootPrintEntity.cs" />
+    <Compile Include="Suning\SuningGoodsEntity.cs" />
+    <Compile Include="Suning\SuningOrderEntity.cs" />
+    <Compile Include="Suning\SuningProductCollectEntity.cs" />
+    <Compile Include="Suning\SuningReceiveAddressEntity.cs" />
+    <Compile Include="Suning\SuningLogisticsDetailEntity.cs" />
+    <Compile Include="Suning\SuningUserInfoEntity.cs" />
+    <Compile Include="Suning\SuningReturnGoodProcessEntity.cs" />
+    <Compile Include="Suning\SuningReturnGoodsDetailEntity.cs" />
+    <Compile Include="Suning\SuningReturnGoodsOrderEntity.cs" />
+    <Compile Include="TaoBao\DomainEntity\OrderDomainModel.cs" />
+    <Compile Include="TaoBao\TaobaoAlipaybindEntity.cs" />
+    <Compile Include="TaoBao\TaobaoCartEntity.cs" />
+    <Compile Include="TaoBao\TaobaoCollectEntity.cs" />
+    <Compile Include="TaoBao\TaobaoDistrictEntity.cs" />
+    <Compile Include="TaoBao\TaobaoEvaluationEntity.cs" />
+    <Compile Include="TaoBao\TaobaoFootprintEntity.cs" />
+    <Compile Include="TaoBao\TaobaoGoodsEntity.cs" />
+    <Compile Include="TaoBao\TaobaoGrowthRecordEntity.cs" />
+    <Compile Include="TaoBao\TaobaoLogisticsEntity.cs" />
+    <Compile Include="TaoBao\TaobaoOrderEntity.cs" />
+    <Compile Include="TaoBao\TaobaoReceiveAddressEntity.cs" />
+    <Compile Include="TaoBao\TaobaoRefundEntity.cs" />
+    <Compile Include="TaoBao\TaobaoServiceEntity.cs" />
+    <Compile Include="TaoBao\TaobaoTradeStatusEntity.cs" />
+    <Compile Include="TaoBao\TaobaoUserInfoEntity.cs" />
+    <Compile Include="TaoBao\TaobaoAlipayinfoEntity.cs" />
+    <Compile Include="TaoBao\TaobaoAlipayMonthBillEntity.cs" />
+    <Compile Include="VipShop\VipshopBrandcollectEntity.cs" />
+    <Compile Include="VipShop\VipshopCartEntity.cs" />
+    <Compile Include="VipShop\VipshopGoodsEntity.cs" />
+    <Compile Include="VipShop\VipshopLogisticsEntity.cs" />
+    <Compile Include="VipShop\VipshopOrderEntity.cs" />
+    <Compile Include="VipShop\VipshopProductcollectEntity.cs" />
+    <Compile Include="VipShop\VipshopProfilesEntity.cs" />
+    <Compile Include="VipShop\VipshopReceiveAddressEntity.cs" />
+    <Compile Include="VipShop\VipshopSizeEntity.cs" />
+    <Compile Include="VipShop\VipshopUserInfoEntity.cs" />
+    <Compile Include="YiHaoDian\YhdCartEntity.cs" />
+    <Compile Include="YiHaoDian\YhdCollectgoodsEntity.cs" />
+    <Compile Include="YiHaoDian\YhdCollectshopsEntity.cs" />
+    <Compile Include="YiHaoDian\YhdGoodsEntity.cs" />
+    <Compile Include="YiHaoDian\YhdGrowthrecordEntity.cs" />
+    <Compile Include="YiHaoDian\YhdLogisticsEntity.cs" />
+    <Compile Include="YiHaoDian\YhdOrderEntity.cs" />
+    <Compile Include="YiHaoDian\YhdReceiveaddressEntity.cs" />
+    <Compile Include="YiHaoDian\YhdUserinfoEntity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Vcredit.NetSpider.Emall.Framework\Vcredit.NetSpider.Emall.Framework.csproj">
+      <Project>{d675ecdb-9451-4b9a-b200-7eadba4aa429}</Project>
+      <Name>Vcredit.NetSpider.Emall.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

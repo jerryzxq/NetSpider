@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A8562DA3-8800-418B-8925-237BFFAD6A19}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ConsoleApplication</RootNamespace>
+    <AssemblyName>ConsoleApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data">
+      <HintPath>..\Dll\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dll\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Noesis.Javascript, Version=0.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dll\Noesis.Javascript.dll</HintPath>
+    </Reference>
+    <Reference Include="NSoup, Version=0.8.0.0, Culture=neutral, PublicKeyToken=6d44e53f0a65e802, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dll\NSoup.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack, Version=4.0.56.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dll\ServiceStack.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dll\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e06fbc6124f57c43, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dll\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dll\ServiceStack.OrmLite.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite.SqlServer, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dll\ServiceStack.OrmLite.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Redis, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dll\ServiceStack.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Server, Version=4.0.56.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dll\ServiceStack.Server.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dll\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Vcredit.Common">
+      <HintPath>..\Dll\Vcredit.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcredit.NetSpider.Cache, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dll\Vcredit.NetSpider.Cache.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcredit.NetSpider.Entity">
+      <HintPath>..\Dll\Vcredit.NetSpider.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcredit.NetSpider.Service">
+      <HintPath>..\Dll\Vcredit.NetSpider.Service.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Common.cs" />
+    <Compile Include="HttpCode.cs" />
+    <Compile Include="Jd.cs" />
+    <Compile Include="LaGouTest.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Vcredit.Framework.Queue\Vcredit.Framework.Queue.csproj">
+      <Project>{0ae0fac1-8b5a-4b29-8d0e-82bdcf10c4d0}</Project>
+      <Name>Vcredit.Framework.Queue</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.Framework.Server.Dto\Vcredit.Framework.Server.Dto.csproj">
+      <Project>{65A719C6-B76F-4FF6-8CB7-0FA7A16519D8}</Project>
+      <Name>Vcredit.Framework.Server.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.NetSpider.Emall.Business\Vcredit.NetSpider.Emall.Business.csproj">
+      <Project>{bcadff02-7ee2-496a-943e-450b767cbd3b}</Project>
+      <Name>Vcredit.NetSpider.Emall.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.NetSpider.Emall.Components\Vcredit.NetSpider.Emall.Entity.csproj">
+      <Project>{49c808f0-5e15-46f5-9f14-0420b59c9a57}</Project>
+      <Name>Vcredit.NetSpider.Emall.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.NetSpider.Emall.Crawler\Vcredit.NetSpider.Emall.Crawler.csproj">
+      <Project>{bf18dea7-febd-401a-9916-0a786d30a3cf}</Project>
+      <Name>Vcredit.NetSpider.Emall.Crawler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.NetSpider.Emall.Data\Vcredit.NetSpider.Emall.Data.csproj">
+      <Project>{ac5967b9-480a-482b-9cf0-ff1c95a9d481}</Project>
+      <Name>Vcredit.NetSpider.Emall.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.NetSpider.Emall.Dto\Vcredit.NetSpider.Emall.Dto.csproj">
+      <Project>{c46859ea-4acf-4c2f-80b3-e7d47084d8e4}</Project>
+      <Name>Vcredit.NetSpider.Emall.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.NetSpider.Emall.Framework\Vcredit.NetSpider.Emall.Framework.csproj">
+      <Project>{d675ecdb-9451-4b9a-b200-7eadba4aa429}</Project>
+      <Name>Vcredit.NetSpider.Emall.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.NetSpider.Emall.Processor\Vcredit.NetSpider.Emall.Processor.csproj">
+      <Project>{120f5b32-0c36-4955-a664-b57e007e8f4d}</Project>
+      <Name>Vcredit.NetSpider.Emall.Processor</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

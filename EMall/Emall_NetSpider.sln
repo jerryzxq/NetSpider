@@ -1,0 +1,228 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication", "ConsoleApplication\ConsoleApplication.csproj", "{A8562DA3-8800-418B-8925-237BFFAD6A19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.NetSpider.Emall.Business", "Vcredit.NetSpider.Emall.Business\Vcredit.NetSpider.Emall.Business.csproj", "{BCADFF02-7EE2-496A-943E-450B767CBD3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.NetSpider.Emall.Entity", "Vcredit.NetSpider.Emall.Components\Vcredit.NetSpider.Emall.Entity.csproj", "{49C808F0-5E15-46F5-9F14-0420B59C9A57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.NetSpider.Emall.Data", "Vcredit.NetSpider.Emall.Data\Vcredit.NetSpider.Emall.Data.csproj", "{AC5967B9-480A-482B-9CF0-FF1C95A9D481}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.NetSpider.Emall.Framework", "Vcredit.NetSpider.Emall.Framework\Vcredit.NetSpider.Emall.Framework.csproj", "{D675ECDB-9451-4B9A-B200-7EADBA4AA429}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.NetSpider.Emall.Processor", "Vcredit.NetSpider.Emall.Processor\Vcredit.NetSpider.Emall.Processor.csproj", "{120F5B32-0C36-4955-A664-B57E007E8F4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.NetSpider.Emall.UnitBusinessTest", "Vcredit.NetSpider.EmallUnitBusinessTest\Vcredit.NetSpider.Emall.UnitBusinessTest.csproj", "{507663C3-2C91-45F1-BCC1-4270A0C72C7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.NetSpider.Emall.CrawlingService", "Vcredit.NetSpider.Emall.CrawlingService\Vcredit.NetSpider.Emall.CrawlingService.csproj", "{11852BEB-2A46-42A5-8542-6A4FCA0F858B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.NetSpider.Emall.Crawler", "Vcredit.NetSpider.Emall.Crawler\Vcredit.NetSpider.Emall.Crawler.csproj", "{BF18DEA7-FEBD-401A-9916-0A786D30A3CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.NetSpider.Emall.QueryService", "Vcredit.NetSpider.Emall.QueryService\Vcredit.NetSpider.Emall.QueryService.csproj", "{F4A06937-9323-4FAC-948F-CCC9C8739C9E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{EF39FD4F-170C-4DEF-9E52-0E8FE1F1BF98}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{CB053B42-182A-4965-B4A2-68BF3FEC971A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{050B4F74-87D4-4031-B460-6B30DC946158}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.Framework.Server.Dto", "Vcredit.Framework.Server.Dto\Vcredit.Framework.Server.Dto.csproj", "{65A719C6-B76F-4FF6-8CB7-0FA7A16519D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.Framework.Queue", "Vcredit.Framework.Queue\Vcredit.Framework.Queue.csproj", "{0AE0FAC1-8B5A-4B29-8D0E-82BDCF10C4D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.NetSpider.Emall.SimulationTBLogin", "Vcredit.NetSpider.Emall.SimulationTBLogin\Vcredit.NetSpider.Emall.SimulationTBLogin.csproj", "{6013EE8C-0E1C-416F-B97F-74EC302815F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.NetSpider.Emall.WebClient", "Vcredit.NetSpider.Emall.WebClient\Vcredit.NetSpider.Emall.WebClient.csproj", "{1DFA4897-BFA7-4D79-BC1C-D89E3FB81337}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.NetSpider.Metrics", "Vcredit.NetSpider.Metrics\Vcredit.NetSpider.Metrics.csproj", "{7E9A45B4-41D0-4561-8FBC-E188DF5DB9CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.NetSpider.Emall.Dto", "Vcredit.NetSpider.Emall.Dto\Vcredit.NetSpider.Emall.Dto.csproj", "{C46859EA-4ACF-4C2F-80B3-E7D47084D8E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.NetSpider.Emall.AlipayUAWinConsole", "Vcredit.NetSpider.Emall.AlipayUAWinConsole\Vcredit.NetSpider.Emall.AlipayUAWinConsole.csproj", "{4B97CDC2-1E8C-4D9F-A4EE-CA10FFD6517B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.NetSpider.Emall.AlipayBillCrawlerWinConsole", "Vcredit.NetSpider.Emall.AlipayBillCrawlerWinConsole\Vcredit.NetSpider.Emall.AlipayBillCrawlerWinConsole.csproj", "{85757FA9-625B-4B99-AEDF-3C8B24262022}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8562DA3-8800-418B-8925-237BFFAD6A19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8562DA3-8800-418B-8925-237BFFAD6A19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8562DA3-8800-418B-8925-237BFFAD6A19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8562DA3-8800-418B-8925-237BFFAD6A19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCADFF02-7EE2-496A-943E-450B767CBD3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCADFF02-7EE2-496A-943E-450B767CBD3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCADFF02-7EE2-496A-943E-450B767CBD3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCADFF02-7EE2-496A-943E-450B767CBD3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49C808F0-5E15-46F5-9F14-0420B59C9A57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49C808F0-5E15-46F5-9F14-0420B59C9A57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49C808F0-5E15-46F5-9F14-0420B59C9A57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49C808F0-5E15-46F5-9F14-0420B59C9A57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC5967B9-480A-482B-9CF0-FF1C95A9D481}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC5967B9-480A-482B-9CF0-FF1C95A9D481}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC5967B9-480A-482B-9CF0-FF1C95A9D481}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC5967B9-480A-482B-9CF0-FF1C95A9D481}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D675ECDB-9451-4B9A-B200-7EADBA4AA429}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D675ECDB-9451-4B9A-B200-7EADBA4AA429}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D675ECDB-9451-4B9A-B200-7EADBA4AA429}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D675ECDB-9451-4B9A-B200-7EADBA4AA429}.Release|Any CPU.Build.0 = Release|Any CPU
+		{120F5B32-0C36-4955-A664-B57E007E8F4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{120F5B32-0C36-4955-A664-B57E007E8F4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{120F5B32-0C36-4955-A664-B57E007E8F4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{120F5B32-0C36-4955-A664-B57E007E8F4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{507663C3-2C91-45F1-BCC1-4270A0C72C7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{507663C3-2C91-45F1-BCC1-4270A0C72C7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{507663C3-2C91-45F1-BCC1-4270A0C72C7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{507663C3-2C91-45F1-BCC1-4270A0C72C7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11852BEB-2A46-42A5-8542-6A4FCA0F858B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11852BEB-2A46-42A5-8542-6A4FCA0F858B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11852BEB-2A46-42A5-8542-6A4FCA0F858B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11852BEB-2A46-42A5-8542-6A4FCA0F858B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF18DEA7-FEBD-401A-9916-0A786D30A3CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF18DEA7-FEBD-401A-9916-0A786D30A3CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF18DEA7-FEBD-401A-9916-0A786D30A3CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF18DEA7-FEBD-401A-9916-0A786D30A3CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4A06937-9323-4FAC-948F-CCC9C8739C9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4A06937-9323-4FAC-948F-CCC9C8739C9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4A06937-9323-4FAC-948F-CCC9C8739C9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4A06937-9323-4FAC-948F-CCC9C8739C9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65A719C6-B76F-4FF6-8CB7-0FA7A16519D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65A719C6-B76F-4FF6-8CB7-0FA7A16519D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65A719C6-B76F-4FF6-8CB7-0FA7A16519D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65A719C6-B76F-4FF6-8CB7-0FA7A16519D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AE0FAC1-8B5A-4B29-8D0E-82BDCF10C4D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AE0FAC1-8B5A-4B29-8D0E-82BDCF10C4D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AE0FAC1-8B5A-4B29-8D0E-82BDCF10C4D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AE0FAC1-8B5A-4B29-8D0E-82BDCF10C4D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6013EE8C-0E1C-416F-B97F-74EC302815F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6013EE8C-0E1C-416F-B97F-74EC302815F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6013EE8C-0E1C-416F-B97F-74EC302815F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6013EE8C-0E1C-416F-B97F-74EC302815F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DFA4897-BFA7-4D79-BC1C-D89E3FB81337}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DFA4897-BFA7-4D79-BC1C-D89E3FB81337}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DFA4897-BFA7-4D79-BC1C-D89E3FB81337}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DFA4897-BFA7-4D79-BC1C-D89E3FB81337}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E9A45B4-41D0-4561-8FBC-E188DF5DB9CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E9A45B4-41D0-4561-8FBC-E188DF5DB9CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E9A45B4-41D0-4561-8FBC-E188DF5DB9CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E9A45B4-41D0-4561-8FBC-E188DF5DB9CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C46859EA-4ACF-4C2F-80B3-E7D47084D8E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C46859EA-4ACF-4C2F-80B3-E7D47084D8E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C46859EA-4ACF-4C2F-80B3-E7D47084D8E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C46859EA-4ACF-4C2F-80B3-E7D47084D8E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B97CDC2-1E8C-4D9F-A4EE-CA10FFD6517B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B97CDC2-1E8C-4D9F-A4EE-CA10FFD6517B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B97CDC2-1E8C-4D9F-A4EE-CA10FFD6517B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B97CDC2-1E8C-4D9F-A4EE-CA10FFD6517B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85757FA9-625B-4B99-AEDF-3C8B24262022}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85757FA9-625B-4B99-AEDF-3C8B24262022}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85757FA9-625B-4B99-AEDF-3C8B24262022}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85757FA9-625B-4B99-AEDF-3C8B24262022}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A8562DA3-8800-418B-8925-237BFFAD6A19} = {EF39FD4F-170C-4DEF-9E52-0E8FE1F1BF98}
+		{BCADFF02-7EE2-496A-943E-450B767CBD3B} = {CB053B42-182A-4965-B4A2-68BF3FEC971A}
+		{49C808F0-5E15-46F5-9F14-0420B59C9A57} = {CB053B42-182A-4965-B4A2-68BF3FEC971A}
+		{AC5967B9-480A-482B-9CF0-FF1C95A9D481} = {050B4F74-87D4-4031-B460-6B30DC946158}
+		{D675ECDB-9451-4B9A-B200-7EADBA4AA429} = {050B4F74-87D4-4031-B460-6B30DC946158}
+		{120F5B32-0C36-4955-A664-B57E007E8F4D} = {CB053B42-182A-4965-B4A2-68BF3FEC971A}
+		{507663C3-2C91-45F1-BCC1-4270A0C72C7E} = {EF39FD4F-170C-4DEF-9E52-0E8FE1F1BF98}
+		{11852BEB-2A46-42A5-8542-6A4FCA0F858B} = {EF39FD4F-170C-4DEF-9E52-0E8FE1F1BF98}
+		{BF18DEA7-FEBD-401A-9916-0A786D30A3CF} = {CB053B42-182A-4965-B4A2-68BF3FEC971A}
+		{F4A06937-9323-4FAC-948F-CCC9C8739C9E} = {EF39FD4F-170C-4DEF-9E52-0E8FE1F1BF98}
+		{65A719C6-B76F-4FF6-8CB7-0FA7A16519D8} = {CB053B42-182A-4965-B4A2-68BF3FEC971A}
+		{0AE0FAC1-8B5A-4B29-8D0E-82BDCF10C4D0} = {050B4F74-87D4-4031-B460-6B30DC946158}
+		{6013EE8C-0E1C-416F-B97F-74EC302815F4} = {EF39FD4F-170C-4DEF-9E52-0E8FE1F1BF98}
+		{1DFA4897-BFA7-4D79-BC1C-D89E3FB81337} = {EF39FD4F-170C-4DEF-9E52-0E8FE1F1BF98}
+		{7E9A45B4-41D0-4561-8FBC-E188DF5DB9CF} = {050B4F74-87D4-4031-B460-6B30DC946158}
+		{C46859EA-4ACF-4C2F-80B3-E7D47084D8E4} = {CB053B42-182A-4965-B4A2-68BF3FEC971A}
+		{4B97CDC2-1E8C-4D9F-A4EE-CA10FFD6517B} = {EF39FD4F-170C-4DEF-9E52-0E8FE1F1BF98}
+		{85757FA9-625B-4B99-AEDF-3C8B24262022} = {EF39FD4F-170C-4DEF-9E52-0E8FE1F1BF98}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 19
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://10.138.60.31:8080/tfs/spidercollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ConsoleApplication\\ConsoleApplication.csproj
+		SccProjectTopLevelParentUniqueName1 = Emall_NetSpider.sln
+		SccProjectName1 = ConsoleApplication
+		SccLocalPath1 = ConsoleApplication
+		SccProjectUniqueName2 = Vcredit.NetSpider.Emall.Business\\Vcredit.NetSpider.Emall.Business.csproj
+		SccProjectTopLevelParentUniqueName2 = Emall_NetSpider.sln
+		SccProjectName2 = Vcredit.NetSpider.Emall.Business
+		SccLocalPath2 = Vcredit.NetSpider.Emall.Business
+		SccProjectUniqueName3 = Vcredit.NetSpider.Emall.Components\\Vcredit.NetSpider.Emall.Entity.csproj
+		SccProjectTopLevelParentUniqueName3 = Emall_NetSpider.sln
+		SccProjectName3 = Vcredit.NetSpider.Emall.Components
+		SccLocalPath3 = Vcredit.NetSpider.Emall.Components
+		SccProjectUniqueName4 = Vcredit.NetSpider.Emall.Data\\Vcredit.NetSpider.Emall.Data.csproj
+		SccProjectTopLevelParentUniqueName4 = Emall_NetSpider.sln
+		SccProjectName4 = Vcredit.NetSpider.Emall.Data
+		SccLocalPath4 = Vcredit.NetSpider.Emall.Data
+		SccProjectUniqueName5 = Vcredit.NetSpider.Emall.Framework\\Vcredit.NetSpider.Emall.Framework.csproj
+		SccProjectTopLevelParentUniqueName5 = Emall_NetSpider.sln
+		SccProjectName5 = Vcredit.NetSpider.Emall.Framework
+		SccLocalPath5 = Vcredit.NetSpider.Emall.Framework
+		SccProjectUniqueName6 = Vcredit.NetSpider.Emall.Processor\\Vcredit.NetSpider.Emall.Processor.csproj
+		SccProjectTopLevelParentUniqueName6 = Emall_NetSpider.sln
+		SccProjectName6 = Vcredit.NetSpider.Emall.Processor
+		SccLocalPath6 = Vcredit.NetSpider.Emall.Processor
+		SccProjectUniqueName7 = Vcredit.NetSpider.EmallUnitBusinessTest\\Vcredit.NetSpider.Emall.UnitBusinessTest.csproj
+		SccProjectTopLevelParentUniqueName7 = Emall_NetSpider.sln
+		SccProjectName7 = Vcredit.NetSpider.EmallUnitBusinessTest
+		SccLocalPath7 = Vcredit.NetSpider.EmallUnitBusinessTest
+		SccProjectUniqueName8 = Vcredit.NetSpider.Emall.CrawlingService\\Vcredit.NetSpider.Emall.CrawlingService.csproj
+		SccProjectTopLevelParentUniqueName8 = Emall_NetSpider.sln
+		SccProjectName8 = Vcredit.NetSpider.Emall.CrawlingService
+		SccLocalPath8 = Vcredit.NetSpider.Emall.CrawlingService
+		SccProjectUniqueName9 = Vcredit.NetSpider.Emall.Crawler\\Vcredit.NetSpider.Emall.Crawler.csproj
+		SccProjectTopLevelParentUniqueName9 = Emall_NetSpider.sln
+		SccProjectName9 = Vcredit.NetSpider.Emall.Crawler
+		SccLocalPath9 = Vcredit.NetSpider.Emall.Crawler
+		SccProjectUniqueName10 = Vcredit.NetSpider.Emall.QueryService\\Vcredit.NetSpider.Emall.QueryService.csproj
+		SccProjectTopLevelParentUniqueName10 = Emall_NetSpider.sln
+		SccProjectName10 = Vcredit.NetSpider.Emall.QueryService
+		SccLocalPath10 = Vcredit.NetSpider.Emall.QueryService
+		SccProjectUniqueName11 = Vcredit.Framework.Server.Dto\\Vcredit.Framework.Server.Dto.csproj
+		SccProjectTopLevelParentUniqueName11 = Emall_NetSpider.sln
+		SccProjectName11 = Vcredit.Framework.Server.Dto
+		SccLocalPath11 = Vcredit.Framework.Server.Dto
+		SccProjectUniqueName12 = Vcredit.Framework.Queue\\Vcredit.Framework.Queue.csproj
+		SccProjectTopLevelParentUniqueName12 = Emall_NetSpider.sln
+		SccProjectName12 = Vcredit.Framework.Queue
+		SccLocalPath12 = Vcredit.Framework.Queue
+		SccProjectUniqueName13 = Vcredit.NetSpider.Emall.SimulationTBLogin\\Vcredit.NetSpider.Emall.SimulationTBLogin.csproj
+		SccProjectTopLevelParentUniqueName13 = Emall_NetSpider.sln
+		SccProjectName13 = Vcredit.NetSpider.Emall.SimulationTBLogin
+		SccLocalPath13 = Vcredit.NetSpider.Emall.SimulationTBLogin
+		SccProjectUniqueName14 = Vcredit.NetSpider.Emall.WebClient\\Vcredit.NetSpider.Emall.WebClient.csproj
+		SccProjectTopLevelParentUniqueName14 = Emall_NetSpider.sln
+		SccProjectName14 = Vcredit.NetSpider.Emall.WebClient
+		SccLocalPath14 = Vcredit.NetSpider.Emall.WebClient
+		SccProjectUniqueName15 = Vcredit.NetSpider.Metrics\\Vcredit.NetSpider.Metrics.csproj
+		SccProjectTopLevelParentUniqueName15 = Emall_NetSpider.sln
+		SccProjectName15 = Vcredit.NetSpider.Metrics
+		SccLocalPath15 = Vcredit.NetSpider.Metrics
+		SccProjectUniqueName16 = Vcredit.NetSpider.Emall.Dto\\Vcredit.NetSpider.Emall.Dto.csproj
+		SccProjectTopLevelParentUniqueName16 = Emall_NetSpider.sln
+		SccProjectName16 = Vcredit.NetSpider.Emall.Dto
+		SccLocalPath16 = Vcredit.NetSpider.Emall.Dto
+		SccProjectUniqueName17 = Vcredit.NetSpider.Emall.AlipayUAWinConsole\\Vcredit.NetSpider.Emall.AlipayUAWinConsole.csproj
+		SccProjectTopLevelParentUniqueName17 = Emall_NetSpider.sln
+		SccProjectName17 = Vcredit.NetSpider.Emall.AlipayUAWinConsole
+		SccLocalPath17 = Vcredit.NetSpider.Emall.AlipayUAWinConsole
+		SccProjectUniqueName18 = Vcredit.NetSpider.Emall.AlipayBillCrawlerWinConsole\\Vcredit.NetSpider.Emall.AlipayBillCrawlerWinConsole.csproj
+		SccProjectTopLevelParentUniqueName18 = Emall_NetSpider.sln
+		SccProjectName18 = Vcredit.NetSpider.Emall.AlipayBillCrawlerWinConsole
+		SccLocalPath18 = Vcredit.NetSpider.Emall.AlipayBillCrawlerWinConsole
+	EndGlobalSection
+EndGlobal
