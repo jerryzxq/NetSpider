@@ -1,5 +1,0 @@
-E:\tfs2\ExternalCredit\ExternalCredit\packages\bin\Debug\packages.dll
-E:\tfs2\ExternalCredit\ExternalCredit\packages\bin\Debug\packages.pdb
-E:\tfs2\ExternalCredit\ExternalCredit\packages\obj\Debug\packages.csprojResolveAssemblyReference.cache
-E:\tfs2\ExternalCredit\ExternalCredit\packages\obj\Debug\packages.dll
-E:\tfs2\ExternalCredit\ExternalCredit\packages\obj\Debug\packages.pdb
