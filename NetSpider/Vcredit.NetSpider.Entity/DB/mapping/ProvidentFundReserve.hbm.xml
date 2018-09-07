@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Vcredit.NetSpider.Entity.DB.ProvidentFundReserveEntity, Vcredit.NetSpider.Entity"   table="[provident].[ProvidentFundReserve]">
+		<id name="Id" type="Int64" unsaved-value="null">
+			<column name="Id" length="8" sql-type="bigint" not-null="true" unique="true" index="PK_ProvidentFundReserve"/>
+			<generator class="native" />
+		</id>
+		<property name="ProvidentFundId" type="Int64">
+			<column name="ProvidentFundId" length="8" sql-type="bigint" not-null="false"/>
+		</property>
+		<property name="SalaryBase" type="Decimal">
+			<column name="SalaryBase" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="PersonalMonthPayAmount" type="Decimal">
+			<column name="PersonalMonthPayAmount" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="CompanyMonthPayAmount" type="Decimal">
+			<column name="CompanyMonthPayAmount" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="PersonalMonthPayRate" type="Decimal">
+			<column name="PersonalMonthPayRate" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="CompanyMonthPayRate" type="Decimal">
+			<column name="CompanyMonthPayRate" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="TotalAmount" type="Decimal">
+			<column name="TotalAmount" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="Status" type="String">
+			<column name="Status" length="100" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="OpenTime" type="DateTime">
+			<column name="OpenTime" length="4" sql-type="smalldatetime" not-null="false"/>
+		</property>
+		<property name="CompanyNo" type="String">
+			<column name="CompanyNo" length="300" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="CompanyName" type="String">
+			<column name="CompanyName" length="250" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="CompanyLicense" type="String">
+			<column name="CompanyLicense" length="300" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="CompanyAddress" type="String">
+			<column name="CompanyAddress" length="300" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="CompanyDistrict" type="String">
+			<column name="CompanyDistrict" length="50" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="CompanyOpenTime" type="DateTime">
+			<column name="CompanyOpenTime" length="4" sql-type="smalldatetime" not-null="false"/>
+		</property>
+		<property name="BankCardNo" type="String">
+			<column name="BankCardNo" length="50" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="Bank" type="String">
+			<column name="Bank" length="250" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="BankCardOpenTime" type="DateTime">
+			<column name="BankCardOpenTime" length="4" sql-type="smalldatetime" not-null="false"/>
+		</property>
+		<property name="ProvidentFundCity" type="String">
+			<column name="ProvidentFundCity" length="50" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="Payment_State" type="String">
+			<column name="Payment_State" length="100" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="ProvidentFundNo" type="String">
+			<column name="ProvidentFundNo" length="50" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="PaymentMonths" type="Int32">
+			<column name="PaymentMonths" length="4" sql-type="int" not-null="false"/>
+		</property>
+		<property name="PaymentMonths_Continuous" type="Int32">
+			<column name="PaymentMonths_Continuous" length="4" sql-type="int" not-null="false"/>
+		</property>
+		<property name="LastProvidentFundTime" type="String">
+			<column name="LastProvidentFundTime" length="50" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="Description" type="String">
+			<column name="DESCRIPTION" length="250" sql-type="varchar" not-null="false"/>
+		</property>
+	</class>
+</hibernate-mapping>

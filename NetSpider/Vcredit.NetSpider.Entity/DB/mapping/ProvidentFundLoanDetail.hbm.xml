@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Vcredit.NetSpider.Entity.DB.ProvidentFundLoanDetailEntity, Vcredit.NetSpider.Entity"   table="[provident].[ProvidentFundLoanDetail]">
+		<id name="Id" type="Int64" unsaved-value="null">
+			<column name="Id" length="8" sql-type="bigint" not-null="true" unique="true" index="PK_ProvidentFundLoanDetail"/>
+			<generator class="native" />
+		</id>
+		<property name="ProvidentFundId" type="Int64">
+			<column name="ProvidentFundId" length="8" sql-type="bigint" not-null="false"/>
+		</property>
+		<property name="ProvidentFundLoanId" type="Int64">
+			<column name="ProvidentFundLoanId" length="8" sql-type="bigint" not-null="false"/>
+		</property>
+		<property name="Record_Date" type="String">
+			<column name="Record_Date" length="50" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="Bill_Date" type="String">
+			<column name="Bill_Date" length="50" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="Record_Period" type="String">
+			<column name="Record_Period" length="50" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="Record_Month" type="String">
+			<column name="Record_Month" length="50" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="Principal" type="Decimal">
+			<column name="Principal" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="Interest" type="Decimal">
+			<column name="Interest" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="Overdue_Principal" type="Decimal">
+			<column name="Overdue_Principal" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="Overdue_Interest" type="Decimal">
+			<column name="Overdue_Interest" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="Interest_Penalty" type="Decimal">
+			<column name="Interest_Penalty" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="Interest_Penalty_ToPay" type="Decimal">
+			<column name="Interest_Penalty_ToPay" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="Base" type="Decimal">
+			<column name="Base" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="Balance" type="Decimal">
+			<column name="Balance" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="Description" type="String">
+			<column name="Description" length="500" sql-type="varchar" not-null="false"/>
+		</property>
+	</class>
+</hibernate-mapping>

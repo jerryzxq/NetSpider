@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+	<class name="Vcredit.NetSpider.Entity.DB.CreditReportSummaryEntity, Vcredit.NetSpider.Entity"   table="CreditReportSummary">
+		<id name="Id" type="Int32" unsaved-value="null">
+			<column name="Id" length="4" sql-type="int" not-null="true" unique="true" index="PK_CreditReportSummary"/>
+			<generator class="native" />
+		</id>
+		<property name="ReportId" type="String">
+			<column name="ReportId" length="100" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="SummaryType" type="String">
+			<column name="SummaryType" length="100" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="CreditCardCount" type="Int32">
+			<column name="CreditCardCount" length="4" sql-type="int" not-null="false"/>
+		</property>
+		<property name="HouseLoanCount" type="Int32">
+			<column name="HouseLoanCount" length="4" sql-type="int" not-null="false"/>
+		</property>
+		<property name="OtherLoanCount" type="Int32">
+			<column name="OtherLoanCount" length="4" sql-type="int" not-null="false"/>
+		</property>
+	</class>
+</hibernate-mapping>

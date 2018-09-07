@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+	<class name="Vcredit.NetSpider.Entity.DB.CRD_CD_LNEntity, Vcredit.NetSpider.Entity"   table="[credit].CRD_CD_LN">
+		<id name="Id" type="Int32" unsaved-value="null">
+			<column name="Loan_Id" length="4" sql-type="int" not-null="true" unique="true" index="PK_CRD_CD_LN"/>
+			<generator class="native" />
+		</id>
+		<property name="ReportId" type="Int32">
+			<column name="Report_Id" length="4" sql-type="int" not-null="true"/>
+		</property>
+		<property name="Cue" type="String">
+			<column name="Cue" length="900" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="State" type="String">
+			<column name="`State`" length="50" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="FinanceOrg" type="String">
+			<column name="Finance_Org" length="60" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="AccountDw" type="String">
+			<column name="Account_Dw" length="40" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="TypeDw" type="String">
+			<column name="Type_Dw" length="50" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="Currency" type="String">
+			<column name="Currency" length="20" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="OpenDate" type="DateTime">
+			<column name="Open_Date" length="3" sql-type="date" not-null="false"/>
+		</property>
+		<property name="EndDate" type="DateTime">
+			<column name="End_Date" length="3" sql-type="date" not-null="false"/>
+		</property>
+		<property name="CreditLimitAmount" type="Decimal">
+			<column name="Credit_Limit_Amount" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<!--<property name="GuaranteeType" type="String">
+			<column name="Guarantee_Type" length="50" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="PaymentRating" type="String">
+			<column name="Payment_Rating" length="50" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="PaymentCyc" type="String">
+			<column name="Payment_Cyc" length="20" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="StateEndDate" type="DateTime">
+			<column name="State_End_Date" length="3" sql-type="date" not-null="false"/>
+		</property>
+		<property name="StateEndMonth" type="StringClob">
+			<column name="State_End_Month" length="7" sql-type="nchar" not-null="false"/>
+		</property>
+		<property name="Class5State" type="String">
+			<column name="Class5_State" length="50" sql-type="nvarchar" not-null="false"/>
+		</property>-->
+		<property name="Balance" type="Decimal">
+			<column name="Balance" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="RemainPaymentCyc" type="Decimal">
+			<column name="Remain_Payment_Cyc" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<!--<property name="ScheduledPaymentAmount" type="Decimal">
+			<column name="Scheduled_Payment_Amount" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="ScheduledPaymentDate" type="DateTime">
+			<column name="Scheduled_Payment_Date" length="3" sql-type="date" not-null="false"/>
+		</property>
+		<property name="ActualPaymentAmount" type="Decimal">
+			<column name="Actual_Payment_Amount" length="9" sql-type="decimal" not-null="false"/>
+		</property>-->
+		<property name="RecentPayDate" type="DateTime">
+			<column name="Recent_Pay_Date" length="3" sql-type="date" not-null="false"/>
+		</property>
+		<!--<property name="CurrOverdueCyc" type="Decimal">
+			<column name="Curr_Overdue_Cyc" length="9" sql-type="decimal" not-null="false"/>
+		</property>-->
+		<property name="CurrOverdueAmount" type="Decimal">
+			<column name="Curr_Overdue_Amount" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<!--<property name="Overdue31To60Amount" type="Decimal">
+			<column name="Overdue31_To60_Amount" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="Overdue61To90Amount" type="Decimal">
+			<column name="Overdue61_To90_Amount" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="Overdue91To180Amount" type="Decimal">
+			<column name="Overdue91_To180_Amount" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="OverdueOver180Amount" type="Decimal">
+			<column name="Overdue_Over180_Amount" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="PaymentStateBeginMonth" type="StringClob">
+			<column name="Payment_State_Begin_Month" length="7" sql-type="nchar" not-null="false"/>
+		</property>
+		<property name="PaymentStateEndMonth" type="StringClob">
+			<column name="Payment_State_End_Month" length="7" sql-type="nchar" not-null="false"/>
+		</property>
+		<property name="PaymentState" type="String">
+			<column name="Payment_State" length="24" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="OverdueRecordBeginMonth" type="StringClob">
+			<column name="Overdue_Record_Begin_Month" length="7" sql-type="nchar" not-null="false"/>
+		</property>
+		<property name="OverdueRecordEndMonth" type="StringClob">
+			<column name="Overdue_Record_End_Month" length="7" sql-type="nchar" not-null="false"/>
+		</property>-->
+		<property name="OverdueOver90Cyc" type="Int32">
+			<column name="Overdue_Over90_Cyc" length="4" sql-type="int" not-null="false"/>
+		</property>
+		<property name="OverdueCyc" type="Int32">
+			<column name="Overdue_Cyc" length="4" sql-type="int" not-null="false"/>
+		</property>
+	</class>
+</hibernate-mapping>

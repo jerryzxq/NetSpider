@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7B7470A7-1DA0-4299-AD98-AF459885E4B9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vcredit.NetSpider.Dao</RootNamespace>
+    <AssemblyName>Vcredit.NetSpider.Dao</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Vcredit.Framework.Common.Utility">
+      <HintPath>..\packages\Vcredit.Framework.Common.Utility.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcredit.Framework.Server.Dao">
+      <HintPath>..\packages\Vcredit.Framework.Server.Dao.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcredit.Framework.Server.Entity">
+      <HintPath>..\packages\Vcredit.Framework.Server.Entity.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IBasicDao.cs" />
+    <Compile Include="ICallsDao.cs" />
+    <Compile Include="IChsi_InfoDao.cs" />
+    <Compile Include="ICRD_ACCOUNTDao.cs" />
+    <Compile Include="ICRD_PI_CIVILJDGMDao.cs" />
+    <Compile Include="ICRD_PI_ADMINPNSHMDao.cs" />
+    <Compile Include="ICRD_PI_TELPNTDao.cs" />
+    <Compile Include="ICRD_PI_TAXARREARDao.cs" />
+    <Compile Include="ICRD_CD_GUARANTEEDao.cs" />
+    <Compile Include="ICRD_CD_LNDao.cs" />
+    <Compile Include="ICRD_CD_LNDDao.cs" />
+    <Compile Include="ICRD_CD_STNCARDDao.cs" />
+    <Compile Include="ICRD_HD_REPORTDao.cs" />
+    <Compile Include="ICRD_HD_REPORT_HTMLDao.cs" />
+    <Compile Include="ICRD_IS_CREDITCUEDao.cs" />
+    <Compile Include="ICRD_KbaQuestionDao.cs" />
+    <Compile Include="ICRD_CD_ASRREPAYDao.cs" />
+    <Compile Include="ICRD_PI_FORCEEXCTNDao.cs" />
+    <Compile Include="ICRD_QR_RECORDDTLDao.cs" />
+    <Compile Include="ICRD_STAT_LNDao.cs" />
+    <Compile Include="ICRD_STAT_LNDDao.cs" />
+    <Compile Include="ICRD_STAT_QRDao.cs" />
+    <Compile Include="IMobile_NumberDao.cs" />
+    <Compile Include="IGrayNumberDao.cs" />
+    <Compile Include="IDangernumberDao.cs" />
+    <Compile Include="Impl\CRD_PI_CIVILJDGMDao.cs" />
+    <Compile Include="Impl\CRD_PI_ADMINPNSHMDao.cs" />
+    <Compile Include="Impl\CRD_PI_TELPNTDao.cs" />
+    <Compile Include="Impl\CRD_PI_TAXARREARDao.cs" />
+    <Compile Include="Impl\CRD_CD_ASRREPAYDao.cs" />
+    <Compile Include="Impl\CRD_PI_FORCEEXCTNDao.cs" />
+    <Compile Include="Impl\Mobile_NumberDao.cs" />
+    <Compile Include="Impl\GrayNumberDao.cs" />
+    <Compile Include="Impl\DangernumberDao.cs" />
+    <Compile Include="Impl\ProvidentFundLoanDao.cs" />
+    <Compile Include="Impl\ProvidentFundLoanDetailDao.cs" />
+    <Compile Include="Impl\ProvidentFundReserveDao.cs" />
+    <Compile Include="Impl\ProvidentFundReserveDetailDao.cs" />
+    <Compile Include="Impl\Spd_applyformDao.cs" />
+    <Compile Include="Impl\Spd_applyDao.cs" />
+    <Compile Include="Impl\Chsi_InfoDao.cs" />
+    <Compile Include="Impl\BasicDao.cs" />
+    <Compile Include="Impl\CallsDao.cs" />
+    <Compile Include="Impl\CRD_ACCOUNTDao.cs" />
+    <Compile Include="Impl\CRD_CD_GUARANTEEDao.cs" />
+    <Compile Include="Impl\CRD_CD_LNDao.cs" />
+    <Compile Include="Impl\CRD_CD_LNDDao.cs" />
+    <Compile Include="Impl\CRD_CD_STNCARDDao.cs" />
+    <Compile Include="Impl\CRD_HD_REPORTDao.cs" />
+    <Compile Include="Impl\CRD_HD_REPORT_HTMLDao.cs" />
+    <Compile Include="Impl\CRD_IS_CREDITCUEDao.cs" />
+    <Compile Include="Impl\CRD_KbaQuestionDao.cs" />
+    <Compile Include="Impl\CRD_QR_RECORDDTLDao.cs" />
+    <Compile Include="Impl\CRD_STAT_LNDao.cs" />
+    <Compile Include="Impl\CRD_STAT_LNDDao.cs" />
+    <Compile Include="Impl\CRD_STAT_QRDao.cs" />
+    <Compile Include="Impl\NetsDao.cs" />
+    <Compile Include="Impl\OperationLogDao.cs" />
+    <Compile Include="Impl\ProvidentFundDao.cs" />
+    <Compile Include="Impl\ProvidentFundDetailDao.cs" />
+    <Compile Include="Impl\SmsesDao.cs" />
+    <Compile Include="Impl\SocialSecurityDao.cs" />
+    <Compile Include="Impl\SocialSecurityDetailDao.cs" />
+    <Compile Include="Impl\SummaryDao.cs" />
+    <Compile Include="Impl\TransactionsDao.cs" />
+    <Compile Include="Impl\Variable_mobile_summaryDao.cs" />
+    <Compile Include="INetsDao.cs" />
+    <Compile Include="IOperationLogDao.cs" />
+    <Compile Include="IProvidentFundDao.cs" />
+    <Compile Include="IProvidentFundDetailDao.cs" />
+    <Compile Include="IProvidentFundLoanDao.cs" />
+    <Compile Include="IProvidentFundLoanDetailDao.cs" />
+    <Compile Include="IProvidentFundReserveDao.cs" />
+    <Compile Include="IProvidentFundReserveDetailDao.cs" />
+    <Compile Include="ISmsesDao.cs" />
+    <Compile Include="ISocialSecurityDao.cs" />
+    <Compile Include="ISocialSecurityDetailDao.cs" />
+    <Compile Include="ISpd_applyformDao.cs" />
+    <Compile Include="ISpd_applyDao.cs" />
+    <Compile Include="ISummaryDao.cs" />
+    <Compile Include="ITransactionsDao.cs" />
+    <Compile Include="IVariable_mobile_summaryDao.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Vcredit.NetSpider.Entity\Vcredit.NetSpider.Entity.csproj">
+      <Project>{390f2771-b29e-4d0b-822e-68005de430a8}</Project>
+      <Name>Vcredit.NetSpider.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

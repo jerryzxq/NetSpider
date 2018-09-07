@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+	<class name="Vcredit.NetSpider.Entity.DB.CreditAccountEntity, Vcredit.NetSpider.Entity"   table="CreditAccount">
+		<id name="Id" type="Int32" unsaved-value="null">
+			<column name="Id" length="4" sql-type="int" not-null="true" unique="true" index="PK_CrdReg"/>
+			<generator class="increment" />
+		</id>
+		<property name="UserName" type="String">
+			<column name="UserName" length="50" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="Password" type="String">
+			<column name="Password" length="50" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="TradeCode" type="String">
+			<column name="TradeCode" length="50" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="CreateTime" type="DateTime" insert="false">
+			<column name="CreateTime" length="4" sql-type="smalldatetime" not-null="false"/>
+		</property>
+	</class>
+</hibernate-mapping>

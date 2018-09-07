@@ -1,0 +1,486 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5C5F34AB-3CAF-469B-A224-687C15A1AD7D}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vcredit.WeiXin.RestService</RootNamespace>
+    <AssemblyName>Vcredit.WeiXin.RestService</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aspose.Cells">
+      <HintPath>..\packages\Aspose.Cells.dll</HintPath>
+    </Reference>
+    <Reference Include="Aspose.Words">
+      <HintPath>..\packages\Aspose.Words.dll</HintPath>
+    </Reference>
+    <Reference Include="Cn.Vcredit.VBS.BLL">
+      <HintPath>..\packages\Cn.Vcredit.VBS.BLL.dll</HintPath>
+    </Reference>
+    <Reference Include="Cn.Vcredit.VBS.BusinessLogic">
+      <HintPath>..\packages\Cn.Vcredit.VBS.BusinessLogic.dll</HintPath>
+    </Reference>
+    <Reference Include="Cn.Vcredit.VBS.DAL">
+      <HintPath>..\packages\Cn.Vcredit.VBS.DAL.dll</HintPath>
+    </Reference>
+    <Reference Include="Cn.Vcredit.VBS.Interface">
+      <HintPath>..\packages\Cn.Vcredit.VBS.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="Cn.Vcredit.VBS.Model">
+      <HintPath>..\packages\Cn.Vcredit.VBS.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="Cn.Vcredit.VBS.PostLoan.FinanceConfig, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Cn.Vcredit.VBS.PostLoan.FinanceConfig.dll</HintPath>
+    </Reference>
+    <Reference Include="Cn.Vcredit.VBS.PostLoan.OrderInfo, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Cn.Vcredit.VBS.PostLoan.OrderInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Quartz">
+      <HintPath>..\packages\Quartz.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Vcredit.Framework.Server.Entity">
+      <HintPath>..\packages\Vcredit.Framework.Server.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcredit.Framework.Server.Service">
+      <HintPath>..\packages\Vcredit.Framework.Server.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcredit.Third.Model">
+      <HintPath>..\packages\Vcredit.Third.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcredit.ThirdParty.JuXinLi">
+      <HintPath>..\packages\Vcredit.ThirdParty.JuXinLi.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="database\netspider.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="files\ConfigFile\BusinessLogicMappConfig.xml" />
+    <Content Include="files\ConfigFile\DeductRuleConfig.xml" />
+    <Content Include="files\ConfigFile\EveryLogicConfig\P2P11.xml" />
+    <Content Include="files\ConfigFile\EveryLogicConfig\卡卡贷10.xml" />
+    <Content Include="files\ConfigFile\EveryLogicConfig\外贸4.xml" />
+    <Content Include="files\ConfigFile\EveryLogicConfig\成都国开行三方模式7.xml" />
+    <Content Include="files\ConfigFile\EveryLogicConfig\成都小贷模式5.xml" />
+    <Content Include="files\ConfigFile\EveryLogicConfig\新楼一贷6.xml" />
+    <Content Include="files\ConfigFile\EveryLogicConfig\杭州银行12.xml" />
+    <Content Include="files\ConfigFile\EveryLogicConfig\沪苏车贷2.xml" />
+    <Content Include="files\ConfigFile\EveryLogicConfig\静安抵押8.xml" />
+    <Content Include="files\ConfigFile\EveryLogicConfig\静安无抵押9.xml" />
+    <Content Include="files\ConfigFile\LoanSideConfig.xml" />
+    <Content Include="files\contract\模板\上海静安维信小额贷款有限公司\个人信用贷款合同.docx" />
+    <Content Include="Global.asax" />
+    <Content Include="files\ConfigFile\MyFunctionDefine.lua" />
+    <Content Include="files\contract\模板\上海静安维信小额贷款有限公司\个人客户扣款授权书.docx" />
+    <Content Include="files\contract\模板\上海静安维信小额贷款有限公司\卡卡贷服务协议.docx" />
+    <Content Include="files\bankfile\全国所有银行卡bin表.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="files\contract\模板\中国对外经济贸易信托有限公司\卡卡贷服务协议.docx" />
+    <Content Include="files\contract\模板\中国对外经济贸易信托有限公司\个人客户扣款授权书.docx" />
+    <Content Include="files\contract\模板\中国对外经济贸易信托有限公司\个人消费信托贷款借款借据.docx" />
+    <Content Include="files\contract\模板\中国对外经济贸易信托有限公司\个人消费信托贷款及服务合同.docx" />
+    <Content Include="files\contract\模板\中国对外经济贸易信托有限公司\特别提示函.docx" />
+    <Content Include="files\contract\模板\中国对外经济贸易信托有限公司\贷款用途声明.docx" />
+    <Content Include="files\contract\模板\成都维仕小额贷款有限公司\个人信用贷款合同.docx" />
+    <Content Include="files\contract\模板\成都维仕小额贷款有限公司\个人借款服务与咨询合同.docx" />
+    <Content Include="files\contract\模板\成都维仕小额贷款有限公司\个人客户扣款授权书.docx" />
+    <Content Include="files\contract\模板\成都维仕小额贷款有限公司\个人消费信托贷款审批表.docx" />
+    <Content Include="files\contract\模板\成都维仕小额贷款有限公司\卡卡贷服务协议.docx" />
+    <Content Include="files\contract\模板\成都维仕小额贷款有限公司\特别提示函.docx" />
+    <Content Include="files\contract\模板\上海静安维信小额贷款有限公司\个人借款服务与咨询合同.docx" />
+    <Content Include="files\contract\模板\上海静安维信小额贷款有限公司\个人消费信托贷款审批表.docx" />
+    <Content Include="files\contract\模板\上海静安维信小额贷款有限公司\特别提示函.docx" />
+    <Content Include="files\contract\模板\上海静安维信小额贷款有限公司\个人信用借款合同补充协议.docx" />
+    <Content Include="files\contract\模板\上海静安维信小额贷款有限公司\关于变更卡号的补充协议.docx" />
+    <Content Include="files\contract\模板\中国对外经济贸易信托有限公司\个人信息授权书.docx" />
+    <Content Include="files\contract\模板\上海静安维信小额贷款有限公司\卡卡贷客户贷款申请表.docx" />
+    <Content Include="files\contract\模板\上海静安维信小额贷款有限公司\个人信息授权书.docx" />
+    <Content Include="files\contract\模板\成都维仕小额贷款有限公司\个人信息授权书.docx" />
+    <Content Include="files\contract\模板\成都维仕小额贷款有限公司\个人信用借款合同补充协议.docx" />
+    <Content Include="files\contract\模板\成都维仕小额贷款有限公司\关于变更卡号的补充协议.docx" />
+    <Content Include="files\contract\模板\成都维仕小额贷款有限公司\卡卡贷客户贷款申请表.docx" />
+    <None Include="Properties\PublishProfiles\weixinServcie.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="MobileAuth.aspx" />
+    <Content Include="quartz_jobs.xml" />
+    <Content Include="RCResultQuery.aspx" />
+    <Content Include="report.aspx" />
+    <Content Include="SQL\GetBusinessAllRepayDate.sql" />
+    <Content Include="SQL\Get_BillItemsByBillIds.sql" />
+    <Content Include="SQL\Insert_BillForClearCloan.sql" />
+    <Content Include="SQL\Insert_BillItem.sql" />
+    <Content Include="SQL\Insert_CloanApply.sql" />
+    <Content Include="SQL\Insert_CloanApplyItem.sql" />
+    <Content Include="SQL\INSERT_Deduct_HandDeductDistribute.sql" />
+    <Content Include="SQL\Insert_Receive.sql" />
+    <Content Include="SQL\Select_BusinessExistsIsRepayment.sql" />
+    <Content Include="SQL\Select_BusinessInfo.sql" />
+    <Content Include="SQL\Select_BusinessInfoes.sql" />
+    <Content Include="SQL\Update_BusinessForClearCloan.sql" />
+    <Content Include="SQL\Update_BusinessForStages.sql" />
+    <Content Include="SQL\Update_BusinessFrozen.sql" />
+    <Content Include="vercodeimg.aspx" />
+    <None Include="Web References\AuthenticationService\AuthenticationService.wsdl" />
+    <None Include="Web References\AuthenticationService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Web References\AuthenticationService\ResponseResult.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <None Include="Web References\CheckCardService\CheckCardService.disco" />
+    <Content Include="Web References\OCRService\IdentityCard.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <None Include="Web References\CheckCardService\CheckCardService.wsdl" />
+    <Content Include="Web References\CheckCardService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web References\CheckCardService\ResponseResult.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <None Include="Web References\OCRService\OCRService.wsdl" />
+    <None Include="Web References\OCRService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\AuthenticationService\AuthenticationService.disco" />
+    <None Include="Web References\OCRService\OCRService.disco" />
+    <Content Include="Web References\RCWebService\MOD.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <None Include="Web References\RCWebService\RCService.disco" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="files\tessdata\eng.DangAmbigs" />
+    <Content Include="files\tessdata\eng.freq-dawg" />
+    <Content Include="files\tessdata\eng.inttemp" />
+    <Content Include="files\tessdata\eng.normproto" />
+    <Content Include="files\tessdata\eng.pffmtable" />
+    <Content Include="files\tessdata\eng.unicharset" />
+    <Content Include="files\tessdata\eng.user-words" />
+    <Content Include="files\tessdata\eng.word-dawg" />
+    <None Include="Web References\RCWebService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\RCWebService\RCService.wsdl" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Contracts\IBankService.cs" />
+    <Compile Include="Contracts\IVbsService.cs" />
+    <Compile Include="Contracts\IRCService.cs" />
+    <Compile Include="Contracts\IJxlService.cs" />
+    <Compile Include="Contracts\IKKDService.cs" />
+    <Compile Include="Constants\ServiceConstants.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Job\DeleteVercodeImageJob.cs" />
+    <Compile Include="Job\GetJxlMobileReportJob.cs" />
+    <Compile Include="MobileAuth.aspx.cs">
+      <DependentUpon>MobileAuth.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MobileAuth.aspx.designer.cs">
+      <DependentUpon>MobileAuth.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BankCardInfo.cs" />
+    <Compile Include="Models\BusinessOverview.cs" />
+    <Compile Include="Models\ContractEntity.cs" />
+    <Compile Include="Models\RC\DecisionResult.cs" />
+    <Compile Include="Models\HandDeductDistribute.cs" />
+    <Compile Include="Models\IdentityCard.cs" />
+    <Compile Include="Models\RC\RCHelper.cs" />
+    <Compile Include="Models\RC\RCRule.cs" />
+    <Compile Include="Models\RC\RCResult.cs" />
+    <Compile Include="Models\RC\RCStorage.cs" />
+    <Compile Include="Models\RC\RCWechatReq.cs" />
+    <Compile Include="Models\Req\ClearLoanNotifyReq.cs" />
+    <Compile Include="Models\Req\JxlPustDataReq.cs" />
+    <Compile Include="Models\Req\JxlSubmitInfo.cs" />
+    <Compile Include="Models\Req\OCRReq.cs" />
+    <Compile Include="Models\Req\VbsQueryReq.cs" />
+    <Compile Include="Models\Req\WechatQueryReq.cs" />
+    <Compile Include="Models\Res\JxlPushDataRes.cs" />
+    <Compile Include="Models\Res\WeChatBaseRes.cs" />
+    <Compile Include="Models\SocialSecurityResult.cs" />
+    <Compile Include="Models\RC\VBXML.cs" />
+    <Compile Include="Models\RC\VW_MOD_RU.cs" />
+    <Compile Include="Models\Mobile_summaryModel.cs" />
+    <Compile Include="Operation\BankOpr.cs" />
+    <Compile Include="Operation\MakeContract.cs" />
+    <Compile Include="Operation\NetCreditOpr.cs" />
+    <Compile Include="Operation\CreditOpr.cs" />
+    <Compile Include="Operation\MobileOpr.cs" />
+    <Compile Include="Operation\SocialOpr.cs" />
+    <Compile Include="Operation\VbsCustomerOpr.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="RCResultQuery.aspx.cs">
+      <DependentUpon>RCResultQuery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RCResultQuery.aspx.designer.cs">
+      <DependentUpon>RCResultQuery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="report.aspx.cs">
+      <DependentUpon>report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="report.aspx.designer.cs">
+      <DependentUpon>report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Services\BankService.cs" />
+    <Compile Include="Services\VbsService.cs" />
+    <Compile Include="Services\RCService.cs" />
+    <Compile Include="Services\JxlService.cs" />
+    <Compile Include="Services\KKDService.cs" />
+    <Compile Include="Util\SerializationHelper.cs" />
+    <Compile Include="Util\Utility.cs" />
+    <Compile Include="vercodeimg.aspx.cs">
+      <DependentUpon>vercodeimg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vercodeimg.aspx.designer.cs">
+      <DependentUpon>vercodeimg.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\AuthenticationService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\CheckCardService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\OCRService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\RCWebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="App_Start\" />
+    <Folder Include="files\contract\个人信用贷款合同\" />
+    <Folder Include="files\contract\个人借款服务与咨询合同\" />
+    <Folder Include="files\contract\个人客户扣款授权书\" />
+    <Folder Include="files\contract\个人消费信托贷款借款借据\" />
+    <Folder Include="files\contract\个人消费信托贷款及服务合同\" />
+    <Folder Include="files\contract\个人消费信托贷款审批表\" />
+    <Folder Include="files\contract\卡卡贷服务协议\" />
+    <Folder Include="files\contract\特别提示函\" />
+    <Folder Include="files\contract\贷款用途声明\" />
+    <Folder Include="files\jxl\" />
+    <Folder Include="files\RC\" />
+    <Folder Include="files\vercode\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Vcredit.Common\Vcredit.Common.csproj">
+      <Project>{678f8f20-5dd4-4f63-bdd4-4085238553cd}</Project>
+      <Name>Vcredit.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.NetSpider.Crawler\Vcredit.NetSpider.Crawler.csproj">
+      <Project>{5dc74abe-016d-44e5-aa0d-c267196f783b}</Project>
+      <Name>Vcredit.NetSpider.Crawler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.NetSpider.DataAccess\Vcredit.NetSpider.DataAccess.csproj">
+      <Project>{7ce4c3df-7974-4b6b-8728-1d3918ca0f3f}</Project>
+      <Name>Vcredit.NetSpider.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.NetSpider.Entity\Vcredit.NetSpider.Entity.csproj">
+      <Project>{390f2771-b29e-4d0b-822e-68005de430a8}</Project>
+      <Name>Vcredit.NetSpider.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.NetSpider.PluginManager\Vcredit.NetSpider.PluginManager.csproj">
+      <Project>{f5406938-f22f-41a1-b6a8-229c4cb07cb7}</Project>
+      <Name>Vcredit.NetSpider.PluginManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.NetSpider.Processor\Vcredit.NetSpider.Processor.csproj">
+      <Project>{945b9b03-4c8a-405a-942a-d3d33b2c0f61}</Project>
+      <Name>Vcredit.NetSpider.Processor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.NetSpider.Service\Vcredit.NetSpider.Service.csproj">
+      <Project>{b1fa16b8-71fe-4f45-9d19-2513007cae8d}</Project>
+      <Name>Vcredit.NetSpider.Service</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://10.1.6.155:8812/GateWay/RCService.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\RCWebService\</RelPath>
+      <UpdateFromURL>http://10.1.6.155:8812/GateWay/RCService.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Vcredit_WeiXin_RestService_RCWebService_RCWebService</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://10.100.9.13:6868/AuthenticationService.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\AuthenticationService\</RelPath>
+      <UpdateFromURL>http://10.100.9.13:6868/AuthenticationService.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Vcredit_WeiXin_RestService_AuthenticationService_AuthenticationService</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://10.100.12.18:9999/OCRService.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\OCRService\</RelPath>
+      <UpdateFromURL>http://10.100.12.18:9999/OCRService.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Vcredit_WeiXin_RestService_OCRService_OCRService</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://10.138.60.18:5555/CheckCardService.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\CheckCardService\</RelPath>
+      <UpdateFromURL>http://10.138.60.18:5555/CheckCardService.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Vcredit_WeiXin_RestService_CheckCardService_CheckCardService</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>10171</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:10171/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:10171/</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

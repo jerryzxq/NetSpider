@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Vcredit.NetSpider.Entity.DB.ProvidentFundReserveDetailEntity, Vcredit.NetSpider.Entity"   table="[provident].[ProvidentFundReserveDetail]">
+		<id name="Id" type="Int64" unsaved-value="null">
+			<column name="Id" length="8" sql-type="bigint" not-null="true" unique="true" index="PK_ProvidentFundReserveDetail"/>
+			<generator class="native" />
+		</id>
+		<property name="ProvidentFundId" type="Int64">
+			<column name="ProvidentFundId" length="8" sql-type="bigint" not-null="false"/>
+		</property>
+		<property name="ProvidentFundReserveId" type="Int64">
+			<column name="ProvidentFundReserveId" length="8" sql-type="bigint" not-null="false"/>
+		</property>
+		<property name="PaymentType" type="String">
+			<column name="PaymentType" length="50" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="PaymentFlag" type="String">
+			<column name="PaymentFlag" length="50" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="PayTime" type="DateTime">
+			<column name="PayTime" length="4" sql-type="smalldatetime" not-null="false"/>
+		</property>
+		<property name="ProvidentFundTime" type="String">
+			<column name="ProvidentFundTime" length="10" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="ProvidentFundBase" type="Decimal">
+			<column name="ProvidentFundBase" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="PersonalPayAmount" type="Decimal">
+			<column name="PersonalPayAmount" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="CompanyPayAmount" type="Decimal">
+			<column name="CompanyPayAmount" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="CompanyName" type="String">
+			<column name="CompanyName" length="300" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="Description" type="String">
+			<column name="Description" length="500" sql-type="varchar" not-null="false"/>
+		</property>
+	</class>
+</hibernate-mapping>

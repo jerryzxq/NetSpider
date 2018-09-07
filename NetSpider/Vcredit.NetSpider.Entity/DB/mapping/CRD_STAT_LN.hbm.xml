@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+	<class name="Vcredit.NetSpider.Entity.DB.CRD_STAT_LNEntity, Vcredit.NetSpider.Entity"   table="[credit].CRD_STAT_LN">
+		<id name="Id" type="Int32" unsaved-value="null">
+			<column name="Loan_Id" length="4" sql-type="int" not-null="true" unique="true" index="PK_CRD_STAT_LN"/>
+			<generator class="native" />
+		</id>
+		<property name="ReportId" type="Int32">
+			<column name="Report_Id" length="4" sql-type="int" not-null="false"/>
+		</property>
+		<property name="ALLLOANHOUSEDELAY90CNT" type="Int32">
+			<column name="ALL_LOAN_HOUSE_DELAY90_CNT" length="4" sql-type="int" not-null="false"/>
+		</property>
+		<property name="ALLLOANHOUSEDELAYCNT" type="Int32">
+			<column name="ALL_LOAN_HOUSE_DELAY_CNT" length="4" sql-type="int" not-null="false"/>
+		</property>
+    <property name="ALLLOANHOUSEUNCLOSEDCNT" type="Int32">
+      <column name="ALL_LOAN_HOUSE_UNCLOSED_CNT" length="4" sql-type="int" not-null="false"/>
+    </property>
+		<property name="ALLLOANOTHERDELAY90CNT" type="Int32">
+			<column name="ALL_LOAN_OTHER_DELAY90_CNT" length="4" sql-type="int" not-null="false"/>
+		</property>
+		<property name="ALLLOANOTHERDELAYCNT" type="Int32">
+			<column name="ALL_LOAN_OTHER_DELAY_CNT" length="4" sql-type="int" not-null="false"/>
+		</property>
+		<property name="ALLLOANOTHERUNCLOSEDCNT" type="Int32">
+			<column name="ALL_LOAN_OTHER_UNCLOSED_CNT" length="4" sql-type="int" not-null="false"/>
+		</property>
+		<property name="LOANDELAY90CNT" type="Int32">
+			<column name="LOAN_DELAY90_CNT" length="4" sql-type="int" not-null="false"/>
+		</property>
+		<property name="LOANAGEMONTH" type="Int32">
+			<column name="LOAN_AGE_MONTH" length="4" sql-type="int" not-null="false"/>
+		</property>
+		<property name="LOANDLQAMOUNT" type="Decimal">
+			<column name="LOAN_DLQ_AMOUNT" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="LOANPMTMONTHLY" type="Decimal">
+			<column name="LOAN_PMT_MONTHLY" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+    <property name="SUMLOANLIMITAMOUNT" type="Decimal">
+      <column name="SUM_LOAN_LIMIT_AMOUNT" length="9" sql-type="decimal" not-null="false"/>
+    </property>
+    <property name="SUMLOANBALANCE" type="Decimal">
+      <column name="SUM_LOAN_BALANCE" length="9" sql-type="decimal" not-null="false"/>
+    </property>
+    <property name="LOAN_HOUSE_DLQ_AMOUNT" type="Decimal">
+      <column name="LOAN_HOUSE_DLQ_AMOUNT" length="9" sql-type="decimal" not-null="false"/>
+    </property>
+    <property name="NORMALLOANAGEMONTH" type="Int32">
+      <column name="NORMAL_LOAN_AGE_MONTH" length="4" sql-type="int" not-null="false"/>
+    </property>
+    <property name="ALLLOANOTHERCNT" type="Int32">
+      <column name="ALL_LOAN_OTHER_CNT" length="4" sql-type="int" not-null="false"/>
+    </property>
+    <property name="ALL_LOAN_HOUSE_FOROTHERS_CNT" type="Int32">
+      <column name="ALL_LOAN_HOUSE_FOROTHERS_CNT" length="4" sql-type="int" not-null="false"/>
+    </property>
+    <property name="ALL_LOAN_OTHER_FOROTHERS_CNT" type="Int32">
+      <column name="ALL_LOAN_OTHER_FOROTHERS_CNT" length="4" sql-type="int" not-null="false"/>
+    </property>
+    <property name="ALL_LOAN_HOUSE_CNT" type="Int32">
+      <column name="ALL_LOAN_HOUSE_CNT" length="4" sql-type="int" not-null="false"/>
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,422 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5DC74ABE-016D-44E5-AA0D-C267196F783B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vcredit.NetSpider.Crawler</RootNamespace>
+    <AssemblyName>Vcredit.NetSpider.Crawler</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Vcredit.ThirdParty.JuXinLi">
+      <HintPath>..\packages\Vcredit.ThirdParty.JuXinLi.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CrawlerCommonFun.cs" />
+    <Compile Include="CrawlerManager.cs" />
+    <Compile Include="Edu\Chsi\ChsiCrawler.cs" />
+    <Compile Include="Edu\IChsiCrawler.cs" />
+    <Compile Include="LogHelper.cs" />
+    <Compile Include="Mobile\ChinaMobile\AH.cs" />
+    <Compile Include="Mobile\ChinaMobile\BJ.cs" />
+    <Compile Include="Mobile\ChinaMobile\ChinaMobile.cs" />
+    <Compile Include="Mobile\ChinaMobile\CQ.cs" />
+    <Compile Include="Mobile\ChinaMobile\GS.cs" />
+    <Compile Include="Mobile\ChinaMobile\GZ.cs" />
+    <Compile Include="Mobile\ChinaMobile\HI.cs" />
+    <Compile Include="Mobile\ChinaMobile\HL.cs" />
+    <Compile Include="Mobile\ChinaMobile\FJ.cs" />
+    <Compile Include="Mobile\ChinaMobile\GD.cs" />
+    <Compile Include="Mobile\ChinaMobile\GX.cs" />
+    <Compile Include="Mobile\ChinaMobile\HA.cs" />
+    <Compile Include="Mobile\ChinaMobile\HB.cs" />
+    <Compile Include="Mobile\ChinaMobile\HE.cs" />
+    <Compile Include="Mobile\ChinaMobile\HN.cs" />
+    <Compile Include="Mobile\ChinaMobile\NM.cs" />
+    <Compile Include="Mobile\ChinaMobile\JL.cs" />
+    <Compile Include="Mobile\ChinaMobile\JS.cs" />
+    <Compile Include="Mobile\ChinaMobile\JX.cs" />
+    <Compile Include="Mobile\ChinaMobile\LN.cs" />
+    <Compile Include="Mobile\ChinaMobile\NX.cs" />
+    <Compile Include="Mobile\ChinaMobile\QH.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mobile\ChinaMobile\SC.cs" />
+    <Compile Include="Mobile\ChinaMobile\SD.cs" />
+    <Compile Include="Mobile\ChinaMobile\SH.cs" />
+    <Compile Include="Mobile\ChinaMobile\SN.cs" />
+    <Compile Include="Mobile\ChinaMobile\SX.cs" />
+    <Compile Include="Mobile\ChinaMobile\TJ.cs" />
+    <Compile Include="Mobile\ChinaMobile\YN.cs" />
+    <Compile Include="Mobile\ChinaMobile\ZJ.cs" />
+    <Compile Include="Mobile\ChinaNet\AH.cs" />
+    <Compile Include="Mobile\ChinaNet\BJ.cs" />
+    <Compile Include="Mobile\ChinaNet\ChinaNet.cs" />
+    <Compile Include="Mobile\ChinaNet\CQ.cs" />
+    <Compile Include="Mobile\ChinaNet\FJ.cs" />
+    <Compile Include="Mobile\ChinaNet\GD.cs" />
+    <Compile Include="Mobile\ChinaNet\GX.cs" />
+    <Compile Include="Mobile\ChinaNet\GZ.cs" />
+    <Compile Include="Mobile\ChinaNet\HA.cs" />
+    <Compile Include="Mobile\ChinaNet\HB.cs" />
+    <Compile Include="Mobile\ChinaNet\HE.cs" />
+    <Compile Include="Mobile\ChinaNet\HN.cs" />
+    <Compile Include="Mobile\ChinaNet\JL.cs" />
+    <Compile Include="Mobile\ChinaNet\JX.cs" />
+    <Compile Include="Mobile\ChinaNet\HL.cs" />
+    <Compile Include="Mobile\ChinaNet\JS.cs" />
+    <Compile Include="Mobile\ChinaNet\LN.cs" />
+    <Compile Include="Mobile\ChinaNet\SC.cs" />
+    <Compile Include="Mobile\ChinaNet\SD.cs" />
+    <Compile Include="Mobile\ChinaNet\SH.cs" />
+    <Compile Include="Mobile\ChinaNet\SN.cs" />
+    <Compile Include="Mobile\ChinaNet\SX.cs" />
+    <Compile Include="Mobile\ChinaNet\YN.cs" />
+    <Compile Include="Mobile\ChinaNet\ZJ.cs" />
+    <Compile Include="Mobile\ChinaUnicom\unicom.cs" />
+    <Compile Include="Mobile\IMobileCrawler.cs" />
+    <Compile Include="Mobile\IResetMobilePassWord.cs" />
+    <Compile Include="Mobile\JuXinLi\jxl.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Social\IProvidentFundCrawler.cs" />
+    <Compile Include="Social\ISocialSecurityCrawler.cs" />
+    <Compile Include="Social\ProvidentFund\AH\hefei.cs" />
+    <Compile Include="Social\ProvidentFund\AH\anqing.cs" />
+    <Compile Include="Social\ProvidentFund\AH\huaibei.cs" />
+    <Compile Include="Social\ProvidentFund\AH\huainan.cs" />
+    <Compile Include="Social\ProvidentFund\AH\shouxian.cs" />
+    <Compile Include="Social\ProvidentFund\AH\luan.cs" />
+    <Compile Include="Social\ProvidentFund\AH\maanshan.cs" />
+    <Compile Include="Social\ProvidentFund\AH\magang.cs" />
+    <Compile Include="Social\ProvidentFund\AH\wuhu.cs" />
+    <Compile Include="Social\ProvidentFund\BJ\beijing.cs" />
+    <Compile Include="Social\ProvidentFund\BJ\guoguan.cs" />
+    <Compile Include="Social\ProvidentFund\CQ\chongqing.cs" />
+    <Compile Include="Social\ProvidentFund\FJ\fjsheng.cs" />
+    <Compile Include="Social\ProvidentFund\FJ\fuzhou.cs" />
+    <Compile Include="Social\ProvidentFund\FJ\quanzhou.cs" />
+    <Compile Include="Social\ProvidentFund\FJ\xiamen.cs" />
+    <Compile Include="Social\ProvidentFund\FJ\zhangzhou.cs" />
+    <Compile Include="Social\ProvidentFund\GD\guangzhou.cs" />
+    <Compile Include="Social\ProvidentFund\GD\foshan.cs" />
+    <Compile Include="Social\ProvidentFund\GD\huizhou.cs" />
+    <Compile Include="Social\ProvidentFund\GD\zhongshan.cs" />
+    <Compile Include="Social\ProvidentFund\GX\hezhou.cs" />
+    <Compile Include="Social\ProvidentFund\GZ\zunyi.cs" />
+    <Compile Include="Social\ProvidentFund\HA\luoyang.cs" />
+    <Compile Include="Social\ProvidentFund\HA\luoyangrailway.cs" />
+    <Compile Include="Social\ProvidentFund\HA\puyang.cs" />
+    <Compile Include="Social\ProvidentFund\HA\xuchang.cs" />
+    <Compile Include="Social\ProvidentFund\HA\zhumadian.cs" />
+    <Compile Include="Social\ProvidentFund\HB\wuhan.cs" />
+    <Compile Include="Social\ProvidentFund\HB\xiangyang.cs" />
+    <Compile Include="Social\ProvidentFund\HB\yichang.cs" />
+    <Compile Include="Social\ProvidentFund\HE\baoding.cs" />
+    <Compile Include="Social\ProvidentFund\HE\shijiazhuang.cs" />
+    <Compile Include="Social\ProvidentFund\HE\tangshan.cs" />
+    <Compile Include="Social\ProvidentFund\HL\qiqihaer.cs" />
+    <Compile Include="Social\ProvidentFund\HL\daqing.cs" />
+    <Compile Include="Social\ProvidentFund\HL\haerbin.cs" />
+    <Compile Include="Social\ProvidentFund\HL\heilongjiangsheng.cs" />
+    <Compile Include="Social\ProvidentFund\HL\suihua.cs" />
+    <Compile Include="Social\ProvidentFund\HL\yichun.cs" />
+    <Compile Include="Social\ProvidentFund\HN\changde.cs" />
+    <Compile Include="Social\ProvidentFund\HN\hengyang.cs" />
+    <Compile Include="Social\ProvidentFund\HN\cslongka.cs" />
+    <Compile Include="Social\ProvidentFund\HN\changsha.cs" />
+    <Compile Include="Social\ProvidentFund\HN\xiangtan.cs" />
+    <Compile Include="Social\ProvidentFund\HN\yiyang.cs" />
+    <Compile Include="Social\ProvidentFund\JL\jilinsheng.cs" />
+    <Compile Include="Social\ProvidentFund\JS\changzhou.cs" />
+    <Compile Include="Social\ProvidentFund\JS\lianyungang.cs" />
+    <Compile Include="Social\ProvidentFund\JS\taizhou.cs" />
+    <Compile Include="Social\ProvidentFund\JS\nanjing.cs" />
+    <Compile Include="Social\ProvidentFund\JS\nantong.cs" />
+    <Compile Include="Social\ProvidentFund\JS\suqian.cs" />
+    <Compile Include="Social\ProvidentFund\JS\suzhou.cs" />
+    <Compile Include="Social\ProvidentFund\JS\suzhouyuanqu.cs" />
+    <Compile Include="Social\ProvidentFund\JS\wuxi.cs" />
+    <Compile Include="Social\ProvidentFund\JS\xuzhou.cs" />
+    <Compile Include="Social\ProvidentFund\JS\yancheng.cs" />
+    <Compile Include="Social\ProvidentFund\JS\yangzhou.cs" />
+    <Compile Include="Social\ProvidentFund\JX\ganzhou.cs" />
+    <Compile Include="Social\ProvidentFund\JX\jiujiang.cs" />
+    <Compile Include="Social\ProvidentFund\JX\nanchang.cs" />
+    <Compile Include="Social\ProvidentFund\JL\changchun.cs" />
+    <Compile Include="Social\ProvidentFund\LN\anshan.cs" />
+    <Compile Include="Social\ProvidentFund\LN\dalian.cs" />
+    <Compile Include="Social\ProvidentFund\LN\fushun.cs" />
+    <Compile Include="Social\ProvidentFund\LN\panjin.cs" />
+    <Compile Include="Social\ProvidentFund\NM\huhehaote.cs" />
+    <Compile Include="Social\ProvidentFund\QH\xining.cs" />
+    <Compile Include="Social\ProvidentFund\SC\chengdu.cs" />
+    <Compile Include="Social\ProvidentFund\SC\guangyuan.cs" />
+    <Compile Include="Social\ProvidentFund\SC\luzhou.cs" />
+    <Compile Include="Social\ProvidentFund\SC\mianyang.cs" />
+    <Compile Include="Social\ProvidentFund\SC\neijiang.cs" />
+    <Compile Include="Social\ProvidentFund\SC\yaan.cs" />
+    <Compile Include="Social\ProvidentFund\SC\yibin.cs" />
+    <Compile Include="Social\ProvidentFund\SC\zigong.cs" />
+    <Compile Include="Social\ProvidentFund\SD\jinan.cs" />
+    <Compile Include="Social\ProvidentFund\LN\shenyang.cs" />
+    <Compile Include="Social\ProvidentFund\SD\liaocheng.cs" />
+    <Compile Include="Social\ProvidentFund\SD\qingdao.cs" />
+    <Compile Include="Social\ProvidentFund\SD\weifang.cs" />
+    <Compile Include="Social\ProvidentFund\SD\yantai.cs" />
+    <Compile Include="Social\ProvidentFund\SH\shanghai.cs" />
+    <Compile Include="Social\ProvidentFund\SN\baoji.cs" />
+    <Compile Include="Social\ProvidentFund\SN\snsheng.cs" />
+    <Compile Include="Social\ProvidentFund\SN\xian.cs" />
+    <Compile Include="Social\ProvidentFund\SN\xianrailway.cs" />
+    <Compile Include="Social\ProvidentFund\SN\xianyang.cs" />
+    <Compile Include="Social\ProvidentFund\SX\jinzhong.cs" />
+    <Compile Include="Social\ProvidentFund\SX\taiyuan.cs" />
+    <Compile Include="Social\ProvidentFund\TJ\tianjin.cs" />
+    <Compile Include="Social\ProvidentFund\YN\kunming.cs" />
+    <Compile Include="Social\ProvidentFund\YN\yuxi.cs" />
+    <Compile Include="Social\ProvidentFund\ZJ\beilun.cs" />
+    <Compile Include="Social\ProvidentFund\ZJ\changshan.cs" />
+    <Compile Include="Social\ProvidentFund\ZJ\fuyang.cs" />
+    <Compile Include="Social\ProvidentFund\ZJ\cixi.cs" />
+    <Compile Include="Social\ProvidentFund\ZJ\dongyang.cs" />
+    <Compile Include="Social\ProvidentFund\ZJ\hangzhou.cs" />
+    <Compile Include="Social\ProvidentFund\ZJ\chunan.cs" />
+    <Compile Include="Social\ProvidentFund\ZJ\huzhou.cs" />
+    <Compile Include="Social\ProvidentFund\ZJ\jiaxing.cs" />
+    <Compile Include="Social\ProvidentFund\ZJ\jinhua.cs" />
+    <Compile Include="Social\ProvidentFund\ZJ\juhua.cs" />
+    <Compile Include="Social\ProvidentFund\ZJ\kaihua.cs" />
+    <Compile Include="Social\ProvidentFund\ZJ\kechengqu.cs" />
+    <Compile Include="Social\ProvidentFund\ZJ\lanxi.cs" />
+    <Compile Include="Social\ProvidentFund\ZJ\ningbo.cs" />
+    <Compile Include="Social\ProvidentFund\ZJ\ninghai.cs" />
+    <Compile Include="Social\ProvidentFund\ZJ\pujiang.cs" />
+    <Compile Include="Social\ProvidentFund\ZJ\quzhou.cs" />
+    <Compile Include="Social\ProvidentFund\ZJ\shaoxing.cs" />
+    <Compile Include="Social\ProvidentFund\HA\zhengzhou.cs" />
+    <Compile Include="Social\ProvidentFund\JS\zhenjiang.cs" />
+    <Compile Include="Social\ProvidentFund\SD\zibo.cs" />
+    <Compile Include="Social\ProvidentFund\ZJ\tongxiang.cs" />
+    <Compile Include="Social\ProvidentFund\ZJ\wucheng.cs" />
+    <Compile Include="Social\ProvidentFund\ZJ\yinzhouqu.cs" />
+    <Compile Include="Social\ProvidentFund\ZJ\yiwu.cs" />
+    <Compile Include="Social\ProvidentFund\ZJ\yuyao.cs" />
+    <Compile Include="Social\ProvidentFund\ZJ\zhenhai.cs" />
+    <Compile Include="Social\SocialSecurity\AH\anqing.cs" />
+    <Compile Include="Social\SocialSecurity\AH\shouxian.cs" />
+    <Compile Include="Social\SocialSecurity\AH\luan.cs" />
+    <Compile Include="Social\SocialSecurity\AH\maanshan.cs" />
+    <Compile Include="Social\SocialSecurity\AH\wuhu.cs" />
+    <Compile Include="Social\SocialSecurity\AH\wuhuyihuwang.cs" />
+    <Compile Include="Social\SocialSecurity\BJ\beijing.cs" />
+    <Compile Include="Social\SocialSecurity\CQ\chongqing.cs" />
+    <Compile Include="Social\SocialSecurity\FJ\fjsheng.cs" />
+    <Compile Include="Social\SocialSecurity\FJ\fuzhou.cs" />
+    <Compile Include="Social\SocialSecurity\FJ\quanzhou.cs" />
+    <Compile Include="Social\SocialSecurity\FJ\xiamen.cs" />
+    <Compile Include="Social\SocialSecurity\FJ\zhangzhou.cs" />
+    <Compile Include="Social\SocialSecurity\fujian.cs" />
+    <Compile Include="Social\SocialSecurity\GD\foshan.cs" />
+    <Compile Include="Social\SocialSecurity\GD\huizhou.cs" />
+    <Compile Include="Social\SocialSecurity\GD\guangzhou.cs" />
+    <Compile Include="Social\SocialSecurity\GD\qingyuan.cs" />
+    <Compile Include="Social\SocialSecurity\GD\shenzhen.cs" />
+    <Compile Include="Social\SocialSecurity\GD\shenzhencomputer.cs" />
+    <Compile Include="Social\SocialSecurity\GD\zhongshan.cs" />
+    <Compile Include="Social\SocialSecurity\GD\zhuhai.cs" />
+    <Compile Include="Social\SocialSecurity\HA\hashengshiye.cs" />
+    <Compile Include="Social\SocialSecurity\HA\luoyang.cs" />
+    <Compile Include="Social\SocialSecurity\HA\xuchang.cs" />
+    <Compile Include="Social\SocialSecurity\HB\changyang.cs" />
+    <Compile Include="Social\SocialSecurity\HB\dangyang.cs" />
+    <Compile Include="Social\SocialSecurity\HB\zhijiang.cs" />
+    <Compile Include="Social\SocialSecurity\HB\dongxihu.cs" />
+    <Compile Include="Social\SocialSecurity\HB\xiangyang.cs" />
+    <Compile Include="Social\SocialSecurity\HB\hubeisheng.cs" />
+    <Compile Include="Social\SocialSecurity\HB\xinzhou.cs" />
+    <Compile Include="Social\SocialSecurity\HB\yichang.cs" />
+    <Compile Include="Social\SocialSecurity\HB\yidu.cs" />
+    <Compile Include="Social\SocialSecurity\HB\yiling.cs" />
+    <Compile Include="Social\SocialSecurity\HB\yuanan.cs" />
+    <Compile Include="Social\SocialSecurity\HB\zigui.cs" />
+    <Compile Include="Social\SocialSecurity\HE\shijiazhuang.cs" />
+    <Compile Include="Social\SocialSecurity\AH\hefei.cs" />
+    <Compile Include="Social\SocialSecurity\HB\wuhan.cs" />
+    <Compile Include="Social\SocialSecurity\HL\daqing.cs" />
+    <Compile Include="Social\SocialSecurity\HL\qiqihaer.cs" />
+    <Compile Include="Social\SocialSecurity\HN\hengyang.cs" />
+    <Compile Include="Social\SocialSecurity\HN\zhuzhou.cs" />
+    <Compile Include="Social\SocialSecurity\HN\changde.cs" />
+    <Compile Include="Social\SocialSecurity\HN\hunansheng.cs" />
+    <Compile Include="Social\SocialSecurity\HN\xiangtan.cs" />
+    <Compile Include="Social\SocialSecurity\HN\changsha.cs" />
+    <Compile Include="Social\SocialSecurity\JL\changchun.cs" />
+    <Compile Include="Social\SocialSecurity\JS\changshu.cs" />
+    <Compile Include="Social\SocialSecurity\JS\changzhou.cs" />
+    <Compile Include="Social\SocialSecurity\JS\danyang.cs" />
+    <Compile Include="Social\SocialSecurity\JS\gaoyou.cs" />
+    <Compile Include="Social\SocialSecurity\JS\haian.cs" />
+    <Compile Include="Social\SocialSecurity\JS\jiangyin.cs" />
+    <Compile Include="Social\SocialSecurity\JS\jintan.cs" />
+    <Compile Include="Social\SocialSecurity\JS\kunshan.cs" />
+    <Compile Include="Social\SocialSecurity\JS\lianyungang.cs" />
+    <Compile Include="Social\SocialSecurity\JS\liyang.cs" />
+    <Compile Include="Social\SocialSecurity\JS\nanjing.cs" />
+    <Compile Include="Social\SocialSecurity\JS\nantong.cs" />
+    <Compile Include="Social\SocialSecurity\JS\rugao.cs" />
+    <Compile Include="Social\SocialSecurity\JS\taizhou.cs" />
+    <Compile Include="Social\SocialSecurity\JS\suzhou.cs" />
+    <Compile Include="Social\SocialSecurity\JS\suzhouyuanqu.cs" />
+    <Compile Include="Social\SocialSecurity\JS\taicang.cs" />
+    <Compile Include="Social\SocialSecurity\JS\wujiang.cs" />
+    <Compile Include="Social\SocialSecurity\JS\wujin.cs" />
+    <Compile Include="Social\SocialSecurity\JS\wuxi.cs" />
+    <Compile Include="Social\SocialSecurity\JS\xuzhou.cs" />
+    <Compile Include="Social\SocialSecurity\JS\yancheng.cs" />
+    <Compile Include="Social\SocialSecurity\JS\yangzhou.cs" />
+    <Compile Include="Social\SocialSecurity\JS\yixing.cs" />
+    <Compile Include="Social\SocialSecurity\JS\zhangjiagang.cs" />
+    <Compile Include="Social\SocialSecurity\JS\zhenjiang.cs" />
+    <Compile Include="Social\SocialSecurity\JX\nanchang.cs" />
+    <Compile Include="Social\SocialSecurity\LN\angang.cs" />
+    <Compile Include="Social\SocialSecurity\LN\anshan.cs" />
+    <Compile Include="Social\SocialSecurity\LN\yingkou.cs" />
+    <Compile Include="Social\SocialSecurity\LN\panjin.cs" />
+    <Compile Include="Social\SocialSecurity\LN\dalian.cs" />
+    <Compile Include="Social\SocialSecurity\LN\fushun.cs" />
+    <Compile Include="Social\SocialSecurity\LN\shenyang.cs" />
+    <Compile Include="Social\SocialSecurity\SC\chengdu.cs" />
+    <Compile Include="Social\SocialSecurity\SC\mianyang.cs" />
+    <Compile Include="Social\SocialSecurity\SC\neijiang.cs" />
+    <Compile Include="Social\SocialSecurity\SC\scsheng.cs" />
+    <Compile Include="Social\SocialSecurity\SC\yibin.cs" />
+    <Compile Include="Social\SocialSecurity\SD\jinan.cs" />
+    <Compile Include="Social\SocialSecurity\SD\qingdao.cs" />
+    <Compile Include="Social\SocialSecurity\SD\weifang.cs" />
+    <Compile Include="Social\SocialSecurity\SD\yantai.cs" />
+    <Compile Include="Social\SocialSecurity\SD\zibo.cs" />
+    <Compile Include="Social\SocialSecurity\SH\shanghai.cs" />
+    <Compile Include="Social\SocialSecurity\SH\shanghailaodong.cs" />
+    <Compile Include="Social\SocialSecurity\SN\baoji.cs" />
+    <Compile Include="Social\SocialSecurity\SN\tongchuan.cs" />
+    <Compile Include="Social\SocialSecurity\SN\weinan.cs" />
+    <Compile Include="Social\SocialSecurity\SN\xian.cs" />
+    <Compile Include="Social\SocialSecurity\SN\xianyang.cs" />
+    <Compile Include="Social\SocialSecurity\SX\taiyuan.cs" />
+    <Compile Include="Social\SocialSecurity\HE\handan.cs" />
+    <Compile Include="Social\SocialSecurity\TJ\tianjin.cs" />
+    <Compile Include="Social\SocialSecurity\YN\ynshengyiliao.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\changxing.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\dongyang.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\fenghua.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\haining.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\haiyan.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\hangzhou.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\huzhou.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\jiashan.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\jiaxing.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\jinhua.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\keqiao.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\lanxi.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\ningbo.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\ninghai.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\panan.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\pinghu.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\pujiang.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\quzhou.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\shangyu.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\shaoxing.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\shengzhou.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\tongxiang.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\xiangshan.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\xinchang.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\yiwu.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\yongkang.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\yuyao.cs" />
+    <Compile Include="Social\SocialSecurity\ZJ\zhuji.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Vcredit.Common\Vcredit.Common.csproj">
+      <Project>{678f8f20-5dd4-4f63-bdd4-4085238553cd}</Project>
+      <Name>Vcredit.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.NetSpider.DataAccess\Vcredit.NetSpider.DataAccess.csproj">
+      <Project>{7ce4c3df-7974-4b6b-8728-1d3918ca0f3f}</Project>
+      <Name>Vcredit.NetSpider.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.NetSpider.Entity\Vcredit.NetSpider.Entity.csproj">
+      <Project>{390f2771-b29e-4d0b-822e-68005de430a8}</Project>
+      <Name>Vcredit.NetSpider.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.NetSpider.PluginManager\Vcredit.NetSpider.PluginManager.csproj">
+      <Project>{f5406938-f22f-41a1-b6a8-229c4cb07cb7}</Project>
+      <Name>Vcredit.NetSpider.PluginManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.NetSpider.ThirdParty\Vcredit.NetSpider.ThirdParty.csproj">
+      <Project>{40e01998-ff1d-46cc-9a2f-b476ba754eaf}</Project>
+      <Name>Vcredit.NetSpider.ThirdParty</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+	<class name="Vcredit.NetSpider.Entity.DB.ProvidentFundEntity, Vcredit.NetSpider.Entity"   table="[provident].[ProvidentFund]">
+		<id name="Id" type="Int32" unsaved-value="null">
+			<column name="Id" length="4" sql-type="int" not-null="true" unique="true" index="PK_ProvidentFund_1"/>
+			<generator class="native" />
+		</id>
+		<property name="Name" type="String">
+			<column name="Name" length="30" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="IdentityCard" type="String">
+			<column name="IdentityCard" length="30" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="EmployeeNo" type="String">
+			<column name="EmployeeNo" length="50" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="Sex" type="String">
+			<column name="Sex" length="2" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="Phone" type="String">
+			<column name="Phone" length="50" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="SalaryBase" type="Decimal">
+			<column name="SalaryBase" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="PersonalMonthPayAmount" type="Decimal">
+			<column name="PersonalMonthPayAmount" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="CompanyMonthPayAmount" type="Decimal">
+			<column name="CompanyMonthPayAmount" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="PersonalMonthPayRate" type="Decimal">
+			<column name="PersonalMonthPayRate" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="CompanyMonthPayRate" type="Decimal">
+			<column name="CompanyMonthPayRate" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="TotalAmount" type="Decimal">
+			<column name="TotalAmount" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="Status" type="String">
+			<column name="Status" length="1" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="OpenTime" type="DateTime">
+			<column name="OpenTime" length="4" sql-type="smalldatetime" not-null="false"/>
+		</property>
+		<property name="CompanyNo" type="String">
+			<column name="CompanyNo" length="300" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="CompanyName" type="String">
+			<column name="CompanyName" length="250" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="CompanyLicense" type="String">
+			<column name="CompanyLicense" length="300" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="CompanyAddress" type="String">
+			<column name="CompanyAddress" length="300" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="CompanyDistrict" type="String">
+			<column name="CompanyDistrict" length="50" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="CompanyOpenTime" type="DateTime">
+			<column name="CompanyOpenTime" length="4" sql-type="smalldatetime" not-null="false"/>
+		</property>
+		<property name="BankCardNo" type="String">
+			<column name="BankCardNo" length="50" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="Bank" type="String">
+			<column name="Bank" length="250" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="BankCardOpenTime" type="DateTime">
+			<column name="BankCardOpenTime" length="4" sql-type="smalldatetime" not-null="false"/>
+		</property>
+		<property name="ProvidentFundCity" type="String">
+			<column name="ProvidentFundCity" length="50" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="IsLocal" type="Boolean">
+			<column name="IsLocal" length="1" sql-type="bit" not-null="false"/>
+		</property>
+		<property name="CreateTime" type="DateTime">
+			<column name="CreateTime" length="4" sql-type="smalldatetime" not-null="true"/>
+		</property>
+    <property name="ProvidentFundNo" type="String">
+      <column name="ProvidentFundNo" length="50" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="PaymentMonths" type="Int32">
+      <column name="PaymentMonths" length="4" sql-type="int" not-null="false"/>
+    </property>
+    <property name="Payment_State" type="String">
+      <column name="Payment_State" length="100" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="PaymentMonths_Continuous" type="Int32">
+      <column name="PaymentMonths_Continuous" length="4" sql-type="int" not-null="false"/>
+    </property>
+    <property name="LastProvidentFundTime" type="String">
+      <column name="LastProvidentFundTime" length="50" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="Description" type="String">
+      <column name="Description" length="250" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="Score" type="Int32">
+      <column name="Score" length="4" sql-type="int" not-null="false"/>
+    </property>
+    <property name="Loginname" type="String">
+      <column name="Loginname" length="50" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="Password" type="String">
+      <column name="Password" length="50" sql-type="varchar" not-null="false"/>
+    </property>
+    <!--<property name="Bid" type="Int32">
+      <column name="Bid" length="4" sql-type="int" not-null="false"/>
+    </property>-->
+    <property name="BusId" type="String">
+      <column name="BusId" length="30" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="BusType" type="String">
+      <column name="BusType" length="30" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="BusIdentityCard" type="String">
+      <column name="BusIdentityCard" length="30" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="BusName" type="String">
+      <column name="BusName" length="100" sql-type="varchar" not-null="false"/>
+    </property>
+	</class>
+</hibernate-mapping>

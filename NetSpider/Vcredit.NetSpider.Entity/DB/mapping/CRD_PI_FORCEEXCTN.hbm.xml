@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+	<class name="Vcredit.NetSpider.Entity.DB.CRD_PI_FORCEEXCTNEntity, Vcredit.NetSpider.Entity"   table="[credit].[CRD_PI_FORCEEXCTN]">
+		<id name="Id" type="Int32" unsaved-value="null">
+			<column name="Forceexecution_Id" length="4" sql-type="int" not-null="true" unique="true" index="PK_CRD_PI_FORCEEXCTN"/>
+			<generator class="native" />
+		</id>
+		<property name="ReportId" type="Int32">
+			<column name="Report_Id" length="4" sql-type="int" not-null="true"/>
+		</property>
+		<property name="Court" type="String">
+			<column name="Court" length="100" sql-type="nvarchar" not-null="false"/>
+		</property>
+    <property name="Case_No" type="String">
+      <column name="Case_No" length="100" sql-type="nvarchar" not-null="false"/>
+    </property>
+    
+    <property name="Case_Reason" type="String">
+			<column name="Case_Reason" length="40" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="Register_Date" type="DateTime">
+			<column name="Register_Date" length="3" sql-type="date" not-null="false"/>
+		</property>
+		<property name="Closed_Type" type="String">
+			<column name="Closed_Type" length="8" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="Case_State" type="String">
+			<column name="Case_State" length="20" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="Closed_Date" type="DateTime">
+			<column name="Closed_Date" length="9" sql-type="date" not-null="false"/>
+		</property>
+		<property name="Enforce_Object" type="String">
+			<column name="Enforce_Object" length="200" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="Enforce_Object_Money" type="Decimal">
+			<column name="Enforce_Object_Money" length="18" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="Already_Enforce_Object" type="String">
+			<column name="Already_Enforce_Object" length="200" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="Already_Enforce_Object_Money" type="Decimal">
+			<column name="Already_Enforce_Object_Money" length="18" sql-type="decimal" not-null="false"/>
+		</property>
+		
+	</class>
+</hibernate-mapping>

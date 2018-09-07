@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{945B9B03-4C8A-405A-942A-D3D33B2C0F61}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vcredit.NetSpider.Processor</RootNamespace>
+    <AssemblyName>Vcredit.NetSpider.Processor</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Vcredit.Framework.Common.Utility">
+      <HintPath>..\packages\Vcredit.Framework.Common.Utility.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcredit.Framework.Server.Entity">
+      <HintPath>..\packages\Vcredit.Framework.Server.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcredit.Framework.Server.Service">
+      <HintPath>..\packages\Vcredit.Framework.Server.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcredit.NetSpider.DataManager">
+      <HintPath>..\packages\Vcredit.NetSpider.DataManager.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcredit.NetSpider.Fetcher">
+      <HintPath>..\packages\Vcredit.NetSpider.Fetcher.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcredit.NetSpider.JobManager">
+      <HintPath>..\packages\Vcredit.NetSpider.JobManager.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcredit.NetSpider.WorkFlow">
+      <HintPath>..\packages\Vcredit.NetSpider.WorkFlow.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IJobExecutor.cs" />
+    <Compile Include="Impl\BaseExecutor.cs" />
+    <Compile Include="ExecutorManager.cs" />
+    <Compile Include="IExecutor.cs" />
+    <Compile Include="Impl\ChsiExecutor.cs" />
+    <Compile Include="Impl\JobExecutor.cs" />
+    <Compile Include="Impl\JxlMobileExecutor.cs" />
+    <Compile Include="Impl\PbccrcExecutor.cs" />
+    <Compile Include="Impl\MobileExecutor.cs" />
+    <Compile Include="Impl\VcreditCertifyExecutor.cs" />
+    <Compile Include="Impl\SociaSecurityExecutor.cs" />
+    <Compile Include="Impl\ProvidentFundExecutor.cs" />
+    <Compile Include="Impl\TaobaoExecutor.cs" />
+    <Compile Include="IChsiExecutor.cs" />
+    <Compile Include="IPbccrcExecutor.cs" />
+    <Compile Include="IMobileExecutor.cs" />
+    <Compile Include="IProvidentFundExecutor.cs" />
+    <Compile Include="IVcreditCertifyExecutor.cs" />
+    <Compile Include="ISociaSecurityExecutor.cs" />
+    <Compile Include="ITaobaoExecutor.cs" />
+    <Compile Include="Operation\JsonModel\ProvidentFund\SuzhouDetail.cs" />
+    <Compile Include="Operation\JsonModel\ProvidentFund\XiamenDetail.cs" />
+    <Compile Include="Operation\JsonModel\ProvidentFund\NanJingDetail.cs" />
+    <Compile Include="Operation\JsonModel\ProvidentFund\QingDaoDetail.cs" />
+    <Compile Include="Operation\JsonModel\SociaSecurity\ChongQingDetail.cs" />
+    <Compile Include="Operation\PhoneOpr.cs" />
+    <Compile Include="Operation\VcreditCertifyOpr.cs" />
+    <Compile Include="Operation\SociaSecurityOpr.cs" />
+    <Compile Include="Operation\ProvidentFundOpr.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Vcredit.Common\Vcredit.Common.csproj">
+      <Project>{678f8f20-5dd4-4f63-bdd4-4085238553cd}</Project>
+      <Name>Vcredit.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.NetSpider.Crawler\Vcredit.NetSpider.Crawler.csproj">
+      <Project>{5dc74abe-016d-44e5-aa0d-c267196f783b}</Project>
+      <Name>Vcredit.NetSpider.Crawler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.NetSpider.DataAccess\Vcredit.NetSpider.DataAccess.csproj">
+      <Project>{7ce4c3df-7974-4b6b-8728-1d3918ca0f3f}</Project>
+      <Name>Vcredit.NetSpider.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.NetSpider.Entity\Vcredit.NetSpider.Entity.csproj">
+      <Project>{390f2771-b29e-4d0b-822e-68005de430a8}</Project>
+      <Name>Vcredit.NetSpider.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.NetSpider.PluginManager\Vcredit.NetSpider.PluginManager.csproj">
+      <Project>{f5406938-f22f-41a1-b6a8-229c4cb07cb7}</Project>
+      <Name>Vcredit.NetSpider.PluginManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.NetSpider.Service\Vcredit.NetSpider.Service.csproj">
+      <Project>{b1fa16b8-71fe-4f45-9d19-2513007cae8d}</Project>
+      <Name>Vcredit.NetSpider.Service</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

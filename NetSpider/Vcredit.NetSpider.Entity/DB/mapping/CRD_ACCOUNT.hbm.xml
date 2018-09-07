@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+	<class name="Vcredit.NetSpider.Entity.DB.CRD_ACCOUNTEntity, Vcredit.NetSpider.Entity"   table="[credit].[CRD_ACCOUNT]" dynamic-insert="true" dynamic-update="true">
+		<id name="Id" type="Int32" unsaved-value="null">
+			<column name="Id" length="4" sql-type="int" not-null="true" unique="true" index="PK_CRD_ACCOUNT"/>
+			<generator class="native" />
+		</id>
+		<property name="UserName" type="String">
+			<column name="UserName" length="50" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="Password" type="String">
+			<column name="Password" length="50" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="QueryCode" type="String">
+			<column name="QueryCode" length="50" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="CreateTime" type="DateTime">
+			<column name="CreateTime" length="4" sql-type="smalldatetime" not-null="false"/>
+		</property>
+    <property name="Name" type="String">
+      <column name="Name" length="50" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="CertNo" type="String">
+      <column name="CertNo" length="50" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="CertType" type="String">
+      <column name="CertType" length="20" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="Mobile" type="String">
+      <column name="Mobile" length="20" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="Email" type="String">
+      <column name="Email" length="50" sql-type="varchar" not-null="false"/>
+    </property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Vcredit.NetSpider.Entity.DB.Mobile_NumberEntity, Vcredit.NetSpider.Entity"   table="Mobile_Number">
+    <id name="ID" type="Int32" unsaved-value="null">
+      <column name="ID" sql-type="int" not-null="true" unique="true" index="PK_Gray_Number"/>
+      <generator class="native" />
+    </id>
+    <property name="Mobile" type="String">
+      <column name="Mobile" length="50" sql-type="varchar" not-null="true"/>
+    </property>
+    <property name="Supplier" type="String">
+      <column name="Supplier" length="100" sql-type="nvarchar" not-null="true"/>
+    </property>
+    <property name="Province" type="String">
+      <column name="Province" length="100" sql-type="nvarchar" not-null="true"/>
+    </property>
+    <property name="City" type="String">
+      <column name="City" length="200" sql-type="nvarchar" not-null="true"/>
+    </property>
+    <property name="Area_Code" type="String">
+      <column name="Area_Code" length="50" sql-type="varchar" not-null="true"/>
+    </property>
+    <property name="Post_Code" type="String">
+      <column name="Post_Code" length="50" sql-type="varchar" not-null="true"/>
+    </property>
+    <property name="Memo" type="String">
+      <column name="Memo" length="500" sql-type="nvarchar" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

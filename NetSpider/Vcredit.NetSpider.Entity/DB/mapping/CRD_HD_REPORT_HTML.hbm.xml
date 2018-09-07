@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+	<class name="Vcredit.NetSpider.Entity.DB.CRD_HD_REPORT_HTMLEntity, Vcredit.NetSpider.Entity"   table="[credit].CRD_HD_REPORT_HTML">
+		<id name="Id" type="Int32" unsaved-value="null">
+			<column name="Id" length="4" sql-type="int" not-null="true" unique="true" index="PK_CRD_HD_REPORT_HTML"/>
+			<generator class="native" />
+		</id>
+		<property name="ReportSn" type="String">
+			<column name="Report_Sn" length="50" sql-type="varchar" not-null="true"/>
+		</property>
+		<property name="Html" type="String">
+			<column name="Html" length="2147483647" sql-type="text" not-null="false"/>
+		</property>
+    <property name="BusId" type="String">
+      <column name="BusId" length="30" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="BusType" type="String">
+      <column name="BusType" length="30" sql-type="varchar" not-null="false"/>
+    </property>
+    <property name="Loginname" type="String">
+      <column name="Loginname" length="30" sql-type="varchar" not-null="false"/>
+    </property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+	<class name="Vcredit.NetSpider.Entity.DB.CRD_CD_GUARANTEEEntity, Vcredit.NetSpider.Entity"   table="[credit].[CRD_CD_GUARANTEE]">
+		<id name="Id" type="Int32" unsaved-value="null">
+			<column name="Guarantee_Id" length="4" sql-type="int" not-null="true" unique="true" index="PK_CRD_CD_GUARANTEE"/>
+			<generator class="native" />
+		</id>
+		<property name="ReportId" type="Int32">
+			<column name="Report_Id" length="4" sql-type="int" not-null="true"/>
+		</property>
+		<property name="OrganName" type="String">
+			<column name="Organ_Name" length="60" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="ContractMoney" type="Decimal">
+			<column name="Contract_Money" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="BeginDate" type="DateTime">
+			<column name="Begin_Date" length="3" sql-type="date" not-null="false"/>
+		</property>
+		<property name="EndDate" type="DateTime">
+			<column name="End_Date" length="3" sql-type="date" not-null="false"/>
+		</property>
+		<property name="GuaranteeMoney" type="Decimal">
+			<column name="Guarantee_Money" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="GuaranteeBalance" type="Decimal">
+			<column name="Guarantee_Balance" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="Class5State" type="String">
+			<column name="Class5_State" length="6" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="BillingDate" type="DateTime">
+			<column name="Billing_Date" length="3" sql-type="date" not-null="false"/>
+		</property>
+		<property name="Name" type="String">
+			<column name="Name" length="50" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="CertType" type="String">
+			<column name="Cert_Type" length="10" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="CertNo" type="String">
+			<column name="Cert_No" length="18" sql-type="varchar" not-null="false"/>
+		</property>
+	</class>
+</hibernate-mapping>

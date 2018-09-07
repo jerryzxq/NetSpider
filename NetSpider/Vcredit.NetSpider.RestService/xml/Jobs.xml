@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Jobroot  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Jobs >
+    <Job name="青岛社保">
+      <Steps>
+        <Step sort="1" url="http://221.215.38.136/grcx/pages/qdyth/wsbs/login.jsp" methed="get">
+        </Step>
+        <Step sort="2" url="http://221.215.38.136/grcx/common/checkcode.do" methed="get"  resultType="byte">
+          <GatherDatas>
+            <GatherData name="imagecode" type="new">
+            </GatherData>
+          </GatherDatas>
+        </Step>
+        <Step sort="3" url="http://221.215.38.136/grcx/work/login.do?method=login" methed="post" PostData="method=login&amp;domainId=1&amp;groupid=-95&amp;loginName=@{username}&amp;loginName18=@{username}&amp;password=@{password}&amp;checkCode=@{imagecode}">
+          <Parameters>
+            <Parameter name="imagecode"></Parameter>
+            <Parameter name="username" type="input"></Parameter>
+            <Parameter name="password" type="input"></Parameter>
+          </Parameters>
+        </Step>
+        <Step sort="4" url="http://221.215.38.136/grcx/work/m01/f1101/personQuery.action?_t=0.2626939953496459" methed="get">
+          <GatherDatas>
+            <GatherData name="main" type="new" dataType="list" output="1">
+              <Selectors>
+                <Selector selectRegulation="//input" selectAttribute="value" type="html"></Selector>
+              </Selectors>
+            </GatherData>
+          </GatherDatas>
+        </Step>
+        <Step sort="5" url="http://221.215.38.136/grcx/work/m01/f1203/oldQuery.action?_t=0.8156319433558026" methed="get">
+          <GatherDatas>
+            <GatherData name="Pension" type="new" dataType="datatable">
+              <GatherDataColumns>
+                <GatherDataColumn colName="姓名" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="缴费年月" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="应属年月" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="单位名称" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="缴费类别" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="个人基数" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="个人缴费" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="单位划入帐户" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="社平划入" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="缴费标志" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+              </GatherDataColumns>
+            </GatherData>
+          </GatherDatas>
+        </Step>
+        <Step sort="6" url="http://221.215.38.136/grcx/work/m01/f1204/medicalQuery.action?_t=0.3348695000339297" methed="get">
+          <GatherDatas>
+            <GatherData name="Medical" type="new" dataType="datatable">
+              <GatherDataColumns>
+                <GatherDataColumn colName="姓名" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="缴费年月" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="应属年月" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="单位名称" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="缴费类别" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="个人基数" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="个人缴费" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="单位划入帐户" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="大额救助" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="共划入账户" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="公务员补助账户" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="缴费标志" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+              </GatherDataColumns>
+            </GatherData>
+          </GatherDatas>
+        </Step>
+        <Step sort="7" url="http://221.215.38.136/grcx/work/m01/f1205/unemployQuery.action?_t=0.29595013323675157" methed="get">
+          <GatherDatas>
+            <GatherData name="Unemploy" type="new" dataType="datatable">
+              <GatherDataColumns>
+                <GatherDataColumn colName="姓名" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="缴费年月" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="应属年月" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="单位名称" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="缴费类别" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="个人基数" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="个人缴费" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="缴费标志" start="&lt;td align=&quot;center&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+              </GatherDataColumns>
+            </GatherData>
+          </GatherDatas>
+        </Step>
+      </Steps>
+    </Job>
+    <Job name="上海社保">
+      <Steps>
+        <Step sort="1" url="http://www.12333sh.gov.cn/grxx/login.jsw" methed="post" PostData="cxtype=1&amp;idcard=@{username}&amp;password=@{password}">
+          <GatherDatas>
+            <GatherData name="social" type="new" dataType="datatable">
+              <GatherDataColumns>
+                <GatherDataColumn colName="年月" start="&quot;>&lt;td&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="缴费基数" start="&lt;td&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="养保个人缴费额" start="&lt;td&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="医保个人缴费额" start="&lt;td&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="失保个人缴费额" start="&lt;td&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+              </GatherDataColumns>
+              <Selectors>
+                <Selector selectRegulation="/html/body/table[2]/tr/td[3]/table[4]" selectAttribute="" type="html"></Selector>
+              </Selectors>
+            </GatherData>
+            <GatherData name="summary" type="new" dataType="datatable">
+              <GatherDataColumns>
+                <GatherDataColumn colName="年份" start="&quot;>&lt;td&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="社保缴费年度内实际缴费月数" start="&lt;td&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="个人部分" start="&lt;td&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="合计部分" start="&lt;td&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+              </GatherDataColumns>
+              <Selectors>
+                <Selector selectRegulation="/html/body/table[2]/tr/td[3]/table[6]" selectAttribute="" type="html"></Selector>
+              </Selectors>
+            </GatherData>
+            <GatherData name="info1" type="new" dataType="datatable">
+              <GatherDataColumns>
+                <GatherDataColumn colName="姓名" start="姓名：" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="身份证" start="身份证：" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="连续工龄" start="bgcolor=&quot;#EFEFEF&quot;&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+              </GatherDataColumns>
+              <Selectors>
+                <Selector selectRegulation="/html/body/table[2]/tr/td[3]/table[3]" selectAttribute="" type="html"></Selector>
+              </Selectors>
+            </GatherData>
+            <GatherData name="info2" type="new" dataType="datatable">
+              <GatherDataColumns>
+                <GatherDataColumn colName="截至年月" start="&lt;td&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="累计缴费月数" start="&lt;td&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="养老金本息总额" start="&lt;td&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="养老金总额个人部分" start="&lt;td&gt;" end="&lt;/td&gt;" limitSign="2001"/>
+              </GatherDataColumns>
+              <Selectors>
+                <Selector selectRegulation="/html/body/table[2]/tr/td[3]/table[8]/tr[3]" selectAttribute="" type="html"></Selector>
+              </Selectors>
+            </GatherData>
+          </GatherDatas>
+          <Parameters>
+            <Parameter name="username" type="input"></Parameter>
+            <Parameter name="password" type="input"></Parameter>
+          </Parameters>
+        </Step>
+      </Steps>
+    </Job>
+    <Job name="上海公积金">
+      <Steps>
+        <Step sort="1" url="https://persons.shgjj.com/VerifyImageServlet" methed="get"  resultType="byte">
+          <GatherDatas>
+            <GatherData name="imagecode" type="new">
+            </GatherData>
+          </GatherDatas>
+        </Step>
+        <Step sort="2" url="https://persons.shgjj.com/SsoLogin" methed="post" PostData="username=@{username}&amp;password=@{password}&amp;imagecode=@{imagecode}&amp;password_md5=@{password_MD5}&amp;ID=0">
+          <Parameters>
+            <Parameter name="imagecode"></Parameter>
+            <Parameter name="username" type="input"></Parameter>
+            <Parameter name="password" type="input"></Parameter>
+            <Parameter name="password_MD5" type="input"></Parameter>
+          </Parameters>
+        </Step>
+        <Step sort="3" url="http://bbs.shgjj.com/sso/sso.php?url=https://persons.shgjj.com/MainServlet?ID=1" methed="post" PostData="para1=@{username}&amp;para2=@{password_MD5}">
+          <GatherDatas>
+            <GatherData name="src" type="new">
+              <Selectors>
+                <Selector selectRegulation="//script[1]" selectAttribute="src"></Selector>
+              </Selectors>
+            </GatherData>
+          </GatherDatas>
+        </Step>
+        <Step sort="4" url="@{src}" methed="get">
+          <Parameters>
+            <Parameter name="src"></Parameter>
+          </Parameters>
+        </Step>
+        <Step sort="5" url="https://persons.shgjj.com/MainServlet?ID=1" methed="get">
+          <GatherDatas>
+            <GatherData name="name" output="1">
+              <Selectors>
+                <Selector start="width=&quot;751&quot;&gt;" end="&lt;strong&gt;" type="string"></Selector>
+              </Selectors>
+            </GatherData>
+            <GatherData name="khdate" output="1">
+              <Selectors>
+                <Selector start="开户日期&lt;/div&gt;&lt;/td&gt;&lt;td&gt;" end="&lt;/td&gt;" type="string"></Selector>
+              </Selectors>
+            </GatherData>
+            <GatherData name="account" output="1">
+              <Selectors>
+                <Selector start="公积金账号&lt;/div&gt;&lt;/td&gt;&lt;td&gt;" end="&lt;/td&gt;" type="string"></Selector>
+              </Selectors>
+            </GatherData>
+            <GatherData name="company" output="1">
+              <Selectors>
+                <Selector start="所属单位&lt;/div&gt;&lt;/td&gt;&lt;td&gt;" end="&lt;/td&gt;" type="string"></Selector>
+              </Selectors>
+            </GatherData>
+            <GatherData name="Amount" output="1">
+              <Selectors>
+                <Selector start="账户余额&lt;/div&gt;&lt;/td&gt;&lt;td&gt;" end="&lt;/td&gt;" type="string"></Selector>
+              </Selectors>
+            </GatherData>
+          </GatherDatas>
+        </Step>
+        <Step sort="6" url="https://persons.shgjj.com/MainServlet?ID=11" methed="get">
+          <GatherDatas>
+            <GatherData name="detail" type="new" dataType="datatable">
+              <GatherDataColumns>
+                <GatherDataColumn colName="date" start="&lt;td&gt;&lt;div align=&quot;center&quot;&gt;" end="&lt;/div&gt;&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="company" start="style=&quot; padding:2px;&quot;&gt;" end="&lt;/div&gt;&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="amount" start="&lt;td&gt;&lt;div align=&quot;right&quot; style=&quot; padding:2px;&quot;&gt;" end="&lt;/div&gt;&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="desc" start="&lt;td&gt;&lt;div align=&quot;center&quot;&gt;" end="&lt;/div&gt;&lt;/td&gt;" limitSign="2001"/>
+                <GatherDataColumn colName="note" start="&lt;td&gt;&lt;div align=&quot;center&quot;&gt;" end="&lt;/div&gt;&lt;/td&gt;" limitSign="2001"/>
+              </GatherDataColumns>
+              <Selectors>
+                <Selector selectRegulation="//table[@class='table']/tr[position() >2]" selectAttribute="" type="html"></Selector>
+              </Selectors>
+            </GatherData>
+          </GatherDatas>
+        </Step>
+      </Steps>
+    </Job>
+  </Jobs>
+</Jobroot>

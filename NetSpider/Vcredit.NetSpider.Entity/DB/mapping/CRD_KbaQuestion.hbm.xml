@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+	<class name="Vcredit.NetSpider.Entity.DB.CRD_KbaQuestionEntity, Vcredit.NetSpider.Entity"   table="[credit].CRD_KbaQuestion" dynamic-insert="true" dynamic-update="true">
+		<id name="Id" type="Int32" unsaved-value="null">
+			<column name="Id" length="4" sql-type="int" not-null="true" unique="true" index="PK_CRD_KbaQuestion"/>
+			<generator class="native" />
+		</id>
+		<property name="AccountId" type="Int32">
+			<column name="AccountId" length="4" sql-type="int" not-null="false"/>
+		</property>
+		<property name="Question" type="String">
+			<column name="question" length="100" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="Answer" type="String">
+			<column name="answer" length="100" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="Answerresult" type="String">
+			<column name="answerresult" length="4" sql-type="int" not-null="false"/>
+		</property>
+		<property name="Derivativecode" type="String">
+			<column name="derivativecode" length="100" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="Businesstype" type="String">
+			<column name="businesstype" length="10" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="Questionno" type="String">
+			<column name="questionno" length="10" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="Kbanum" type="String">
+			<column name="kbanum" length="10" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="Options1" type="String">
+			<column name="options1" length="100" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="Options2" type="String">
+			<column name="options2" length="100" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="Options3" type="String">
+			<column name="options3" length="100" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="Options4" type="String">
+			<column name="options4" length="100" sql-type="varchar" not-null="false"/>
+		</property>
+		<property name="Options5" type="String">
+			<column name="options5" length="100" sql-type="varchar" not-null="false"/>
+		</property>
+    <property name="CreateTime" type="DateTime">
+      <column name="CreateTime" length="4" sql-type="smalldatetime" not-null="false"/>
+    </property>
+	</class>
+</hibernate-mapping>

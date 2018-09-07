@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+	<class name="Vcredit.NetSpider.Entity.DB.CRD_IS_CREDITCUEEntity, Vcredit.NetSpider.Entity"   table="[credit].CRD_IS_CREDITCUE">
+		<id name="Id" type="Int32" unsaved-value="null">
+			<column name="Report_Id" length="4" sql-type="int" not-null="true" unique="true" index="PK_CRD_IS_CREDITCUE"/>
+			<generator class="assigned" />
+		</id>
+		<property name="HouseLoanCount" type="Decimal">
+			<column name="House_Loan_Count" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="OtherLoanCount" type="Decimal">
+			<column name="Other_Loan_Count" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<!--<property name="FirstLoanOpenMonth" type="String">
+			<column name="First_Loan_Open_Month" length="7" sql-type="nvarchar" not-null="false"/>
+		</property>-->
+		<property name="LoancardCount" type="Decimal">
+			<column name="Loancard_Count" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<!--<property name="FirstLoancardOpenMonth" type="String">
+			<column name="First_Loancard_Open_Month" length="7" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="StandardLoancardCount" type="Decimal">
+			<column name="Standard_Loancard_Count" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="FirstSlOpenMonth" type="String">
+			<column name="First_Sl_Open_Month" length="7" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="AnnounceCount" type="Decimal">
+			<column name="Announce_Count" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="DissentCount" type="Decimal">
+			<column name="Dissent_Count" length="9" sql-type="decimal" not-null="false"/>
+		</property>
+		<property name="Score" type="String">
+			<column name="Score" length="20" sql-type="nvarchar" not-null="false"/>
+		</property>
+		<property name="ScoreMonth" type="String">
+			<column name="Score_Month" length="7" sql-type="nvarchar" not-null="false"/>
+		</property>-->
+	</class>
+</hibernate-mapping>
