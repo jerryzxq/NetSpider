@@ -1,9 +1,0 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Vcredit.NetSpider.RestService.Properties" GeneratedClassName="Settings">
-  <Profiles />
-  <Settings>
-    <Setting Name="Vcredit_NetSpider_RestService_RCWebService_RCWebService" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://10.1.6.155:8812/GateWay/RCService.asmx</Value>
-    </Setting>
-  </Settings>
-</SettingsFile>
