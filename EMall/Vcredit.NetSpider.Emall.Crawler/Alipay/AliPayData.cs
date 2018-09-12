@@ -157,7 +157,6 @@ namespace Vcredit.NetSpider.Emall.Crawler
 
     public class AliPayEnd
     {
-        public AliPayEndDetail end_flag { get; set; }
     }
 
     public class AliPayEndDetail
