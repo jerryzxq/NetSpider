@@ -1,0 +1,785 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>广发银行个人网上银行</title>
+    <link rel="stylesheet" type="text/css" charset="UTF-8" href="https://ebanks.cgbchina.com.cn/perbank/css/login/loginPageNew.css" />
+    <script charset="UTF-8" src="https://ebanks.cgbchina.com.cn/perbank/scripts/lib/prototype.js?JSVERSION=20170730"></script>
+    <script charset="UTF-8" src="https://ebanks.cgbchina.com.cn/perbank/scripts/lib/cookies.js?JSVERSION=20170730"></script>
+    <!--[if IE 6]>
+    <script charset="UTF-8" src="https://ebanks.cgbchina.com.cn/perbank/scripts/lib/DD_belatedPNG_0.0.8a.js?JSVERSION=20170730"></script>
+    <script>
+        DD_belatedPNG.fix('#logo, #ad, #safeHint, #safeHint p, #bottomLine, #login, #loginButton');
+    </script>
+    <![endif]-->
+    <script charset="UTF-8" src="https://ebanks.cgbchina.com.cn/perbank/scripts/liana/liana.js?JSVERSION=20170730"></script>
+
+    @*<script charset="UTF-8" src="https://ebanks.cgbchina.com.cn/perbank/scripts/pwdObject_.js?JSVERSION=20170730"></script>*@
+    <script src="~/Scripts/bank/cgb/pwdObject_.js"></script>
+    
+    <script charset="UTF-8" src="https://ebanks.cgbchina.com.cn/perbank/scripts/public_security.js?JSVERSION=20170730"></script>
+    <script charset="UTF-8" src="https://ebanks.cgbchina.com.cn/perbank/scripts/public.js?JSVERSION=20170730"></script>
+    <script type="text/javascript" src="scripts/tips/checkTipsWindow.js?JSVERSION=20170730"></script>
+    <script type="text/javascript">
+        var myValidator;
+        var logonType = "0";
+        var param = "";
+        var href = window.document.location.href;
+        var allParam = { 'content': '' };
+        var verionArray = Liana.param.LOGON_PAGE_PARAM;
+        var menuId;
+        function doSubmit() {
+            if ($("userPassword").GetPL() == 0) {
+                alert("请输入密码");
+                return;
+            }
+            var pwdStr = GetPwd($("userPassword"));//$("userPassword").GetRT();
+            if (!checkPwdObject_login($("userPassword"), "密码", document.logonForm.userPassword, document.logonForm.isPass)) {
+                return;
+            }
+            $("userPassword").Type = "A";
+            var pwdStrA = GetPwd($("userPassword"));//$("userPassword").GetRT();
+            pwdStrA = pwdStrA.substring(0, pwdStrA.length - 4);
+
+            document.logonForm.isCreditCard.value = "1";//0信用卡，1非信用卡
+            //若为账号则检查是否是信用卡
+            if (logonType == "0") {
+                var rule = judgeAccRole($("loginId").value);
+                if (rule.cardOwner == "0" && (rule.cardType == "1" || rule.cardType == "2")) {
+                    document.logonForm.isCreditCard.value = "0";
+                }
+            }
+            document.logonForm.loginId.value = $("loginId").value;
+            document.logonForm.accountNo.value = $("loginId").value;
+            document.logonForm.logonType.value = logonType;
+            document.logonForm.accPassword.value = pwdStrA;
+            document.logonForm.checkCode.value = $("captcha").value;
+            document.logonForm.action = "OT0001.do";
+
+            processClientInfo("userPassword", "logonForm");//密码控件
+            $("loginButton").disabled = true;
+            $("loginId").disabled = true;
+            $("captcha").disabled = true;
+            $("verifyImg").disabled = true;
+
+            try {
+                if (!(param == "" || param == null || param == "null")) {
+                    if (param == 'creditCard') { //信用卡版本登录
+                        document.logonForm.actionFlag.value = "01";
+                        document.logonForm.isCreditVersion.value = "01";
+                    } else {
+                        var logonValue = $("loginId").value;
+                        /*
+                        var map=new Liana.LinkedHashMap(verionArray);
+                        var keys=map.getKeys();
+                        for( var i = 0, leng =keys.length; i<leng; i++ ){
+                            if(keys[i]==param || keys[i]+"#"==param ){
+                                allParam = Object.extend({'accountNo':logonValue},allParam);
+                                document.logonForm.content.value = Object.toJSON(Object.extend({'bsncode':map.getValue(keys[i])},allParam));
+                                break;
+                            }
+                        }
+                        */
+
+                        //3月份官方网站快捷入口改造
+                        new Ajax.Request(
+                                "getMenuID.do?",
+                                { method: "post", parameters: { menuName: param }, asynchronous: false, onComplete: getMenuIDCallBack }
+                                );
+                        if (menuId) {
+                            allParam = Object.extend({ 'accountNo': logonValue }, allParam);
+                            document.logonForm.content.value = Object.toJSON(Object.extend({ 'bsncode': menuId }, allParam));
+                        }
+
+                    }
+                }
+            } catch (e) {
+            }
+            //document.logonForm.submit();
+
+            var loginId = document.logonForm.loginId.value;
+            var accountNo = document.logonForm.accountNo.value;
+            var accPassword = document.logonForm.accPassword.value;
+            var userPassword = document.logonForm.userPassword.value;
+            var isCreditCard = document.logonForm.isCreditCard.value;
+            var actionFlag = document.logonForm.actionFlag.value;
+            var isCreditVersion = document.logonForm.isCreditVersion.value;
+            var content = document.logonForm.content.value;
+
+            var isPass = document.logonForm.isPass.value;
+            var clientIP = document.logonForm.clientIP.value;
+            var clientMacAdress = document.logonForm.clientMacAdress.value;
+            var clientMainboardNo = document.logonForm.clientMainboardNo.value;
+            var clientHarddiskNo = document.logonForm.clientHarddiskNo.value;
+            var hrefValue = document.logonForm.hrefValue.value;
+
+            var data = "{'loginId': '" + loginId + "','accountNo': '" + accountNo + "','accPassword': '" + userPassword + "','userPassword': '" + accPassword + "'," +
+                    "'logonType': '" + logonType + "','isCreditCard': '" + isCreditCard + "','actionFlag': '" + actionFlag + "'," +
+                    "'isCreditVersion': '" + isCreditVersion + "','content': '" + content + "','isPass': '" + isPass + "'," +
+                    "'clientIP': '" + clientIP + "','clientMacAdress': '" + clientMacAdress + "','clientMainboardNo': '" + clientMainboardNo + "','clientHarddiskNo': '" + clientHarddiskNo + "','hrefValue': '" + hrefValue + "'}";
+
+            document.getElementById("hd_encrypt_string").value = data;
+            return data;
+        }
+        //2017年3月份官方网站快捷入口改造
+        function getMenuIDCallBack(response) {
+            if (response.responseText.indexOf('<?xml') < 0) {
+                alert('通讯失败，请重试');
+                return;
+            }
+            var contextDataPos = response.responseXML.childNodes.length - 1;
+            var contextData = new Liana.datatype.KeyedCollection(response.responseXML.childNodes[contextDataPos]);
+            menuId = contextData.getValueAt("menuId");
+        }
+
+        function checkLoginId() {
+            var loginId = $("loginId").value;
+            if ($('loginId').value == "") {
+                $("loginId_text_ts").show();
+            } else {
+                $("loginId_text_ts").hide();
+            }
+            var exp = /^[0-9]*$/;
+            var expLogin = /^[\w]*$/;
+            if (expLogin.test(loginId) == false) {
+                return false;
+            }
+            if (exp.test(loginId)) {
+                if (loginId.length >= 16) {
+                    logonType = "0";
+                } else if (loginId.length == 11) {
+                    logonType = "1";
+                } else {
+                    logonType = "2";
+                }
+            } else {
+                logonType = "2";
+            }
+            return true;
+        }
+        function setPasswordClass(myValidator, tip) {
+            try {
+                var input_blur = 0;//密码控件会走两次导致样式不正确
+                if ($('userPassword')) {
+                    $('userPassword').observe('blur', function (e) {
+                        if (input_blur == 1) {
+                            $('passwordDiv').addClassName("passwordDiv_click");
+                            $('loginDiv').removeClassName("loginDiv_click");
+                            $('captchaDiv').removeClassName("captchaDiv_click");
+                            input_blur = 0;
+                        }
+                        else {
+                            $('passwordDiv').removeClassName("passwordDiv_click");
+                        }
+                    });
+                    $('userPassword').observe('focus', function (e) {
+                        if ($('loginId').value != null && $('loginId').value != '') {
+                            myValidator.hideTip();
+                            tip.destroy();
+                        }
+                        $('passwordDiv').addClassName("passwordDiv_click");
+                        $('loginDiv').removeClassName("loginDiv_click");
+                        $('captchaDiv').removeClassName("captchaDiv_click");
+                        input_blur = 1;
+                    });
+                }
+
+            } catch (e) { }
+        }
+        function init() {
+            //在线客服
+            $('onlineServiceHanlder').observe('click', function () {
+                openOnlineService();
+            });
+            $('onlineServiceHanlder').title = " 在线客服 ";
+            $("loginId").focus();
+            $('loginDiv').addClassName("loginDiv_click");
+
+            $("loginId").value = "";
+            $("captcha").value = "";
+            if (navigator.userAgent.indexOf("rv:11.0") > 0) {
+                $('loginId') && $('loginId').observe('keyup', function (event) { setPasswordFocus(event, 'userPassword') });
+            } else {
+                $('loginId') && $('loginId').observe('keydown', function (event) { setPasswordFocus(event, 'userPassword') });
+            }
+            Liana.EnterListener(checkImageCode, $("captcha"));
+            myValidator = new Liana.Validator();
+            myValidator.add({ id: "loginId", name: "账号", request: true, checker: checkLoginId, minLength: 1, maxLength: 30 });
+            myValidator.add({ id: "captcha", name: "验证码", request: true, minLength: 4, maxLength: 4 });
+            var tip = new Liana.Tip('password', { autoPosition: true, containerClass: "autoTipContainer", showClose: true });
+            var helpTip = new Liana.Tip('passwordHelp', { autoPosition: true, containerClass: "autoTipContainer", showClose: true });
+
+            $("passwordHelp").observe('mouseover', function () {
+                helpTip.show('密码输入帮助');
+            });
+            $("passwordHelp").observe('mouseout', function () {
+                helpTip.destroy();
+            });
+
+            if (Prototype.Browser.IE || navigator.userAgent.indexOf("rv:11.0") > 0) {
+                //ie会立即初始化密码框
+                setPasswordClass(myValidator, tip);
+            } else {
+                //其他浏览器会初始化密框两次
+                setTimeout(function () { setPasswordClass(myValidator, tip); }, 220);
+            }
+
+            $('captcha').observe('focus', function () {
+                tip.destroy();
+            });
+            $("loginId_text_ts").observe('click', function () {
+                $("loginId").focus();
+            });
+            $('loginId').observe('focus', function () {
+                $('passwordDiv').removeClassName("passwordDiv_click");
+                $('loginDiv').addClassName("loginDiv_click");
+                $('captcha').removeClassName("captchaDiv_click");
+
+                $("loginId_text_ts").addClassName("gray_c");
+                if ($('loginId').value == "") {
+                    $("loginId_text_ts").show();
+                } else {
+                    $("loginId_text_ts").hide();
+                }
+                tip.destroy();
+            });
+            $('loginDiv').observe('click', function (e) {
+                $('passwordDiv').removeClassName("passwordDiv_click");
+                $('loginDiv').addClassName("loginDiv_click");
+                $('captchaDiv').removeClassName("captchaDiv_click");
+            });
+            $('loginId').observe('blur', function (e) {
+                $('loginDiv').removeClassName("loginDiv_click");
+                if ($('loginId').value == "") {
+                    $("loginId_text_ts").show();
+                } else {
+                    $("loginId_text_ts").hide();
+                }
+            });
+            $('loginId').observe('keyup', function (e) {
+                if ($('loginId').value == "") {
+                    $("loginId_text_ts").show();
+                } else {
+                    $("loginId_text_ts").hide();
+                }
+            });
+            $('captchaDiv').observe('click', function (e) {
+                $('passwordDiv').removeClassName("passwordDiv_click");
+                $('loginDiv').removeClassName("loginDiv_click");
+                $('captchaDiv').addClassName("captchaDiv_click");
+            });
+            $('captcha').observe('blur', function (e) {
+                $('captchaDiv').removeClassName("captchaDiv_click");
+            });
+            $('captcha').observe('focus', function () {
+                $('passwordDiv').removeClassName("passwordDiv_click");
+                $('loginDiv').removeClassName("loginDiv_click");
+                $('captchaDiv').addClassName("captchaDiv_click");
+            });
+            $('passwordDiv').observe('click', function (e) {
+                $('passwordDiv').addClassName("passwordDiv_click");
+                $('loginDiv').removeClassName("loginDiv_click");
+                $('captchaDiv').removeClassName("captchaDiv_click");
+            });
+
+            //new Liana.PromptInput('loginId', '卡号/用户名/网银手机号');
+            new Liana.PromptInput('captcha', '验证码');
+
+            //window.onresize = adjustFooter;
+            initUSBUtil();
+            window.onscroll = function (event) {
+                var scrollOffsets = document.viewport.getScrollOffsets(); // 屏幕滚动修正
+                $('onlineServiceHanlder').setStyle({
+                    position: 'absolute',
+                    top: (document.viewport.getHeight() + scrollOffsets.top - 140) + 'px'
+                });
+            }
+            window.onresize = function (event) {
+                var rightPx = document.viewport.getWidth() / 2 - 969 / 2 + 10;
+                if (document.viewport.getWidth() < 969) {
+                    $('login').setStyle({
+                        right: 10 + 'px'
+                    });
+                } else {
+                    $('login').setStyle({
+                        right: rightPx + 'px'
+                    })
+                }
+                var width = document.viewport.getWidth() + 17;
+                $("wrapper").setStyle({
+                    width: width + 'px'
+                });
+                var marginLeft = (width - 2000) / 2;
+                $('ad').setStyle({
+                    marginLeft: marginLeft + 'px'
+                });
+            };
+
+            try {
+                param = href.indexOf('?') > 0 ? href.substring(href.indexOf('?')) : '';
+                param = param.substring(param.indexOf('=') + 1);
+                document.logonForm.hrefValue.value = href;
+                if (param == 'creditCard') {
+                    window.isCreditVersion = "01";
+                    window.hrefValue = href;
+                } else if (param) {
+                    var paramList = param.split("&");
+                    param = paramList[0];//param.substring(0,param.indexOf('&'));
+                    var jsonStr = "{";
+                    for (var i = 0 ; i < paramList.size() ; i++) {
+                        var key = paramList[i];
+                        var nameVal = key.substring(0, key.indexOf('='));
+                        var valueVal = key.substring(key.indexOf('=') + 1);
+                        if (i >= paramList.size() - 1) {
+                            jsonStr = jsonStr + "'" + nameVal + "':'" + valueVal + "'}";
+                        } else {
+                            jsonStr = jsonStr + "'" + nameVal + "':'" + valueVal + "',";
+                        }
+                    }
+                    allParam = Object.extend(allParam, jsonStr.evalJSON());
+                }
+            } catch (e) {
+            }
+            //---01.
+            //先加载网银所有数据,再加载Key
+            setTimeout(function () {
+                FindCertCustomer();
+            }, 400);
+            //生成验证码
+            //changeImage();
+
+
+            var remoteUrl = Liana.Constants.APP_URL_AD;
+            var params = '?actionType=view&from=&adaId=adlogonpage001&adId=&viewParam=1_1_2_8_1_1_20px_30px_ffffff_020202_020202_FF0000';
+            var imageUrl = remoteUrl + params;
+            sb = '<IFRAME id="content_frame" NAME="content_frame" width="2000px" height="400px" frameBorder="0" marginWidth="0" marginHeight="0" scrolling="no" SRC="' + imageUrl + '" frameborder="0"></IFRAME>';
+            $("ad").innerHTML = sb;
+
+            var params = '?actionType=view&from=&adaId=adlogonpage002&adId=&viewParam=0_2_2_2_1_1_20px_30px_ffffff_020202_020202_FF0000';
+            var imageUrl = remoteUrl + params;
+            sb2 = '<IFRAME id="content_frame1" NAME="content_frame" width="980px" height="200px" frameBorder="0" marginWidth="0" marginHeight="0" scrolling="no" SRC="' + imageUrl + '" frameborder="0"></IFRAME>';
+            $("ad2").innerHTML = sb2;
+
+            showHelpTip();
+
+        }
+        function adjustFooter() {
+            var top = document.body.clientHeight;
+            if (top < 550) top = 550;
+            var ieVersion = parseInt(navigator.userAgent.substring(navigator.userAgent.indexOf("MSIE") + 5));
+
+            var scrollOffsets = document.viewport.getScrollOffsets(); // 屏幕滚动修正
+            $('onlineServiceHanlder').setStyle({
+                position: 'absolute',
+                top: (document.viewport.getHeight() + scrollOffsets.top - 140) + 'px'
+            });
+            var rightPx = (document.viewport.getWidth() - 35) / 2 - 969 / 2 + 10;
+            if (document.viewport.getWidth() < 969) {
+                $('login').setStyle({
+                    right: 10 + 'px'
+                });
+            } else {
+                $('login').setStyle({
+                    right: rightPx + 'px'
+                })
+            }
+
+            var width = document.viewport.getWidth() + 17;
+            $('wrapper').setStyle({
+                width: width + 'px'
+            });
+            var marginLeft = (width - 2000) / 2;
+            $('ad').setStyle({
+                marginLeft: marginLeft + 'px'
+            });
+        }
+        function toResetPwd() {
+            new Ajax.Request("getKaiGuan.do?", { method: "post", onComplete: checkKeyOrnotKey });
+        }
+        var key2;
+        var CDmobileQuestion;
+        var keyMobile;
+        function checkKeyOrnotKey(response) {
+            if (response.responseText.indexOf('<?xml') < 0) {
+                alert('通讯失败，请重试');
+                return;
+            }
+            var contextDataPos = response.responseXML.childNodes.length - 1;
+            var contextData = new Liana.datatype.KeyedCollection(response.responseXML.childNodes[contextDataPos]);
+            var iKaiGuans = contextData.getValueAt("iKaiGuans");
+            for (var i = 0; i < iKaiGuans.size() ; i++) {
+                if (iKaiGuans.get(i).get("whichOneType") == '0000') {
+                    key2 = iKaiGuans.get(i).get("kaiGuan");
+                }
+                if (iKaiGuans.get(i).get("whichOneType") == '0006') {
+                    CDmobileQuestion = iKaiGuans.get(i).get("kaiGuan");
+                }
+                if (iKaiGuans.get(i).get("whichOneType") == '0007') {
+                    keyMobile = iKaiGuans.get(i).get("kaiGuan");
+                }
+            }
+            if (key2 == '1' && keyMobile == '1' && CDmobileQuestion == '1') {
+                document.resetPwdForm.action = "goBank.do";
+                document.resetPwdForm.submit();
+            } else {
+                if (param == 'creditCard') {
+                    document.resetPwdForm.isCreditVersion.value = "01";
+                    document.resetPwdForm.hrefValue.value = href;
+                }
+                document.resetPwdForm.key2.value = key2;
+                document.resetPwdForm.keyMobile.value = keyMobile;
+                document.resetPwdForm.CDmobileQuestion.value = CDmobileQuestion;
+                document.resetPwdForm.action = "OT0007.do";
+                document.resetPwdForm.submit();
+            }
+        }
+        function changeImage() {
+            document.getElementById("verifyImg").src = 'VerifyImage?update=' + Math.random();
+        }
+        function checkImageCode() {
+            if (myValidator.checkAll() == false || $("captcha").value == '') {
+                return;
+            }
+            new Ajax.Request(
+                    "checkImageCode.do?",
+                    { method: "post", parameters: { verifyCode: $("captcha").value.toLowerCase() }, onComplete: logonHandler }
+                    );
+        }
+        function logonHandler(response) {
+            if (response.responseText.indexOf('<?xml') < 0) {
+                alert('通讯失败，请重试');
+                return;
+            }
+            var contextDataPos = response.responseXML.childNodes.length - 1;
+            var contextData = new Liana.datatype.KeyedCollection(response.responseXML.childNodes[contextDataPos]);
+            if ("true" == contextData.getValueAt("isVerifyCodeTimeout")) {
+                if ("0" == contextData.getValueAt("flag")) {
+                    doSubmit();
+                } else {
+                    $("captcha").value = "";
+                    changeImage();
+                    alert("验证码错误，请重新输入");
+                    return;
+                }
+            } else {
+                $("captcha").value = "";
+                changeImage();
+                alert("验证码已超时，请刷新验证码后再重新输入");
+                return;
+            }
+        }
+        function FindCertCustomer() {
+            var certDN = USBKeyTool.getCertDN();
+            if (certDN && certDN != "") {
+                var customerId = "";
+                try {
+                    var DNArray = certDN.split(";");
+                    var exp = /^[0-9]*$/;
+                    for (var i = 0; i < DNArray.length; i++) {
+                        certDN = DNArray[i];
+                        customerId = certDN.substring(certDN.indexOf("@@", certDN.indexOf("@@") + 1) + 1, certDN.lastIndexOf("@@"));
+                        if (exp.test(customerId)) {
+                            break;
+                        }
+                    }
+                    if (!exp.test(customerId)) {
+                        return;
+                    }
+                    customerId = (customerId.length < 15) ? customerId : customerId.substring(0, 15);
+                } catch (e) { customerId = ""; }
+                if (customerId == "") return;
+                $("captcha").disabled = true;
+                $("userPassword").hide();
+                new Ajax.Request(
+                        "findCertCustomer.do?",
+                        { method: "post", parameters: { customerId: customerId }, onComplete: findHandler }
+                        );
+            }
+        }
+
+        function findHandler(response) {
+            if (response.responseText.indexOf('<?xml') < 0) {
+                alert('通讯失败，请重试');
+                return;
+            }
+            var contextDataPos = response.responseXML.childNodes.length - 1;
+            var contextData = new Liana.datatype.KeyedCollection(response.responseXML.childNodes[contextDataPos]);
+            var customerAlias = contextData.getValueAt("customerAlias");
+            if (customerAlias != null) {
+                $('loginId').focus();
+                $("loginId").value = customerAlias;
+                if ($('loginId').value == "") {
+                    $("loginId_text_ts").show();
+                } else {
+                    $("loginId_text_ts").hide();
+                }
+            } else {
+                $("loginId").disabled = false;
+            }
+            $("captcha").disabled = false;
+            $("userPassword").show();
+        }
+
+        function judgeAccRole(accNo) {
+            var rule = { cardOwner: "x", cardType: "x" };
+            if (Object.isString(accNo)) {
+                //借记卡bin
+                var bin1 = [{ bin: "623506", len: "19" }, { bin: "622568", len: "19" }, { bin: "9111", len: "19" }, { bin: "685800", len: "18" }, { bin: "685800", len: "19" }, { bin: "621462", len: "19" }];
+                //信用卡bin
+                var bin2 = ["406365", "406366", "428911", "436768", "436769", "436770", "436771", "487013", "491032", "491033", "491034", "491035", "491036", "491037", "491038", "493427",
+                            "518364", "520152", "520382", "523961", "523966", "528931", "541709", "541710", "548844", "552794", "558894", "622555", "622556", "622557", "622558", "622559", "622560", "625071", "625072", "625073", "628259", "628260",
+                            //金融贷记卡
+                            "625805", "625806", "625807", "625808", "625809", "625810",
+                            //海淘卡VISA卡（479928）、海淘卡MASTERCARD卡（534602）
+                            "479928", "534602",
+                            //国际卡
+                            "479925", "536998",
+                            //未发卡
+                            "520152", "520382", "622555", "622556"];
+                //存折或对公账户
+                var bin3 = [{ bin: "1", len: "18" }];
+                var accPrefix1 = accNo.substring(0, 6);
+                var accPrefix2 = accNo.substring(0, 4);
+                var accPrefix3 = accNo.substring(0, 1);
+                var accPrefix4 = accNo.substring(6, 9);
+                //判断是否为广发借记卡
+                for (var i = 0, len = bin1.length; i < len; i++) {
+                    if ((accPrefix1 == bin1[i].bin || accPrefix2 == bin1[i].bin)
+                            && (accNo.length == parseInt(bin1[i].len))) {
+                        rule.cardOwner = "0";
+                        rule.cardType = "0";
+                        return rule;
+                    }
+                }
+                //判断是否为广发信用卡
+                for (var i = 0, len = bin2.length; i < len; i++) {
+                    if (accPrefix1 == bin2[i] && accNo.length == 16) {
+                        rule.cardOwner = "0";
+                        if (accNo.charAt(6) == '0') {
+                            rule.cardType = "2";
+                        } else {
+                            rule.cardType = "1";
+                        }
+                        return rule;
+                    }
+                }
+                //判断是否为广发折或者对公账户
+                for (var i = 0, len = bin3.length; i < len; i++) {
+                    if (accPrefix3 == bin3[i].bin && (accNo.length == parseInt(bin3[i].len))) {
+                        if ((500 * 1 <= accPrefix4 * 1) && (accPrefix4 * 1 <= 900 * 1)) {
+                            rule.cardOwner = "g";
+                        } else {
+                            rule.cardOwner = "s";
+                        }
+                        rule.cardType = "x";
+                    }
+                    return rule;
+                }
+            }
+            return rule;
+        }
+        var isShow = false;
+        function getDowloadAddress(type) {
+            if (navigator.userAgent.indexOf("Macintosh") >= 0) {
+                //if(!Prototype.Browser.IE){
+                if (type == 'USBKey') {
+                    //return false;  //暂不支持
+                    window.open("file/download/USBKey_setup_for_Mac.zip"); //key盾管理工具
+                } else {
+                    //return false;  //暂不支持
+                    window.open('file/download/CGB_Online_Banking_Security_Controls_for_Mac.dmg', '_blank');//密码控件
+                }
+            } else {
+                if (type == 'USBKey') {
+                    window.open('file/download/USBKey_setup.zip', '_blank');//key盾管理工具
+                } else {
+                    window.open('file/download/win81/CGB_Online_Banking_Security_Controls.zip', '_blank');
+                }
+            }
+        }
+        function showHelpTip() {
+            $("downloadTool").observe('mouseover', function () {
+                $("showDiv").addClassName("showDiv_show");
+
+            });
+            $("downloadTool").observe('mouseout', function () {
+                $("showDiv").removeClassName("showDiv_show");
+            });
+        }
+        function openOnlineService() {
+            var targetName = checkTipsWindow.checkWin(1);
+            if (!targetName) {
+                return;
+            }
+            var nWinLeft = (screen.width - 660) / 2;
+            var nWinTop = (screen.height - 550) / 2;
+            var onlineParams = 'menubar=no,toolbar=no,location=no,directories=no,status=yes,resizable=yes,scrollbars=no,width=608,height=508,top=' + nWinTop + ',left=' + nWinLeft;
+            window.open("", targetName, onlineParams);
+            document.serviceForm.muserLevel.value = 3;
+            document.serviceForm.muserType.value = '1';
+            document.serviceForm.target = targetName;
+            document.serviceForm.submit();
+            setTimeout("document.serviceForm.submit()", 500);
+        }
+    </script>
+</head>
+<body onload="init();">
+    <input type="hidden" value="@ViewBag.Token" id="current_token" />
+    <input type="hidden" id="hd_encrypt_string" />
+
+    <!--顶部横栏和LOGO -->
+    <div style="background: url('css/login/images/login_head_bg.png') repeat-x;">
+        <div class="logo_head">
+            <!-- 顶部: -->
+            <div style="float:left;">
+                <a href="#" class="head_home" onclick="javascript:window.open('http://www.cgbchina.com.cn/');return false;" href="#">广发银行官方网站</a>
+            </div>
+            <div style="float:right;">
+                <a href="#" onclick="javascript:window.open('http://www.cgbchina.com.cn/Channel/185652');return false;">网点查询</a>
+                <span>|</span><a href="#" onclick="javascript:window.open('http://www.cgbchina.com.cn/CN/cgbinfo/index.html');return false;">广发概况</a>
+                <span>|</span><a href="#" onclick="javascript:window.open('http://www.cgbchina.com.cn/Channel/15979951');return false;">奖项及荣誉</a>
+                <span>|</span><span>客服热线</span><span><strong style="color:#A2242B">400-830-8003</strong></span>
+                <span>信用卡专线</span><span><strong style="color:#A2242B">95508</strong></span>
+            </div>
+        </div>
+    </div>
+    <div style="height: 70px; width: 980px; margin: 0pt auto;">
+        <!-- 首页链接: -->
+        <div id="logo" style="float:left;"></div>
+        <div style="float:right;margin-right:5px;margin-top:28px;width:410px;position:relative;" class="a_link">
+            <a href="#" onclick="javascript:window.showModalDialog('a020101_userPasswordQuestion.htm',window,'status=no;dialogHeight:330px;dialogWidth:600px;');">登录指引</a>
+            <div class="downloadTool" style="margin-left:81px;left:0px;" id="downloadTool">
+                <a>工具下载</a>
+                <div class="showDiv" id="showDiv">
+                    <a href="#" onclick="javasctipt:getDowloadAddress('');">网银安全控件</a><b style="float:left; color:#666;margin-left:15px;">|</b>
+                    <a href="#" onclick="javasctipt:getDowloadAddress('USBKey');">Key盾管理工具</a>
+                </div>
+            </div>
+            <a href="#" style="margin-left:96px" onclick="javascript:window.open('https://ebanks.cgbchina.com.cn/perbankDemo');">操作演示</a>
+            <a href="#" onclick="javascript:window.open('http://www.cgbchina.com.cn/Channel/12155867');">常见问题</a>
+            <a href="#" onclick="javascript:window.open('http://www.cgbchina.com.cn/Info/12563684');">安全服务</a>
+        </div>
+    </div>
+    <div id="wrapper" style="overflow: hidden;">
+        <!-- 广告 -->
+        <div id="ad">
+        </div>
+    </div>
+    <!-- 广告2 -->
+    <div style="height:200px;overflow: hidden;width:980px;margin:0px auto" id="ad2">
+    </div>
+    <!-- 登录框: -->
+    <div id="login">
+        <div class="login_box_alpha"></div>
+        <div style="padding: 20px 0px 20px 35px;width:280px;position:relative;">
+            <table>
+                <tr>
+                    <td colspan="3"><h3 style="font-size:16px" title="登录网上银行"></h3></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+
+                        <div class="input_dw loginDiv" id="loginDiv">
+                            <div class="icon_bg">
+                                <span id="loginId_text_ts" class="loginId_text_ts">卡号/登录名/网银手机号</span>
+                                <!-- style里的ime-mode: disabled;是用来忽略输入法的，修改样式时不能删除 -->
+                                <input id="loginId" type="text" class="inputArea"  value="6258091675888726" />
+                            </div>
+                        </div>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td width="10px" colspan="2">
+                        <div class="input_dw passwordDiv" id="passwordDiv" style="height:29px;">
+                            <div id="password" class="inputArea" style="height:29px;">
+                                <script type="text/javascript">
+                                    createPwdObjectNew("userPassword", "165", "29", "8", "12", "E", "221|212", null, "captcha", true);
+                                </script>
+                            </div>
+                        </div>
+                    </td>
+                    <td><div style="margin-top:16px;margin-left:4px;"><a id="passwordHelp" style="cursor: pointer;height:45px;" class="passwordHelp" onclick="javascript:window.showModalDialog('a020101_userPasswordQuestion.htm',window,'status=no;dialogHeight:330px;dialogWidth:600px;');">&nbsp;</a></div></td>
+                </tr>
+                <tr>
+                    <td height='28px'>
+                        <div class="input_dw captchaDiv" id="captchaDiv">
+                            <!-- style里的ime-mode: disabled;是用来忽略输入法的，修改样式时不能删除 -->
+                            <input id="captcha" type="text" class="inputArea" maxlength="4" style="ime-mode: disabled;height:28px;position:relative;width:70px;padding-left:2px;" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\x00-\xff]/g,''))" />
+                        </div>
+                    </td>
+                    <td height='28px' valign="bottom">
+                        <div>
+                            &nbsp;<img id="verifyImg" src="VerifyImage" align="absmiddle" onclick="changeImage()" style="position:relative;top:-2px;cursor:pointer;" title="点击图片可刷新验证码" />
+                        </div>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2"> <div style="margin-top: 15px;position:relative;background: url('css/login/images/btn_login.png') no-repeat"><a href="#" id="loginButton" onclick="checkImageCode();"></a></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><div style="margin-top: 10px;margin-left:-6px;"><a href="#" style="font-size: 16px;" id="forgetLink" onclick="toResetPwd();">忘记密码？</a></div></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- 在线客服: -->
+    <div id="onlineServiceHanlder"><div class="text" style="margin-top:63px;margin-left:8px">在线客服</div></div>
+    <div id="loadingBar" class="waitTopFixed" style="display:none"><div>Loading...</div></div>
+    <iframe id="preventBack" style="display:none" src="preventBack.htm"></iframe>
+    <form name="logonForm" method="post" style="position: absolute;top:0px;">
+        <input type="hidden" name="loginId" />
+        <input type="hidden" name="logonType" />
+        <input type="hidden" name="userPassword" />
+        <input type="hidden" name="accPassword" />
+        <input type="hidden" name="accountNo" />
+        <input type="hidden" name="checkCode" />
+        <input type="hidden" name="version" value="" />
+        <input type="hidden" name="isCreditCard" />
+        <input type="hidden" name="isPass" />
+        <input type="hidden" name="clientMacAdress" />
+        <input type="hidden" name="clientMainboardNo" />
+        <input type="hidden" name="clientHarddiskNo" />
+        <input type="hidden" name="clientIP" />
+        <input type="hidden" name="actionFlag" />
+        <input type="hidden" name="content" />
+        <input type="hidden" name="isCreditVersion" />
+        <input type="hidden" name="hrefValue" />
+    </form>
+    <form name="resetPwdForm" method="post" style="position: absolute;top:0px;">
+        <input type="hidden" name="isCreditVersion" />
+        <input type="hidden" name="hrefValue" />
+        <input type="hidden" name="key2" />
+        <input type="hidden" name="keyMobile" />
+        <input type="hidden" name="CDmobileQuestion" />
+    </form>
+    <div id="serviceDiv" style="display:none">
+        <form name="serviceForm" method="post" action="https://ebanks.cgbchina.com.cn/TIPS/guest/guestsignon.action">
+            <input type="hidden" name="m.userId" id="muserId" />
+            <input type="hidden" name="m.extSessionId" id="mextSessionId" />
+            <input type="hidden" name="m.userName" id="muserName" />
+            <input type="hidden" name="m.userLevel" id="muserLevel" />
+            <input type="hidden" name="m.userType" id="muserType" />
+            <input type="hidden" name="m.locale" id="mlocale" />
+            <input type="hidden" name="m.server" id="mserver" />
+        </form>
+    </div>
+    <div id="footer">
+        <div style="margin:0 auto;width:980px;">
+            <div id="telephone">24小时客服热线：<strong>400-830-8003</strong> 信用卡专线：<strong>95508</strong></div>
+        </div>
+    </div>
+    <div class="foot_jy" style=""></div>
+    <script>
+        adjustFooter();
+    </script>
+</body>
+</html>

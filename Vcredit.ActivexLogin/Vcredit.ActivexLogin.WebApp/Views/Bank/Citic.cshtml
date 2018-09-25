@@ -1,0 +1,1391 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<script language="javascript" type="text/javascript" src="https://i.bank.ecitic.com/perbank6/scripts6.0/jquery-1.7.2.js"></script>
+<script language="javascript" type="text/javascript" src="https://i.bank.ecitic.com/perbank6/scripts6.0/script.js?ver=1.2"></script>
+
+<link rel="stylesheet" type="text/css" href="https://i.bank.ecitic.com/perbank6/i18n/zh_CN/css/common.css?ver=1.14" />
+
+<link rel="stylesheet" type="text/css" href="https://i.bank.ecitic.com/perbank6/i18n/zh_CN/css/reset.css" />
+<link rel="stylesheet" type="text/css" href="https://i.bank.ecitic.com/perbank6/i18n/zh_CN/css/guard.css" /><!-- 增加密码控件CSS modify by wanggh1 -->
+
+<script type="text/javascript">
+
+    try{
+        if(screen.width >= 1280 && screen.width <= 1600){
+            document.write("<link rel='stylesheet' type='text/css' href='https://i.bank.ecitic.com/perbank6/i18n/zh_CN/css/style.css?ver=1.11' />");
+        }else if(screen.width > 1600){
+            document.write("<link rel='stylesheet' type='text/css' href='https://i.bank.ecitic.com/perbank6/i18n/zh_CN/css/style2.css?ver=1.12' />");
+        }else{
+            document.write("<link rel='stylesheet' type='text/css' href='https://i.bank.ecitic.com/perbank6/i18n/zh_CN/css/style1.css?ver=1.12' />");
+        }
+    }catch(e){
+        alert(e);
+    }
+    function initValidate(){
+        //初始化文本框
+        var isIE7 = !!navigator.userAgent.match(/MSIE 7.0/);
+        var isIE8 = !!navigator.userAgent.match(/MSIE 8.0/);
+        var isIE9 = !!navigator.userAgent.match(/MSIE 9.0/);
+        if (isIE7 || isIE8 || isIE9) { // ie8 & ie9
+
+            jQuery('input[placeholder]:not(.placeholder-no-fix), textarea[placeholder]:not(.placeholder-no-fix)').each(function() {
+                var input = jQuery(this);
+
+                if (input.val() === '' && input.attr("placeholder") !== '') {
+                    input.addClass("inputFontColor").val(input.attr('placeholder'));
+                }
+
+                input.focus(function() {
+                    if (input.val() == input.attr('placeholder')) {
+                        input.val('').removeClass("inputFontColor");
+                    }
+                });
+                input.blur(function() {
+                    if (input.val() === '' || input.val() == input.attr('placeholder')) {
+                        input.addClass("inputFontColor").val(input.attr('placeholder'));
+                    }
+                });
+
+                input[0].onpropertychange = function() {
+                    if (input.val() != '' && input.val() != input.attr('placeholder') && input.hasClass("inputFontColor")) {
+                        input.removeClass("inputFontColor");
+                    }
+                }
+            });
+        }
+    }
+    jQuery(function(){
+        initValidate();
+    });
+    function showErrorMsg(obj ,msg){
+        var bmsg = jQuery(obj).parent().find("b");
+        if(bmsg.length>0){
+            alert(3);
+            bmsg.eq(0).html(msg);
+        }else{
+            alert(4);
+            jQuery(obj).after('&emsp;<b id="tranAmtId" >'+msg+'</b>');
+        }
+
+    }
+
+</script>
+<script type="text/javascript" language="javascript" src="~/Scripts/bank/citic/ajax_head.js"></script>
+
+<script language="javascript" src="https://i.bank.ecitic.com/perbank6/scripts/CITICEdit.js?version=1.0"></script>
+
+<div style="display:none">
+    <OBJECT id="GuardID" CLASSID="clsid:1B06CC90-84FF-4A4C-83FC-1327A7C4A9A1"></OBJECT>
+</div>
+
+<div id="certId"></div>
+
+<script language="javascript">
+    //币种json字符串
+    var currencyJson = "";
+    // 加密标识 0-国密 1-商密
+    var encryptSysFlag = '0';
+    var ftFlg = "0";
+    var gdFlg = "0";
+    var installFlg = "0";
+
+    //0：文件证书 1：飞天诚信的USBKEY证书 2：捷德的USBKEY证书 3:控件证书 4:握奇二代USBKEY证书 5：天地融二代USBKEY证书
+    var usbkeyFlag = 'null';
+    //1:捷德（一代Key） 2：飞天诚信(一代Key) 3：天地融（二代Key） 5：握奇（二代Key）
+    var ukeyCertType = "";
+
+    //证书公钥哈希值
+    var certHashCode = 'null';
+    //安全设置中心选择证书
+    var certSafeStr;
+
+    var roleType;
+    //判断浏览器版本
+    var isIE;
+    var browserFlag = '';
+    var u = navigator.userAgent;
+    if (u.indexOf("Firefox") > 0 || u.indexOf("Chrome") > 0) {
+        browserFlag = '0';
+        isIE = '0'; //非IE
+        embed2.MonitorUsbkey = true;
+        embed2.CertificateFilter = "C=CN, O=CFCA Operation CA, OU=CITICIB, OU=Customers|C=CN, O=CFCA Operation CA2, OU=CNCB, OU=Customers";
+        embed2.OnPlugIn = OnPlugInEvent;
+        embed2.OnPlugOut = OnPlugOutEvent;
+    } else if (u.indexOf("MSIE") > 0 || u.indexOf("Trident") > 0) {
+        browserFlag = '1';
+        isIE = '1'; //IE
+    } else if (u.indexOf("Macintosh") > 0) {
+        browserFlag = '2';
+        isIE = '2';
+    }
+    //非IE插拔
+    function OnPlugInEvent() {
+        jQuery(function () {
+            try {
+                try {
+                    jQuery("#certListUl").find("li").remove();
+                } catch (e) {
+                    alert(e);
+                }
+                var ary;
+                var length = 0;
+                var obj;
+                ary = returnAry();
+                length = returnLength();
+                obj = returnObj();
+                //<!--控件根据系统加密标识，只加载相应算法证书 begin-->
+                obj.CryptFlag = encryptSysFlag;
+                //<!--控件根据系统加密标识，只加载相应算法证书 end-->
+
+                var selectitem = "<li><a href='javascript:;' selectid='-1'>----" + certList_1 + "----</a></li>";
+                jQuery("#certListUl").append(selectitem);
+
+                var indexFileCn = 0;//文件证书数量
+                var indexKeyCn = 0;//KEY证书数量
+                var indexKeyCn2 = 0;//二代KEY证书数量
+                var indexDllCn = 0;//控件证书数量
+                var indexCn = 0;//证书总数量
+
+                for (var i = 0; i <= length; i++) {
+                    var showText = ary[i].split('|')[1];//证书主题
+                    var type = ary[i].split('|')[2];//证书类型
+                    var showTextArray = showText.split(',');
+                    var CA_ID = showText;
+                    var CN = CA_ID;//取出DN
+                    var temp_CN = "";
+                    if ((CN.split('@@')).length == 4) {
+                        temp_CN = CN.split('@@')[(CN.split('@@')).length - 2];
+                    }
+                    //如果为2，则是老证书
+                    if ((CN.split('@@')).length == 2) {
+                        var temp_CN_tmp = CN.split('@@')[(CN.split('@@')).length - 2];
+                        //去掉cn=
+                        var temp_CN_tmp_tmp = temp_CN_tmp.split("cn=")[1];
+                        //去掉数字
+                        var temp;
+                        for (m = 0; m < temp_CN_tmp_tmp.length; m++) {
+                            var tempChar = temp_CN_tmp_tmp.substring(m, m + 1);
+                            if (!(isInteger(tempChar))) {
+                                temp = m;
+                                break;
+                            }
+                        }
+                        var temp1 = temp_CN_tmp_tmp.length;
+                        temp_CN = temp_CN_tmp_tmp.substring(temp, temp1);
+                    }
+                    //	<!--新增二代key证书分支 begin -->
+                    if (type == "4" || type == "5") {//二代key证书
+                        indexKeyCn2 = indexKeyCn2 + 1;
+                        indexCn = indexCn + 1;
+                        var valueStr = "3" + "," + CN;
+                        temp_CN = temp_CN.split('&$')[0];
+                        selectitem = "<li><a href='javascript:;' selectid=\'"
+                                  + ary[i].split('|')[0] + "," + valueStr + "," + type
+                                 + "\'>" + temp_CN + "(" + certType_4 + indexKeyCn2 + ")"
+                                 + "</a></li>";
+                        jQuery("#certListUl").append(selectitem);
+                    }
+                        //	<!--新增二代key证书分支 end -->
+                    else if (type == "3") {//控件证书
+                        indexFileCn = indexFileCn + 1;
+                        indexCn = indexCn + 1;
+                        var valueStr = "2" + "," + CN;
+                        selectitem = "<li><a href='javascript:;' selectid=\'"
+                                  + ary[i].split('|')[0] + "," + valueStr + "," + type
+                                 + "\'>" + temp_CN + "(" + certType_3 + indexFileCn + ")"
+                                 + "</a></li>";
+                        jQuery("#certListUl").append(selectitem);
+                    } else if (type == "0") {//文件证书
+                        indexFileCn = indexFileCn + 1;
+                        indexCn = indexCn + 1;
+                        var valueStr = "0" + "," + CN;
+                        selectitem = "<li><a href='javascript:;' selectid=\'"
+                                  + ary[i].split('|')[0] + "," + valueStr + "," + type
+                                 + "\'>" + temp_CN + "(" + certType_3 + indexFileCn + ")"
+                                 + "</a></li>";
+                        jQuery("#certListUl").append(selectitem);
+                    } else if (type == "1" || type == "2") {//一代key证书
+                        indexKeyCn = indexKeyCn + 1;
+                        indexCn = indexCn + 1;
+                        var valueStr = "1" + "," + CN;
+                        selectitem = "<li><a href='javascript:;' selectid=\'"
+                                  + ary[i].split('|')[0] + "," + valueStr + "," + type
+                                 + "\'>" + temp_CN + "(" + certType_1 + indexKeyCn + ")"
+                                 + "</a></li>";
+                        jQuery("#certListUl").append(selectitem);
+
+                        if (type == "1") {
+                            ftFlg = "1";//包含飞天key
+                        } else {
+                            gdFlg = "1";//包含捷德key
+                        }
+                    }
+                }
+
+                //无证书登录选择项
+                selectitem = "<li><a href='javascript:;' selectid='-2'>" + certList_2 + "</a></li>";
+                jQuery("#certListUl").append(selectitem);
+
+                if (indexCn > 0) {
+                    document.getElementById("type2").style.display = ""; //显示选择证书列表
+                    document.getElementById("logonLoading").style.display = "none";
+                    setLogonType('0');
+
+                    //判断客户key驱动是否为最新版本。
+                    if (keyVerCheck()) {
+                        if (indexCn == 1) {
+                            setDefault("certListCite", "certListUl", "certList", 1);
+                            getUserName();
+                        }
+                    }
+
+                } else {
+                    document.getElementById("type2").style.display = "none"; //隐藏证书列表
+                    setLogonType('2');
+                }
+            } catch (e) {
+                try {
+                    document.getElementById("type2").style.display = ""; //隐藏证书列表
+                    document.getElementById("logonLoading").style.display = "none";
+                    var firstitem = "<li><a href='javascript:;' selectid='-1'>----" + certList_1 + "----</a></li>";
+                    jQuery("#certListUl").append(firstitem);
+                    setLogonType('2');
+                } catch (e) {
+
+                }
+
+            }
+            jQuery.divselect("#certListDiv", "#certList");
+        })
+    }
+
+    function OnPlugOutEvent() {
+        jQuery(function () {
+            try {
+                try {
+                    jQuery("#certListUl").find("li").remove();
+                } catch (e) {
+                    alert(e);
+                }
+                var ary;
+                var length = 0;
+                var obj;
+                ary = returnAry();
+                length = returnLength();
+                obj = returnObj();
+                //<!--控件根据系统加密标识，只加载相应算法证书 begin-->
+                obj.CryptFlag = encryptSysFlag;
+                //<!--控件根据系统加密标识，只加载相应算法证书 end-->
+
+                var selectitem = "<li><a href='javascript:;' selectid='-1'>----" + certList_1 + "----</a></li>";
+                jQuery("#certListUl").append(selectitem);
+
+                var indexFileCn = 0;//文件证书数量
+                var indexKeyCn = 0;//KEY证书数量
+                var indexKeyCn2 = 0;//二代KEY证书数量
+                var indexDllCn = 0;//控件证书数量
+                var indexCn = 0;//证书总数量
+
+                for (var i = 0; i <= length; i++) {
+                    var showText = ary[i].split('|')[1];//证书主题
+                    var type = ary[i].split('|')[2];//证书类型
+                    var showTextArray = showText.split(',');
+                    var CA_ID = showText;
+                    var CN = CA_ID;//取出DN
+                    var temp_CN = "";
+                    if ((CN.split('@@')).length == 4) {
+                        temp_CN = CN.split('@@')[(CN.split('@@')).length - 2];
+                    }
+                    //如果为2，则是老证书
+                    if ((CN.split('@@')).length == 2) {
+                        var temp_CN_tmp = CN.split('@@')[(CN.split('@@')).length - 2];
+                        //去掉cn=
+                        var temp_CN_tmp_tmp = temp_CN_tmp.split("cn=")[1];
+                        //去掉数字
+                        var temp;
+                        for (m = 0; m < temp_CN_tmp_tmp.length; m++) {
+                            var tempChar = temp_CN_tmp_tmp.substring(m, m + 1);
+                            if (!(isInteger(tempChar))) {
+                                temp = m;
+                                break;
+                            }
+                        }
+                        var temp1 = temp_CN_tmp_tmp.length;
+                        temp_CN = temp_CN_tmp_tmp.substring(temp, temp1);
+                    }
+                    //<!--新增二代key证书分支 begin -->
+                    if (type == "4" || type == "5") {//二代key证书
+                        indexKeyCn2 = indexKeyCn2 + 1;
+                        indexCn = indexCn + 1;
+                        var valueStr = "3" + "," + CN;
+                        temp_CN = temp_CN.split('&$')[0];
+                        selectitem = "<li><a href='javascript:;' selectid=\'"
+                                  + ary[i].split('|')[0] + "," + valueStr + "," + type
+                                 + "\'>" + temp_CN + "(" + certType_4 + indexKeyCn2 + ")"
+                                 + "</a></li>";
+                        jQuery("#certListUl").append(selectitem);
+                    }
+                        //	<!--新增二代key证书分支 end -->
+                    else if (type == "3") {//控件证书
+                        indexFileCn = indexFileCn + 1;
+                        indexCn = indexCn + 1;
+                        var valueStr = "2" + "," + CN;
+                        selectitem = "<li><a href='javascript:;' selectid=\'"
+                                  + ary[i].split('|')[0] + "," + valueStr + "," + type
+                                 + "\'>" + temp_CN + "(" + certType_3 + indexFileCn + ")"
+                                 + "</a></li>";
+                        jQuery("#certListUl").append(selectitem);
+                    } else if (type == "0") {//文件证书
+                        indexFileCn = indexFileCn + 1;
+                        indexCn = indexCn + 1;
+                        var valueStr = "0" + "," + CN;
+                        selectitem = "<li><a href='javascript:;' selectid=\'"
+                                  + ary[i].split('|')[0] + "," + valueStr + "," + type
+                                 + "\'>" + temp_CN + "(" + certType_3 + indexFileCn + ")"
+                                 + "</a></li>";
+                        jQuery("#certListUl").append(selectitem);
+                    } else if (type == "1" || type == "2") {//一代key证书
+                        indexKeyCn = indexKeyCn + 1;
+                        indexCn = indexCn + 1;
+                        var valueStr = "1" + "," + CN;
+                        selectitem = "<li><a href='javascript:;' selectid=\'"
+                                  + ary[i].split('|')[0] + "," + valueStr + "," + type
+                                 + "\'>" + temp_CN + "(" + certType_1 + indexKeyCn + ")"
+                                 + "</a></li>";
+                        jQuery("#certListUl").append(selectitem);
+
+                        if (type == "1") {
+                            ftFlg = "1";//包含飞天key
+                        } else {
+                            gdFlg = "1";//包含捷德key
+                        }
+
+                    }
+                }
+
+                //无证书登录选择项
+                selectitem = "<li><a href='javascript:;' selectid='-2'>" + certList_2 + "</a></li>";
+                jQuery("#certListUl").append(selectitem);
+
+                if (indexCn > 0) {
+                    document.getElementById("type2").style.display = ""; //显示选择证书列表
+                    document.getElementById("logonLoading").style.display = "none";
+                    setLogonType('0');
+
+                    //判断客户key驱动是否为最新版本。
+                    if (keyVerCheck()) {
+                        if (indexCn == 1) {
+                            setDefault("certListCite", "certListUl", "certList", 1);
+                            getUserName();
+                        }
+                    }
+
+                } else {
+                    document.getElementById("type2").style.display = "none"; //隐藏证书列表
+                    setLogonType('2');
+                }
+            } catch (e) {
+                try {
+                    document.getElementById("type2").style.display = ""; //隐藏证书列表
+                    document.getElementById("logonLoading").style.display = "none";
+                    var firstitem = "<li><a href='javascript:;' selectid='-1'>----" + certList_1 + "----</a></li>";
+                    jQuery("#certListUl").append(firstitem);
+                    setLogonType('2');
+                } catch (e) {
+                }
+
+            }
+            jQuery.divselect("#certListDiv", "#certList");
+        })
+    }
+
+    //获取一代key版本(用于检测是否是最新一代Key控件)
+    function getKey1Version() {
+        var isNew = true;
+        try {
+            if (browserFlag == "0") {
+                var obj_npft_citic = document.getElementById("embed4");//飞天
+                var obj_npgd_citic = document.getElementById("embed5");//捷德
+                var npft_version = obj_npft_citic.FT_GetVersion();
+                alert("npft_version" + npft_version);
+                var npgd_version = obj_npgd_citic.GD_GetVersion();
+            } else if (browserFlag == "1") {
+                var obj_Init_Tool_FT = document.getElementById("Init_Tool_FT");
+                var obj_Init_Tool_GD = document.getElementById("Init_Tool_GD");
+
+                var ft_Version = obj_Init_Tool_FT.GetVer();
+                alert("ft_Version" + ft_Version);
+                var gd_Version = obj_Init_Tool_GD.GetVer();
+            } else if (browserFlag == "2") {
+                objCert = document.getElementById("osDetecter");
+            }
+        } catch (e) {
+            alert(e);
+            isNew = false;
+        }
+        return isNew;
+    }
+
+    //获取网银伴侣的版本（公共）
+    function GetHelpMateVersions() {
+        var sFile = '';
+        try {
+            if (browserFlag == '0') {
+                var embed1 = document.getElementById('embed1');
+                sFile = embed1.GetHelpMateVersion();
+            } else if (browserFlag == '1') {
+                sFile = CNCBChecker.GetHelpMateVersion();
+            }
+        } catch (e) {
+
+            sFile = '-1';
+        }
+        return sFile;
+
+    }
+    //获取控件的版本(公共)
+    function GetVersions() {
+        var objVersion = '';
+        try {
+            if (browserFlag == '0') {
+                var embed2 = document.getElementById('embed2');
+                objVersion = embed2.GetVersion();
+            } else if (browserFlag == '1') {
+                var obj = new ActiveXObject("SecCtl.Detecter.1");
+                objVersion = obj.getVersion();
+            }
+        } catch (e) {
+
+        }
+
+        return objVersion;
+    }
+
+    //GetStoreType
+    function GetStoreTypes(dn) {
+        var obj;
+        try {
+            if (browserFlag == '0') {
+                obj = document.getElementById('embed2');
+            } else if (browserFlag == '1') {
+                obj = document.getElementById("detecter");
+            }
+        } catch (e) {
+
+        }
+        return obj.GetStoreType(dn);
+
+    }
+
+    //清除pin码缓存
+    function clearPinCache() {
+        try {
+            SZPAPlutoCtrl = document.getElementById('embed4');
+            cache = false;
+            SZPAPlutoCtrl.FT_CachePin(cache);
+        } catch (e) {
+
+        }
+
+    }
+
+
+    //判断是否安装了key的驱动，如果安装了则要判断是否驱动服务已经启动(公共)
+    function CheckKeyDriver() {
+        try {
+            //飞天
+            clearPinCache();
+            var myFTocx = document.getElementById("Init_Tool_FT");
+            var retFT = myFTocx.CheckMW();
+            if (retFT == "0") {
+                myFTocx.ActivateCertd();
+            }
+            //捷德
+            clearPinCache();
+            var myGDocx = document.getElementById("Init_Tool_GD");
+            var retGD = myGDocx.CheckMW();
+            if (retGD == "0") {
+                myGDocx.ActivateCertd();
+            }
+        } catch (e) {
+        }
+    }
+    //返回控件对象
+    function returnObj() {
+        var obj;
+        try {
+            if (browserFlag == '0') {
+                obj = document.getElementById('embed2');
+
+            } else if (browserFlag == '1') {
+                obj = document.getElementById("detecter");
+
+            } else if (browserFlag == "2") {
+                if ((ukeyCertType == "3") || (ukeyCertType == "5")) {
+                    if (ukeyCertType == "5") {
+                        obj = document.getElementById("wdOsPlugin");
+                    } else if (ukeyCertType == "3") {
+                        obj = document.getElementById("tdrOsPlugin");
+                    }
+                } else if (ukeyCertType == "1" || ukeyCertType == "2") {
+                    obj = document.getElementById("osDetecter");
+                }
+
+            }
+        } catch (e) {
+
+        }
+        return obj;
+
+    }
+
+
+    //返回证书数组
+    function returnAry() {
+        var ary;
+        var obj;
+        try {
+            if (browserFlag == '0') {
+                obj = document.getElementById('embed2');
+                obj.CryptFlag = encryptSysFlag;
+                obj.CertificateFilter = "C=CN, O=CFCA Operation CA, OU=CITICIB, OU=Customers|C=CN, O=CFCA Operation CA2, OU=CNCB, OU=Customers";
+                ary = new Array();
+                ary = obj.GetCertificates().split("%");
+            } else if (browserFlag == '1') {
+                obj = document.getElementById("detecter");
+                obj.CryptFlag = encryptSysFlag;
+                ary = new Array();
+                //var crtsvar=new VBArray(obj.GetCertificates());
+                var crtsvar = obj.GetCertificates();
+                ary = crtsvar.toArray();
+            } else if (browserFlag == "2") {
+                if (ukeyCertType == "3" || ukeyCertType == "5") {
+                    if (ukeyCertType == "5") {
+                        obj = document.getElementById("wdOsPlugin");
+                        try {
+                            ary = new Array();
+                            var cert;
+                            if (encryptSysFlag == "1") {
+                                cert = obj.GetCertInfo("1");
+                            } else if (encryptSysFlag == "0") {
+                                cert = obj.GetCertInfo("0");
+                            }
+                            ary.push(cert);
+                        } catch (e) {
+                            return;
+                        }
+                    } else if (ukeyCertType == "3") {
+                        obj = document.getElementById("tdrOsPlugin");
+                        try {
+                            ary = new Array();
+                            var cert;
+                            if (encryptSysFlag == "1") {
+                                cert = obj.GetCertInfo("1");
+                            } else if (encryptSysFlag == "0") {
+                                cert = obj.GetCertInfo("0");
+                            }
+                            ary.push(cert);
+
+                        } catch (e) {
+                            return;
+                        }
+                    }
+                } else if (ukeyCertType == "1" || ukeyCertType == "2") {
+                    obj = document.getElementById("osDetecter");
+                    try {
+                        ary = new Array();
+                        var path = "/usr/lib/libZhongXinBank.dylib"
+                        var certNm = obj.YTEC_GetSN(path);
+                        var keyCert = obj.YTEC_GetAllCertDN();
+                        ary.push(keyCert);
+
+                    } catch (e) {
+                        return;
+                    }
+
+                }
+
+            }
+        } catch (e) {
+
+
+        }
+
+        return ary;
+
+    }
+    //返回证书长度
+    function returnLength() {
+        var length = 0;
+        var ary;
+        var obj;
+        try {
+            if (browserFlag == '0') {
+                obj = document.getElementById('embed2');
+                obj.CryptFlag = encryptSysFlag;
+                ary = new Array();
+                ary = obj.GetCertificates().split("%");
+                length = ary.length - 2;
+            } else if (browserFlag == '1') {
+                obj = document.getElementById("detecter");
+                obj.CryptFlag = Number(encryptSysFlag);
+                ary = new Array();
+                //var crtsvar=new VBArray(obj.GetCertificates());
+                var crtsvar = obj.GetCertificates();
+                ary = crtsvar.toArray();
+                length = ary.length - 1;
+            } else if (browserFlag == "2") {
+                if (ukeyCertType == "3" || ukeyCertType == "5") {
+                    if (ukeyCertType == "5") {
+                        obj = document.getElementById("wdOsPlugin");
+                        try {
+                            ary = new Array();
+                            var cert;
+                            if (encryptSysFlag == "1") {
+                                cert = obj.GetCertInfo("1");
+                            } else if (encryptSysFlag == "0") {
+                                cert = obj.GetCertInfo("0");
+                            }
+
+                            ary.push(cert);
+                            length = ary.length - 1;
+                        } catch (e) {
+                            return;
+                        }
+                    } else if (ukeyCertType == "3") {
+                        obj = document.getElementById("tdrOsPlugin");
+                        try {
+                            ary = new Array();
+                            var cert = obj.GetCertInfo("1");
+                            ary.push(cert);
+                            length = ary.length - 1;
+                        } catch (e) {
+                            return;
+                        }
+                    }
+                } else if (ukeyCertType == "1" || ukeyCertType == "2") {
+
+                    obj = document.getElementById("osDetecter");
+                    try {
+                        ary = new Array();
+                        var path = "/usr/lib/libZhongXinBank.dylib"
+                        var certNm = obj.YTEC_GetSN(path);
+                        var keyCert = obj.YTEC_GetAllCertDN();
+                        ary.push(keyCert);
+                        length = ary.length - 1;
+                    } catch (e) {
+                        return;
+                    }
+                }
+
+            }
+        } catch (e) {
+
+        }
+
+        return length;
+    }
+    //获取guardID
+    function getGuardID() {
+        var guardID;
+        try {
+            if (browserFlag == '0') {
+                guardID = document.getElementById("embed3");
+            } else if (browserFlag == '1') {
+                guardID = document.getElementById("GuardID");
+            }
+        } catch (e) {
+
+        }
+
+        return guardID;
+
+    }
+
+    //获取mac
+    function GetEigenvalue() {
+        var obj;
+        var computerId;
+        try {
+            if (browserFlag == '0') {
+                obj = document.getElementById('embed2');
+                computerId = obj.GetEigenvalue();
+            } else if (browserFlag == '1') {
+                obj = document.getElementById("detecter");
+                computerId = obj.GetEigenvalue();
+            } else {
+                var passObj = document.getElementById("passPlugin");
+                computerId = passObj.get_output60(); //获取机器码
+            }
+        } catch (e) {
+
+        }
+        return computerId;
+    }
+
+
+    //一代Key及普通交易数据签名
+    function dataSign(plainText) {
+        var objCert;
+        var signData;
+        if (isIE == "0") {
+            objCert = document.getElementById("embed2");
+            try {
+                signData = objCert.CryptAttachedSign(plainText);
+                objCert.CryptClose();
+            } catch (e) {
+                objCert.CryptClose();
+            }
+        } else if (isIE == "1") {
+            objCert = document.getElementById("detecter");
+            try {
+                signData = objCert.CryptAttachedSign(plainText);
+                objCert.CryptClose();
+            } catch (e) {
+                objCert.CryptClose();
+            }
+        } else if (isIE == "2") {
+            objCert = document.getElementById("osDetecter");
+            signData = objCert.YTEC_SignMessageDetached(plainText, certHashCode);
+        }
+
+        if (signData == '' || signData == undefined) {
+            return "-1";
+        }
+        return signData;
+
+    }
+
+
+    //<!--普通交易数据签名 -->
+    function certSign(session_certSerial, plainText) {
+        clearPinCache();
+
+        if (roleType != "") {
+            if ((usbkeyFlag == "4" || usbkeyFlag == "5") && roleType == "1") {
+                return newSign(plainText, usbkeyFlag);// 二代USBKEY
+
+            }
+            else if (roleType == "4" || roleType == "2") {
+                return "0";
+            } else {
+                return dataSign(plainText);
+            }
+
+        } else {
+            if ((usbkeyFlag == "4" || usbkeyFlag == "5")) {
+                return newSign(plainText, usbkeyFlag);// 二代USBKEY
+
+            } else {
+                return dataSign(plainText);
+            }
+        }
+
+
+
+    }
+    //<!--转账交易数据签名 -->
+    function markSign(plainText, linkurl) {
+        clearPinCache();
+        if (usbkeyFlag == "4" || usbkeyFlag == "5") {// 二代USBKEY
+            return newSign(plainText, usbkeyFlag);
+        } else if (roleType == "4" || roleType == "2") {
+            return "0";
+        } else {
+            var cipherText = "";
+            var msg = doSend4(null, linkurl);
+            msg = trim(msg);
+            if (msg.indexOf("security") != -1) {
+                plainText = plainText.replace("<message><data>", "<message><data>" + msg);
+                var detecter;
+                var guardID;
+                if (isIE == "0") {
+                    detecter = document.getElementById("embed2");
+                    guardID = document.getElementById("embed3");
+                } else {
+                    detecter = document.getElementById("detecter");
+                    guardID = document.getElementById("GuardID");
+                }
+                var cipherText = guardID.SignData(detecter, plainText);
+                if (cipherText == '') {
+                    return "-1";
+                }
+                return cipherText;
+            } else {
+                return "-1";
+            }
+        }
+    }
+    // 二代USBKEY模板数据签名
+    function newSign(plainText, usbkeyFlag) {
+        var result = "-1";
+        try {
+            // 隐藏域报文格式
+            plainText = plainText.substr("<message><data>".length, plainText.length - "</data></message>".length - 15);
+            // 隐藏域报文数据域数组
+            var messageInfo = new Array;
+            var messageTmp = plainText.split("\|");
+            // 交易码
+            var tranCodeTmp = "";
+            var objectInfo = new Object();
+            // 从隐藏域中获取交易数据
+            for (var i = 0; i < messageTmp.length; i++) {
+                var tmp = messageTmp[i].split(":");
+                var key = tmp[0];
+                var value = tmp[1];
+                objectInfo[key] = value;
+                // 交易码
+                if (key == "tranCode") {
+                    tranCodeTmp = value;
+                }
+            }
+            //根据交易码查询签名报文模板
+            var msg = executeAjaxCommand4('/perbank6/getSignMsgTemplate.do', 'tranCode=' + tranCodeTmp);
+            //取返回报文模板
+            if (msg.indexOf("signMsgTemplate:") != -1) {
+                var sr = msg.split(":")[1];
+                //替换模板占位符
+                if (sr != null && sr != "") {
+                    var mactchStr = /\$\{(.*?)}/g;
+                    var matchList = new Array();
+                    matchList = sr.match(mactchStr);
+                    if (matchList != null) {
+                        for (var i = 0; i < matchList.length; i++) {
+                            var tmp = matchList[i];
+                            if (i == 0) {
+                                sr = sr.replace(tmp, plainText);
+                            } else {
+                                sr = sr.replace(tmp, objectInfo[tmp.substring(2, tmp.length - 1)]);
+                            }
+                        }
+                    }
+                    //需要特殊处理的数据（模板中配置币种信息如"@@{'特殊处理字符串参数'，'js方法名称'}"）
+                    var mactchTypeStr = /\@@\{(.*?)}/g;
+                    var matchTypeList = new Array();
+                    matchTypeList = sr.match(mactchTypeStr);
+                    if (matchTypeList != null) {
+                        for (var i = 0; i < matchTypeList.length; i++) {
+                            var replaceStr = matchTypeList[i];
+                            var arg = replaceStr.substr(2, replaceStr.length - 3);
+                            var args = arg.split(",");
+                            sr = window[args[1]](sr, replaceStr, args[0]);
+                            if (sr == "-1") {
+                                return "-1";
+                            }
+                        }
+                    }
+                    var arithmetic = "";
+                    if (encryptSysFlag == '0') {
+                        arithmetic = "5";
+                    } else if (encryptSysFlag == '1') {
+                        arithmetic = "1";
+                    } else {
+                        return "-1";
+                    }
+                    sr = sr.replace(/(^\s*)|(\s*$)/g, "");
+                    var warningMsg = "若核对U盾显示信息一致，请按U盾上的确认按钮（OK键）以确认交易，需要取消本次交易，请按U盾上的取消按钮（C键）。";
+
+                    if (usbkeyFlag == "4") {
+                        if (browserFlag == "0") {
+                            var wdPlugin = document.getElementById("wdPlugin");
+                            wdPlugin.SetCharset("GBK");
+                            wdPlugin.SetLanguage("zh_CN");
+
+                            result = wdPlugin.SignByPubMD5(certHashCode, arithmetic, "1", sr, warningMsg);
+                            result = wdPlugin.GetStrValue1();
+
+                        } else if (browserFlag == "1") {
+                            var detecter2 = document.getElementById("detecter2");
+                            detecter2.SetCharset("GBK");
+                            detecter2.SetLanguage("zh_CN");
+                            result = detecter2.SignByPubMD5(certHashCode, arithmetic, "1", sr, warningMsg);
+                        } else if (browserFlag == "2") {
+                            var wdOsPlugin = document.getElementById("wdOsPlugin");
+                            wdOsPlugin.SetCharset("GBK");
+                            wdOsPlugin.SetLanguage("zh_CN");
+                            result = wdOsPlugin.SignByPubMD5(certHashCode, arithmetic, "1", sr, warningMsg);
+                            return result;
+                        }
+                        if ((result == "") || (result == "sign Failed") || (result == undefined)) {
+                            return "-1";
+                        }
+
+                    } else if (usbkeyFlag == "5") {
+                        if (browserFlag == "0") {
+                            var tdrPlugin = document.getElementById("tdrPlugin");
+                            tdrPlugin.SetCharset("GBK");
+                            tdrPlugin.SetLanguage("zh_CN");
+                            result = tdrPlugin.SignByPubMD5(certHashCode, arithmetic, "1", sr, warningMsg);
+                        } else if (browserFlag == "1") {
+                            var detecter3 = document.getElementById("detecter3");
+                            detecter3.SetCharset("GBK");
+                            detecter3.SetLanguage("zh_CN");
+                            result = detecter3.SignByPubMD5(certHashCode, arithmetic, "1", sr, warningMsg);
+                        } else if (browserFlag == "2") {
+                            var tdrOsPlugin = document.getElementById("tdrOsPlugin");
+                            tdrOsPlugin.SetCharset("GBK");
+                            tdrOsPlugin.SetLanguage("zh_CN");
+                            result = tdrOsPlugin.SignByPubMD5(certHashCode, arithmetic, "1", sr, warningMsg);
+                        }
+                        if ((result == "") || (result == "sign Failed") || (result == undefined) || (result == "-100")) {
+                            return "-1";
+                        }
+
+
+                    } else {
+                        return "-1";
+                    }
+                }
+            }
+        } catch (e) {
+            return "-1";
+        }
+
+        return result;
+    }
+
+
+</script>
+<script language="javascript" for="detecter" event="OnPlugIn">
+    OnPlugInEvent();
+</script>
+<script language="javascript" for="detecter" event="OnPullOut">
+    OnPlugOutEvent();
+</script>
+
+<html>
+<head>
+    <title>中信个人网银</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <script type="text/javascript" language="javascript" src="https://i.bank.ecitic.com/perbank6/i18n/zh_CN/scripts/public.js"></script>
+    <script type="text/javascript" language="javascript" src="https://i.bank.ecitic.com/perbank6/i18n/zh_CN/scripts/ConstInfo.js"></script>
+    <script type="text/javascript" language="javascript" src="~/Scripts/bank/citic/logon.js"></script>
+
+    <script language="javascript" src="https://i.bank.ecitic.com/perbank6/scripts/passGuardUtil.js?version=1.1"></script>
+    <script type="text/javascript" language="javascript">
+        var pgeditor;// 密码卫士安全控件页面对象
+    </script>
+
+    <style type="text/css">
+        .linkBtn {
+            width: 100%;
+            height: 35px;
+            background: #4aaee4;
+            display: block;
+            font-family: "Microsoft YaHei";
+            font-size: 15px;
+            text-align: center;
+            text-decoration: underline;
+            line-height: 35px;
+            border-radius: 8px;
+        }
+
+        .linkBtn2 {
+            width: 100%;
+            height: 35px;
+            background: #4aaee4;
+            display: block;
+            font-family: "Microsoft YaHei";
+            font-size: 15px;
+            text-align: center;
+            text-decoration: underline;
+            line-height: 35px;
+            border-radius: 8px;
+        }
+
+        .helpSpan {
+            width: 100%;
+            height: 35px;
+            font-family: "Microsoft YaHei";
+            font-size: 15px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+        }
+
+        #ziti {
+            font: 14px/20px 'Microsoft YaHei';
+            color: #9AA8B1;
+            margin-left: 40px;
+        }
+
+            #ziti span {
+                font: 14px/20px 'Microsoft YaHei';
+                color: #2EACF2;
+                cursor: pointer;
+            }
+    </style>
+
+
+
+</head>
+<body id="body" onload="preOnload();" class="wrap">
+
+    <!-- new -->
+    <form name="formTmp" class="form-vertical login-form">
+        <div class="maskBlack"></div>
+        <div class="loginBox">
+            <div class="logo">
+                @*<img src="https://i.bank.ecitic.com/perbank6/i18n/zh_CN/images/u800.png" />*@
+                <!-- 屏蔽多语言切换链接  jianghy@yuchengtech.com   BEGIN-->
+                <!--<span><a style="color:white;" href="#" onclick="switchLang('CN')">简体中文</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span><a style="color:white;" href="#" onclick="switchLang('TW')">繁體中文</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+                <!-- 屏蔽多语言切换链接  jianghy@yuchengtech.com   END-->
+            </div>
+            <div class="alertlogin">
+                <h1>
+                    <a>
+                        登录个人网银
+                    </a>
+                </h1>
+                <div class="loginCon">
+                    <ul class="conPo conOn">
+                        <li id="logonLoading">
+                            @*<img class="loadingImgBig" src="https://i.bank.ecitic.com/perbank6/i18n/zh_CN/images/logon_loading.gif" style="margin-top:3px;" />*@
+                        </li>
+                        <li id="type2" style="display:none;" style="z-index:999;">
+                            <div class="loginSelect" id="certListDiv">
+                                <cite id="certListCite">-----请选择证书-----</cite><s></s>
+                                <ul id="certListUl" class="loginUl" onclick="getUserName();"></ul>
+                            </div>
+                            <input id="certList" name="certList" value="" type="hidden" />
+                        </li>
+                        <li id="certUserId" style="display:none;">
+                            <div id="showInput">
+                                <input type="text" class="login_input" name="logonNo" placeholder="手机号码/身份证号/邮箱/银行卡号" readonly />
+                            </div>
+                            <div id="showMsg" style="display:none;float:left;color:white;">正在查询用户名...</div>
+                        </li>
+                        <li id="noCertUserId" style="display:none;">
+                            <div>
+                                <input type="text" class="login_input" name="logonNoCert" placeholder="手机号码/身份证号/邮箱/银行卡号" maxLength="100" onblur="javascript:getCstLogonNum(this.value,'2');" />
+                            </div>
+                        </li>
+                        <li style="display:none;">
+                            <input type="hidden" class="login_input" name="password" placeholder="登录密码" />
+                            <i class="ps"></i>
+                        </li>
+                        <li id="pwd_show_ID2" style="padding: 12% 0px;display:none;">
+                            <a href="http://autoload.bank.ecitic.com/ebank/perbank/helpmate/HelpmateSetup.exe" onclick="downLoad();" class="linkBtn" id="linkBtn">您尚未安装安全控件，密码无法输入，点击安装</a>
+                            <a href="http://autoload.bank.ecitic.com/ebank/perbank/plugs/CITICibankUSBKeydriverFT.exe" style="display: none;" class="linkBtn" id="linkBtn3">您的安全控件版本过低，请点击进行更新。</a>
+                            <a href="http://autoload.bank.ecitic.com/ebank/perbank/plugs/ZhongXinBank_FT.pkg" style="display: none;" class="linkBtn" id="linkBtn4">您的安全控件版本过低，请点击进行更新。</a>
+                            <a href="http://autoload.bank.ecitic.com/ebank/perbank/plugs/CITICibankUSBKeydriverGDSAFE.exe" style="display: none;" class="linkBtn" id="linkBtn5">您的安全控件版本过低，请点击进行更新。</a>
+                            <a href="signIn.do" style="display: none;" class="linkBtn2" id="linkBtn2">请安装控件后点击此处刷新浏览器</a>
+                        </li>
+                        <li id="ziti1" style="display: none;">
+                            <p id="ziti">若安装失败，请点击查看 <span onclick="javascript:helpUrl='ebankpartnerV2.0_ask.html';getHelp();"> 安装常见问题</span></p>
+                        </li>
+                        <li id="pwdLi"><div style="height:37px;overflow:hidden;"><div id="logonPwdIdText">登录密码</div><div id="logonPwdId" class="logonPwdId_li"></div></div></li>
+                        <li id="verifyId" style="display:none">
+                            <input type="text" class="loginInputVerity" name="verifyCode" placeholder="验证码" size="8" maxLength="4"
+                                   onkeyup="if(event.keyCode==13){ logon();}else{verify();}" />
+                            <span class="add-on">
+                                <img id="verifyImg" src="" style="display:none;" class="imgVeritySign" />
+                                <img id='pinImg' onclick=javascript:reGetIMG('1') src="https://i.bank.ecitic.com/perbank6/perbank6/dynPassword.do?cmd=verifyPin&length=4&EMP_SID=@ViewBag.EMP_SID" alt="append PIN" align="absMiddle" hspace=0 border=1 />
+                                <a href="javascript:reGetIMG('1');" tabindex="-1" style="padding-left:7px;">看不清，换一张</a>
+                            </span>
+                        </li>
+                        <li id="verifyIdTxt" class="login-padding" style="display:none;"></li>
+                        <li>
+                            <div id="logonDiv">
+                                <img id="logonLoading1" style="display:none" src="https://i.bank.ecitic.com/perbank6/i18n/zh_CN/images/logon_loading1.gif">
+                                <button type="button" id="logonButton" class="login" onclick="logon();">登&nbsp;录</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div> <!--end loginBox -->
+    </form><!-- new end -->
+
+    <form name="formLogon" method="POST" onsubmit="return submitFormformLogon(this);" action="/perbank6/commonSignIn.do">
+
+        <input name="opFlag" type="hidden" value="0" />
+        <input name="logonType" type="hidden" value="" />
+        <!-- 2:无证书, 0:有证书登录-->
+        <input name="customerCtfType" type="hidden" value="" />
+        <input name="logonNo" type="hidden" value="" />
+        <input name="password" type="hidden" value="" />
+        <input name="verifyCode" type="hidden" value="" />
+        <input name="session_userRemoteIP" type="hidden" value="27.115.97.122">
+        <input name="session_userRemoteMAC" type="hidden" value="" />
+        <input name="session_certSubType" type="hidden" value="">
+        <input name="session_tagFlag" type="hidden" value="1">
+        <!-- 20091102文件证书增加哈希值 -->
+        <input type="hidden" name="session_certHashcode" id="session_certHashcode" value="">
+        <!-- 20091102文件证书增加哈希值 -->
+        <input name="logon_param" type="hidden" value="NODATANODATA" />
+        <input name="computerId" type="hidden" value="" />
+        <input name="htd_param" id="htd_param" type="hidden" value="" />
+        <input name="ca_id" type="hidden" />
+        <input name="logonFlag" id="logonFlag" type="hidden" value="verifylogon" />
+        <input name="browserFlag" id="browserFlag" type="hidden" value="" />
+        <!-- 20141223多语言支持字段 -->
+        <input name="language" id="language" type="hidden" value="CN" />
+        <input type="hidden" name="EMP_SID" value="@ViewBag.EMP_SID" />
+    </form>
+    <script type="text/JavaScript" language="JavaScript">
+
+        function submitFormformLogon(formObj)
+        {
+            try{var retValue = validateForm_formLogon(formObj);
+                if( !retValue )
+                    return retValue;
+            }catch(e){alert('failed to validate form!' + e);}return true;
+        }
+        function validateForm_formLogon(formObj)
+        {
+            var curField;
+            var formatErrorMsg, rangeErrorMsg, msg;
+            return true;
+        }
+
+    </script>
+
+    <form name="form2Logon" method="POST" onsubmit="return submitFormform2Logon(this);" action="/perbank6/signIn.do">
+
+        <input name="opFlag" type="hidden" value="0" />
+        <input name="logonType" type="hidden" value="" />
+        <!-- 2:无证书, 0:有证书登录-->
+        <input name="customerCtfType" type="hidden" value="" />
+        <input name="logonNo" type="hidden" value="" />
+        <input name="password" type="hidden" value="" />
+        <input name="verifyCode" type="hidden" value="" />
+        <input name="session_userRemoteIP" type="hidden" value="27.115.97.122">
+        <input name="session_userRemoteMAC" type="hidden" value="" />
+        <input name="session_certSubType" type="hidden" value="">
+        <input name="session_tagFlag" type="hidden" value="1">
+        <!-- 20091102文件证书增加哈希值 -->
+        <input type="hidden" name="session_certHashcode" id="session_certHashcode" value="">
+        <!-- 20091102文件证书增加哈希值 -->
+        <input name="logon_param" type="hidden" value="NODATANODATA" />
+        <input name="computerId" type="hidden" value="" />
+        <input name="htd_param" id="htd_param" type="hidden" value="" />
+        <input name="ca_id" type="hidden" />
+        <input name="logonFlag" id="logonFlag" type="hidden" value="logon" />
+        <input name="browserFlag" id="browserFlag" type="hidden" value="" />
+        <!-- 20141223多语言支持字段 -->
+        <input name="language" id="language" type="hidden" value="CN" />
+        <input type="hidden" name="EMP_SID" value="@ViewBag.EMP_SID" />
+    </form>
+    <script type="text/JavaScript" language="JavaScript">
+
+        function submitFormform2Logon(formObj)
+        {
+            try{var retValue = validateForm_form2Logon(formObj);
+                if( !retValue )
+                    return retValue;
+            }catch(e){alert('failed to validate form!' + e);}return true;
+        }
+        function validateForm_form2Logon(formObj)
+        {
+            var curField;
+            var formatErrorMsg, rangeErrorMsg, msg;
+            return true;
+        }
+
+    </script>
+
+    <form name="keyLogonForm" method="POST" onsubmit="return submitFormkeyLogonForm(this);" action="/perbank6/keySignIn.do">
+
+        <input name="opFlag" type="hidden" value="0" />
+        <input name="logonType" type="hidden" value="" />
+        <input name="customerCtfType" type="hidden" value="" />
+        <input name="logonNo" type="hidden" value="" />
+        <input name="password" type="hidden" value="" />
+        <input name="verifyCode" type="hidden" value="" />
+        <input name="session_userRemoteIP" type="hidden" value="27.115.97.122">
+        <input name="session_userRemoteMAC" type="hidden" value="" />
+        <input name="session_certSubType" type="hidden" value="">
+        <input name="session_tagFlag" type="hidden" value="1">
+        <!-- 20091102文件证书增加哈希值 -->
+        <input type="hidden" name="session_certHashcode" id="session_certHashcode" value="">
+        <!-- 20091102文件证书增加哈希值 -->
+        <input name="logon_param" type="hidden" value="NODATANODATA" />
+        <input name="computerId" type="hidden" value="" />
+        <input name="htd_param" id="htd_param" type="hidden" value="" />
+        <input name="ca_id" type="hidden" />
+        <input name="logonFlag" id="logonFlag" type="hidden" value="keyLogon" />
+
+        <!-- 20141223多语言支持字段 -->
+        <input name="language" id="language" type="hidden" value="CN" />
+        <input type="hidden" name="EMP_SID" value="@ViewBag.EMP_SID" />
+    </form>
+    <script type="text/JavaScript" language="JavaScript">
+
+        function submitFormkeyLogonForm(formObj)
+        {
+            try{var retValue = validateForm_keyLogonForm(formObj);
+                if( !retValue )
+                    return retValue;
+            }catch(e){alert('failed to validate form!' + e);}return true;
+        }
+        function validateForm_keyLogonForm(formObj)
+        {
+            var curField;
+            var formatErrorMsg, rangeErrorMsg, msg;
+            return true;
+        }
+
+    </script>
+
+    <form name="userIdForm" action="getCertCustUserId.do" method="post" target="userIDFrame">
+        <input name="logonType" type="hidden" value="" />
+        <input name="ca_id" type="hidden" value="" />
+        <input name="certSubType" type="hidden" value="" />
+    </form>
+    <form name="checkLogonFailNumForm" method="POST" onsubmit="return submitFormcheckLogonFailNumForm(this);" action="/perbank6/getCstLogonFailNum.do">
+
+        <input type="hidden" name="session_Validate" value="1" />
+        <input name="logonNo" type="hidden" value="" />
+        <input name="session_userRemoteIP" type="hidden" value="27.115.97.122">
+        <input name="logonType" type="hidden" value="" />
+        <input name="operCode" type="hidden" value="02">
+        <input name="session_userRemoteMAC" type="hidden" value="" />
+        <input type="hidden" name="EMP_SID" value="@ViewBag.EMP_SID" />
+    </form>
+    <script type="text/JavaScript" language="JavaScript">
+
+        function submitFormcheckLogonFailNumForm(formObj)
+        {
+            try{var retValue = validateForm_checkLogonFailNumForm(formObj);
+                if( !retValue )
+                    return retValue;
+            }catch(e){alert('failed to validate form!' + e);}return true;
+        }
+        function validateForm_checkLogonFailNumForm(formObj)
+        {
+            var curField;
+            var formatErrorMsg, rangeErrorMsg, msg;
+            return true;
+        }
+
+    </script>
+
+    <div style="display:none;">
+        <iframe id="userIdFrame" name="userIDFrame" src="javascript:false;"> </iframe>
+    </div>
+
+    <div style="display:none" id="objectDivId"></div>
+    <!-- cssong add 0322 start -->
+    <div style="display:none" id="objectDivSafe"></div>
+
+    <form id="sessionKeyForm" name="sessionKeyForm" method="post">
+        <input name="clientRandom" type="hidden" value="" />
+    </form>
+    <form name="mcryptKeyForm" method="post">
+        <input name="clientRandom" type="hidden" value="" />
+    </form>
+    <form name="debitCardForm" method="post" action='/perbank6/getDebitcardAdvertPic.do?EMP_SID=@ViewBag.EMP_SID'></form>
+    <script>
+        function showBankNoticeList(param){
+            gonggaolist = window.open( '/perbank6/'+param+'?EMP_SID=@ViewBag.EMP_SID', "", "" );
+            gonggaolist.focus();
+        }
+        function showBankNotice(param){
+            gonggao = window.open("/perbank6/htmlFile/"+param, "", "" );
+            gonggao.focus();
+        }
+        function applyCreditBlock(){
+            logonpage = window.open("http://creditcard.ecitic.com/shenqing/", "", "" );
+            logonpage.focus();
+        }
+        function creditBlockDredge(){
+            logonpage = window.open("https://creditcard.ecitic.com/citiccard/online/firstPageManage.do?func=openCard_1", "", "" );
+            logonpage.focus();
+        }
+        function getOnLineShop(){
+            logonpage = window.open("https://mall.bank.ecitic.com/fmall/index.html", "", "" );
+            logonpage.focus();
+        }
+        var cstSerUrl='/perbank6/getMsgForWebPhoneAnonym.do?service=1&EMP_SID=@ViewBag.EMP_SID';
+        function turnCstService(){
+            var winDsp = 'width='+(screen.availWidth-324)+',height='+(screen.availHeight-350)+',toolbar=no,menubar=no,titlebar=yes,scrollbars=no,status=yes,' +
+					 'resizable=yes,location=no,left='+65+',top='+65+',screenx='+60+',screeny='+60;
+            helpWin = window.open(cstSerUrl, "help", winDsp );
+            helpWin.focus();
+            analize("login","ptb_zxkf","");
+        }
+        var sessionLinkUrl = "/bank/createSessionKey?EMP_SID=@ViewBag.EMP_SID&token=@ViewBag.token";
+        var checkVeriyUrl='/perbank6/quickCheckVerifyCode.do?EMP_SID=@ViewBag.EMP_SID';
+        var getFailNumUrl='/perbank6/getCstLogonFailNum.do?EMP_SID=@ViewBag.EMP_SID';
+        var checkQrUrl='/perbank6/checkQrCode.do?EMP_SID=@ViewBag.EMP_SID';
+        var getQrUrl='/perbank6/GetQrCode.do?EMP_SID=@ViewBag.EMP_SID';
+        var dynPassUrl='/perbank6/dynPassword.do?cmd=verifyPin&length=4&EMP_SID=@ViewBag.EMP_SID';
+        var logonLoadingUrl='i18n/zh_CN/images/logon_loading1.gif';
+        var createMcryptKeyUrl = "/bank/createMcryptKey?EMP_SID=@ViewBag.EMP_SID&token=@ViewBag.token";
+        var logonCtrlFailNums="0";
+
+    </script>
+    <div id="helpmateobjdiv" style="display:none"></div>
+    <script language=javascript>
+        var xPos = 20;
+        var yPos = document.documentElement.clientHeight;
+        var step = 1;
+        var delay = 30;
+        var height = 0;
+        var Hoffset = 0;
+        var Woffset = 0;
+        var yon = 0;
+        var xon = 0;
+        var pause = true;
+        var interval;
+        function changePos() {
+            width = document.documentElement.clientWidth;
+            width1=jQuery(".loginBox").width();
+            width2=jQuery(".loginBanner").width();
+            width3=jQuery(".alertlogin").width();
+            width=(width-(width2+width3))/2+width2
+            height = document.documentElement.clientHeight;
+            if (yon) {
+                yPos = yPos + step;
+            }
+            else {
+                yPos = yPos - step;
+            }
+            if (yPos < 0) {
+                yon = 1;
+                yPos = 0;
+            }
+            if (yPos >= (height - Hoffset)) {
+                yon = 0;
+                yPos = (height - Hoffset);
+            }
+            if (xon) {
+                xPos = xPos + step;
+            }
+            else {
+                xPos = xPos - step;
+            }
+            if (xPos < 0) {
+                xon = 1;
+                xPos = 0;
+            }
+            if (xPos >= (width - Woffset)) {
+                xon = 0;
+                xPos = (width - Woffset);
+            }
+        }
+        function start() {
+            interval = setInterval('changePos()', delay);
+        }
+        start();
+
+        function stopMove(){
+            setTimeout(function (){
+                clearInterval(interval)
+            },600);
+
+        }
+        var debitCardForm_url ='/perbank6/getDebitcardAdvertPic.do?EMP_SID=@ViewBag.EMP_SID';
+    </script>
+</body>
+</html>

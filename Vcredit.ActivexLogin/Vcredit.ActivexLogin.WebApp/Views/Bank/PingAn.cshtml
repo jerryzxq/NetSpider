@@ -1,0 +1,316 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html5 PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=8,chrome=1" />
+
+    <title>平安银行个人网银</title>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script>
+        var strToken = '@ViewBag.Token';
+        var IS_RUN_IN_PRODUCTION_ENVIRONMENT = location.search.toLowerCase().indexOf("production=no") === -1;
+    </script>
+    <link rel="shortcut icon" href="https://bank.pingan.com.cn/ibp/bank/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://bank.pingan.com.cn/ibp/bank/css/css.all.css?version=1504807712734">
+</head>
+
+<body>
+    <div class="content print1" id="bodyContent">
+        <div id="header"></div>
+        <div id="tips">
+
+        </div>
+        <div id="container" class="container"></div>
+        <div class="p_b213"></div>
+        <div id="footer"></div>
+        <OBJECT ID="SZPAPlutoCtrl_index" CLASSID="CLSID:E4CA2683-209C-4517-837D-A98301E1272E" height=0 width=0 hidden="true"></OBJECT>
+        <OBJECT id='FT_signxIE_index' CLASSID='CLSID:0DEBCBCE-B7B3-43BA-8B98-F0566FBBE625' height=0 width=0></OBJECT>
+        <embed id="FT_signxOther_index" type="application/npft_pactrl" hidden="true" width="0" height="0">
+    </div>
+    <div id="serviceContainer" class="print1"></div>
+    <script language="javascript" src="https://www.pingan.com/app_js/sdc/prd/sdc9.js"> </script>
+    <script type="text/javascript">
+        if (typeof (_tag) != "undefined") {
+            _tag.dcsid = "dcs0gggnjbkqoak7jnfumdzyr_5h7y";
+            _tag.dcsGetId();
+        }
+    </script>
+    <script type="text/javascript">
+        if (typeof (_tag) != "undefined") {
+            _tag.DCSext.platform = "newbank";  //平台名称用新参数newbank，其他都保持一致吧
+            if (document.readyState != "complete") {
+                document.onreadystatechange = function () {
+                    if (document.readyState == "complete") _tag.dcsCollect();
+                }
+            }
+            else _tag.dcsCollect()
+        }
+    </script>
+
+    <script>
+        var console = {};
+        console.log = function () { };
+        var require = {
+            urlArgs: "version=1504807712734",
+            waitSeconds: 0
+        };
+    </script>
+    <script data-main="/Scripts/bank/pingan/main.js" src="https://bank.pingan.com.cn/ibp/bank/vendor/require.js"></script>
+    <script>
+        var domainUrl = "http://eim-talk-stg.dmzstg.pingan.com.cn";
+        var enterpage = "平安银行官网首页";
+        window.onload = function () {
+            var script = document.createElement("script");
+            script.setAttribute("type", "text/javascript");
+            if (IS_RUN_IN_PRODUCTION_ENVIRONMENT) {
+                domainUrl = "https://eim.pingan.com.cn";
+                script.setAttribute("src", "https://www.pingan.com/app_js/pingan/v20/newbank/ucp.js?v=20141223");
+            } else {
+                script.setAttribute("src", "http://eim-talk-stg.dmzstg.pingan.com.cn/web-pir/javascripts/ucp.js");
+            }
+            document.documentElement.appendChild(script);
+        }
+    </script>
+    <script type="text/vbscript">
+        Function IsVista
+          Dim info
+          info = Navigator.appVersion
+          If ((InStr(Info,"NT 6.0")>0) or (InStr(Info,"NT 6.1")>0))Then
+            IsVista = true
+          Else
+            IsVista = false
+          End if
+        End Function
+        Function Submit()
+          If IsVista() Then
+                 Submit = VistaCheck()
+            Else
+                 Submit = OtherCheck()
+            End if
+            'If Submit_OnClick Then
+          'disableBtn()
+            'End if
+        End Function
+
+        Function OtherCheck()
+          Dim theForm
+          Dim pkcs10req
+          Dim Enroll
+          Dim options
+          Dim index
+
+          Set theForm=Document.downloadForm
+          On Error Resume Next
+
+          Set Enroll = EnrollNew
+          if(0 = len(Enroll.enumProviders(0,0))) Then
+            Set Enroll = EnrollOld
+          end if
+
+          set options = document.all.cryptProv.options
+          index = options.selectedIndex
+          Enroll.providerName = options(index).text
+          Enroll.providerType = 1
+          Enroll.HashAlgorithm = "MD5"
+          cn="cn=" & theForm.refNo.value
+          Enroll.KeySpec = 1
+          Enroll.GenKeyFlags = 3
+          pkcs10req=Enroll.CreatePKCS10(cn, "1.3.6.1.5.5.7.3.2")
+
+          if(pkcs10req=Empty) Then
+            errorString="(错误号： '" & hex(Err.Number) & "')"& chr(13) & chr(10)
+            errorString=errorString & "无法产生PKCS#10证书请求，请检查USB Key是否已经接入，型号是否选择正确，密码是否输入正确。"
+            err=MsgBox(errorString,0,"Internet Explorer Certificate Request")
+            OtherCheck=false
+            exit Function
+          end if
+
+          OtherCheck = pkcs10req
+          'Exit Function
+        End Function
+        Function VistaCheck()
+          Dim enroll
+          Dim privateKey
+          Dim pkcs10Req
+          Dim objectID
+          Dim SubName
+          Dim theForm
+          Dim options
+          Dim index
+
+          Set theForm=Document.downloadForm
+          On Error Resume Next
+
+          Set enroll = CreateObject("X509Enrollment.CX509Enrollment")
+          Set privateKey = CreateObject("X509Enrollment.CX509PrivateKey")
+          Set pkcs10Req = CreateObject("X509Enrollment.CX509CertificateRequestPkcs10")
+          Set objectID = CreateObject("X509Enrollment.CObjectId")
+          Set SubName = CreateObject("X509Enrollment.CX500DistinguishedName")
+
+          set options = document.all.cryptProv.options
+          index = options.selectedIndex
+          privateKey.ProviderName = options(index).text
+          privateKey.Existing = False
+          privateKey.ExportPolicy = 1 'XCN_NCRYPT_ALLOW_EXPORT_FLAG=1
+          privateKey.KeySpec = 1 'XCN_AT_SIGNATURE=2, XCN_AT_KEYEXCHANGE=1
+          objectID.InitializeFromValue "1.2.840.113549.2.5"  'MD5
+          SubName.Encode "cn=" & theForm.refNo.value, 3 'XCN_CERT_X500_NAME_STR=3
+          pkcs10Req.InitializeFromPrivateKey 1, privateKey, ""  'ContextUser=1
+          pkcs10Req.HashAlgorithm = objectID
+          pkcs10Req.Subject = SubName
+          enroll.InitializeFromRequest pkcs10Req
+          pkcs10req = enroll.CreateRequest(1)
+
+          if(pkcs10req=Empty) Then
+            errorString="(错误号： '" & hex(Err.Number) & "')"& chr(13) & chr(10)
+            errorString=errorString & "无法产生PKCS#10证书请求，请检查USB Key是否已经接入，型号是否选择正确，密码是否输入正确。"
+            err=MsgBox(errorString,0,"Internet Explorer Certificate Request")
+            VistaCheck=false
+            exit Function
+          end if
+
+          VistaCheck = pkcs10req
+          'Exit Function
+        End Function
+        sub FindProviders
+          If IsVista() Then
+            EnumCspsVista
+          Else
+            EnumCspsOthers
+          End if
+        End Sub
+        sub EnumCspsOthers
+          Dim i, count
+          i = 0
+          count=0
+          Dim el
+          Dim temp
+          Dim selectprov
+          Dim Enroll
+          selectprov = -1
+          On Error Resume Next
+          Set Enroll = EnrollNew
+          if(0 = len(Enroll.enumProviders(0,0))) Then
+            Set Enroll = EnrollOld
+          end if
+
+          Do While True
+            temp = ""
+            Enroll.providerType = 1
+            temp = Enroll.enumProviders(i,0)
+            If Len(temp) = 0 Then
+              '添加支持捷德无驱begin
+              set el = document.createElement("OPTION")
+              el.text = "捷德无驱"
+              el.value = 99
+              'MsgBox el.value
+              document.all.cryptprov.add(el)
+              count = count + 1
+              selectprov = count
+              '添加支持捷德无驱end
+              Exit Do
+            Else
+              If checkCSPName(temp) Then
+                  set el = document.createElement("OPTION")
+                  el.text = temp
+                  el.value = temp
+                  document.all.cryptprov.add(el)
+                  count = count + 1
+                  If selectprov = -1 Then
+                    '设置默认的CSP
+                    If el.text = "WatchData Cryptographic Provider v2.0" Then
+                      selectprov = count
+                    End If
+                  End If
+              End If
+              i = i + 1
+            End If
+          Loop
+          If document.all.cryptprov.length=0 Then
+            MsgBox "您没有安装或者正确的安装USB Key的驱动程序，" & Chr(13) &_
+            "请您正确的安装了驱动程序之后，再进行证书的下载！"
+          End If
+          If selectprov = -1 Then
+            selectprov = 0
+          End If
+          document.all.cryptprov.selectedIndex = selectprov
+        End Sub
+        Sub EnumCspsVista
+          Dim Csps
+          Dim Csp
+          Dim el
+          Dim i
+          Dim indexEnhanced
+
+          On Error Resume Next
+
+          i = 0
+          indexEnhanced = 0
+
+          Set Csps = CreateObject("X509Enrollment.CCspInformations")
+          Csps.AddAvailableCsps
+
+          For i=0 To Csps.Count - 1
+            Set Csp = Csps.ItemByIndex(i)
+
+            If Csp.Type = 1 Then
+                If checkCSPName(Csp.Name) Then
+                    set el = document.createElement("OPTION")
+                    el.text = Csp.Name
+                    el.value = Csp.Name
+                    document.all.cryptprov.add(el)
+                    count = count + 1
+                    If selectprov = -1 Then
+                      '设置默认的CSP
+                      If el.text = "WatchData Cryptographic Provider v2.0" Then
+                        selectprov = count
+                      End If
+                    End If
+                End If
+              End If
+          Next
+          '添加支持捷德无驱KEY代码
+          set el = document.createElement("OPTION")
+          el.text = "捷德无驱"
+          el.value = 99
+          document.all.cryptprov.add(el)
+          selectprov = selectprov + 1
+          If document.all.cryptprov.length=0 Then
+            MsgBox "您没有安装或者正确的安装USB Key的驱动程序，" & Chr(13) &_
+            "请您正确的安装了驱动程序之后，再进行证书的下载！"
+          End If
+          If selectprov = -1 Then
+              selectprov = 0
+          End If
+          document.all.cryptprov.selectedIndex = selectprov
+        End Sub
+
+        Function checkCSPName(ProvideName)
+
+          dim isOK
+          isOK=false
+          '将需要过滤出来的CSP的名称列在下面。
+          Select Case ProvideName
+            case "HaiTai Cryptographic Service Provider" isOK=true
+            Case "WatchData Cryptographic Provider v2.0" isOK=true
+            Case "SafeSign CSP Version 1.0" isOK=true
+            Case "Gemini CSP SDB" isOK=true
+            Case "StarSec CSP SDB" isOK=true
+            Case "Tendyron OnKey CSP SDB v1.0" isOK=true
+            Case "EnterSafe ePass3003 CSP For SDB v1.0" isOK=true
+            'case "Microsoft Enhanced Cryptographic Provider v1.0" isOK=true
+            Case Else isOK=false
+          End Select
+          checkCSPName=isOK
+        End Function
+    </script>
+    <script src="https://www.pingan.com/adng/admsTool.js"></script>
+</body>
+</html>

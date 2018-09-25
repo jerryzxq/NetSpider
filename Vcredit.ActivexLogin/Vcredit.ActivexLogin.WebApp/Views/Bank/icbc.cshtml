@@ -1,0 +1,505 @@
+﻿@{
+    Layout = null;
+}
+<meta http-equiv="X-UA-Compatible" content="IE=10,requiresActiveX=true" />
+
+<html>
+<head>
+
+    <script language="JavaScript1.1" src="https://epass.icbc.com.cn/js/ControlsId.js"></script>
+
+    <script>
+        try {
+            if (isNaN('icbc.com.cn'.replace(/\./g, ""))) {
+                document.domain = 'icbc.com.cn';
+            }
+        } catch (e) {
+
+        }
+    </script>
+
+    <script src="https://epass.icbc.com.cn/js/jquery-1.4.3.min.js?ver=1.2"></script>
+    <script src="https://epass.icbc.com.cn/js/pebank_browsercompatible_eb.js?ver=1.2"></script>
+    <script src="https://epass.icbc.com.cn/js/checkacct.js?ver=1.2"></script>
+    <script src="https://epass.icbc.com.cn/js/json2.js?ver=1.2"></script>
+    <script src="https://epass.icbc.com.cn/js/datastruct-ajax-eb.js?ver=1.2"></script>
+    <script src="https://epass.icbc.com.cn/js/floatTip1.js?ver=1.2"></script>
+
+    <link href="https://epass.icbc.com.cn/css/base.css?ver=1.2" rel="stylesheet" type="text/css" />
+    <link href="https://epass.icbc.com.cn/css/style.css?ver=1.2" rel="stylesheet" type="text/css" />
+    <link href="https://epass.icbc.com.cn/css/login-s.css?ver=1.2" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+
+
+    <script language="JavaScript">
+
+        function dealException() {
+
+            if (!detectAssistComm()) {
+                //没有安装助手弹出新提示，点击后下载
+                showErrTip("“工行网银助手”助您一键安装更新网银安全控件及工具，建议<a href='javascript:downloadAss();'><u><font color='blue'>安装</u></a>。</font>", true);
+            } else {
+                //已经安装助手提示信息不变，自动启动助手
+                showErrTip("如果无法输入密码，请根据浏览器弹出提示进行控件安装。");
+                try { RunAssistComm(); } catch (exception) { }
+            }
+
+        }
+
+        function downloadAss() {
+            window.open('http://www.icbc.com.cn/icbc/html/download/EbankToolsSoftware/x64/ICBCSetupIntegration_64.msi');
+        }
+
+        //random number
+        var randomId = "@ViewBag.RandomId";
+        function queryObj(idOrName) {
+            if (BrowserCompatible.prototype.isSafari() && idOrName != "verifyCodeCn") {
+                return document.embeds[idOrName];
+            } else {
+                return document.getElementById(idOrName);
+            }
+        }
+        //控件回车回调函数，函数名称必须是“XReturnDown”
+        //firefox和chrome不支持object.focus()方法
+        function XReturnDown(item) {
+            /*  if(item == "verifyCodeCn"){ */
+            queryObj("verifyCodeCn").focus();
+            /*  }else{
+               if(BrowserCompatible.prototype.isChrome()){
+                   queryObj("verifyCodeCn").removeFocus();//移除控件的焦点，避免后台钩子锁死键盘;
+               }
+               loginSubmit();
+             }*/
+        }
+
+        function getfocus1(id, event) {
+            if (pebankBrowserCompatible.getKeycode(event) == 13) {
+                if (BrowserCompatible.prototype.isChrome() || BrowserCompatible.prototype.isFirefox()) {
+                    document.getElementById("divss").focus();
+                }
+                if (id == "loginLink") {
+                    loginSubmit();
+                } else {
+                    queryObj(id).focus();
+                }
+
+            }
+        }
+        function commitPreHanddle() {
+            var vcode = document.getElementById("verifyCodeCn").value;
+            document.getElementById("verifyCode").value = encodeURIComponent(vcode);
+            if (vcode == '') {
+                return false;
+            }
+            return true;
+        }
+
+        function unParamSafe(str, name) {
+            var tmp = {};
+            var arr = str.split("&");
+            for (var i = 0; i < arr.length; i++) {
+                var idx = arr[i].indexOf("=");
+                tmp[arr[i].substring(0, idx)] = arr[i].substring(idx + 1);
+            }
+            if (!tmp[name])
+                tmp[name] = tmp["Edit"];
+            return tmp;
+        }
+
+        function resetSafe(randomIdNew) {
+            //randomId = randomIdNew;
+            //document.form1.randomId.value = randomId;
+            try {
+                queryObj("safeEdit1").clear();
+                //queryObj("safeEdit1").updateSeed(randomId);
+                verifyCodeClear();//清除验证码输入
+                //queryObj("KeyPart").updateSeed(randomId);*/
+            } catch (e) { }
+            refreshVerifyimage(1);
+        }
+
+        function getFormJsonSafe(frm) {
+            var o = {};
+            var a = jQuery(frm).serializeArray();
+            $.each(a, function () {
+                if (o[this.name] == undefined) {
+                    o[this.name] = this.value || '';
+                }
+            });
+
+            queryObj("KeyPart").commitKeyPart(queryObj("safeEdit1"));
+            queryObj("KeyPart").commitKeyPart(queryObj("KeyPart"));
+
+            if (BrowserCompatible.prototype.isChrome()) {
+                o['logonCardPass'] = queryObj("safeEdit1").getValue();
+                o['verifyCode'] = queryObj("KeyPart").getValue();
+            } else {
+                var pass = unParamSafe(queryObj("safeEdit1").getValue(), "logonCardPass");
+                var keypart = unParamSafe(queryObj("KeyPart").getValue(), "verifyCode");
+                $.extend(o, pass, keypart);
+            }
+            return o;
+        }
+        var _isLoggining = false;
+        function loginSubmit() {
+            try {
+                if (_isLoggining) return;
+                _isLoggining = true;
+                jQuery("#loginLink").focus();
+                showErrTip("none");
+                //check user name
+                //var uName = $("#logonCardNum").val();
+                //if (uName == "") {
+                //    showErrTip("请输入登录名！");
+                //    return;
+                //} else if (!/^[A-Za-z0-9_]{2,22}$/.test(uName)) {
+                //    showErrTip("登录名错误，请重新输入！");
+                //    return;
+                //} else if ((uName.length == 16 || uName.length == 19) && /^\d*$/.test(uName)) {
+                //    if (!isValidCardAndAcctPublic(uName)) {
+                //        showErrTip("请输入正确的卡(账)号!");
+                //        return;
+                //    }
+                //}
+
+                //check password and verify code
+                if (queryObj("safeEdit1").getLength() < 4) {
+                    showErrTip("密码长度至少应该为四位!");
+                    return;
+                }
+                if (!queryObj("safeEdit1").isValid()) {
+                    showErrTip("输入的密码不合法，请重新输入！");
+                    return;
+                }
+                //if (!commitPreHanddle()) {
+                //    showErrTip("输入的验证码不合法，请重新输入！");
+                //    return;
+                //}
+                try {
+                    //获取当前客户设置的业务地
+                    if (parent.zoneNo != undefined) {
+                        document.form1.requestChannelzoneNo.value = parent.zoneNo;
+                    }
+                } catch (e) { }
+                document.form1.action = "/bank/ICBCINBSEstablishSessionServlet?token=@ViewBag.Token";
+                /*  try{
+                     if(!commitPreHanddle()){
+                        alert("输入的验证码不合法，请重新输入！");
+                        return;
+                    };
+                }catch(e){} */
+
+                //增加获取浏览器语言和浏览器分辨率的逻辑
+                try {
+                    if (navigator.browserLanguage != null) {
+                        document.form1.language.value = navigator.browserLanguage.toLowerCase();
+                    } else if (navigator.language != null) {
+                        document.form1.language.value = navigator.language.toLowerCase();
+                    }
+
+                    if (screen.width > screen.height) {
+                        document.form1.resolution.value = screen.width + "*" + screen.height;
+                    } else {
+                        document.form1.resolution.value = screen.height + "*" + screen.width;
+                    }
+
+                } catch (e) { }
+
+                document.all.safeSubmit1.reset();
+                document.all.safeEdit1.commit(document.all.safeSubmit1);
+                document.all.safeSubmit1.submit(document.form1);
+
+                btnToggleState("busy");
+            } catch (e) {
+                console.log(e);
+                btnToggleState("ok");
+                if (e.getMessage)
+                    log(e.getMessage());
+                else
+                    log(e);
+                showErrTip("系统错误，登录异常！");
+            }
+        }
+
+        //截取错误信息最大字符数，超过用省略号显示..
+        function substr(str) {
+            var maxwidth = 120;
+            if (str.length > maxwidth) {
+                str = str.substring(0, maxwidth) + '...';
+            }
+            return str;
+        }
+
+        function showErrTip(t, issub, epay) {
+            _isLoggining = false;
+            if (t != 'none') {
+                btnToggleState("ok");
+                var te = t;
+                if (!issub) {//按原文显示
+                    if (t.length > 30) {
+                        te = t.substring(0, 30) + "...";
+                    }
+                    $("#errorstext").html(te);
+                    $("#errorstext").attr("title", t); //此区域3月版再放开
+                } else {
+                    $("#errorstext").html(te);
+                }
+                if (epay) {
+                    $("#errors").hide()
+                    $("#registlink").hide();
+                    $("#epaylink").show();
+                    $("#registlinkdiv").show();
+                } else {
+                    $("#errors").show()
+                    $("#registlink").hide();
+                    $("#epaylink").hide();
+                    $("#registlinkdiv").hide();
+                }
+
+            } else {
+
+                $("#errorstext").html(" ");
+                $("#errors").hide()
+                $("#errorstext").attr("title", "");//此区域3月版再放开
+                $("#registlink").show();
+                $("#epaylink").hide();
+                $("#registlinkdiv").show();
+
+            }
+        }
+
+        function clearErrTip() {
+            showErrTip('none');
+        }
+
+        function btnToggleState(s) {
+            _isLoggining = false;
+            if (s == "ok") {
+                //$("#loginBtn").bind("click",loginSubmit);
+                $(".login-text").show();
+                $(".login-loader").hide();
+            } else if (s == "busy") {
+                //$("#loginBtn").unbind("click",loginSubmit);
+                $(".login-text").hide();
+                $(".login-loader").show();
+            }
+        }
+
+        function log(m) {
+            if (window.console) console.log(m);
+        }
+        $(function () {
+
+            try {
+                //if(pebankBrowserCompatible.isIE()){
+                document.all.safeSubmit1.reset();
+                //}
+            } catch (Exception) {
+                dealException();
+            }
+            try {
+                document.getElementById("logonCardNum").focus();
+            } catch (Exception) { }
+            //$("#loginBtn").bind("click",loginSubmit);
+            $("#logonCardNum").bind("click keydown", function () {
+                $("#logonNameHolder").hide();
+                clearErrTip();
+            }).bind("blur", function () {
+                if ($("#logonCardNum").val() == "") {
+                    $("#logonNameHolder").show();
+                }
+            });
+            if ($("#logonCardNum").val() != "") {
+                $("#logonNameHolder").hide();
+                jQuery("#logonCardNum").focus();
+            }
+
+        });
+
+        function vcf(flag) {
+            if ("1" == flag) {
+                try {
+                    queryObj("safeEdit1").clear();
+                    document.all.verifyCode.value = '';
+                } catch (e) { }
+                refreshVerifyimage(1);//点击按钮刷新的时候需要刷新后台内存和控件的rule值
+            } else {
+                refreshVerifyimage();
+            }
+
+            document.all("VerifyimageFrame").style.display = "";
+            try {
+                document.getElementById("link4Verifyimage2Name").innerText = "";
+                jQuery("#link4Verifyimage2Name").hide();
+            } catch (exception) { }
+
+        }
+
+        // rewrite this function for login
+
+        function detectCapsLock(theform, safeEdit, x, y, float_width, posObj) {
+            var capflag = false;
+            var safeEdit1;
+            try {
+                safeEdit1 = eval("document." + theform + "." + safeEdit);
+                capflag = safeEdit1.CapsOnOrNot();
+            } catch (exception) {
+                try {
+                    safeEdit1 = eval("document.all." + safeEdit);
+                    capflag = safeEdit1.CapsOnOrNot();
+                } catch (e) {
+                    capflag = false
+                }
+            }
+
+            if (capflag) {
+                showErrTip("大写锁定打开，可能会使您错误输入密码。");
+            } else {
+                try { showErrTip("none"); } catch (exception) { }
+
+            }
+        }
+        function closeCapTip(theform, safeEdit) {
+            FocusFlag = false;//控件处于失去焦点状态
+            var safeEdit1;// = eval("document." + theform+"."+ safeEdit);
+            try {
+                safeEdit1 = eval("document." + theform + "." + safeEdit);
+                FocusFlag = safeEdit1.FocusOrNot();
+            } catch (Exception) {
+                try {
+                    safeEdit1 = eval("document.all." + safeEdit);
+                    FocusFlag = safeEdit1.FocusOrNot();
+                } catch (e) {
+                    FocusFlag = false;
+                }
+            }
+            if (!FocusFlag) {
+                try { showErrTip("none"); } catch (exception) { }
+            }
+
+        }
+
+    </script>
+    <div id="divss" hidefocus="true" style="outline:none"></div>
+    <form id="form1" name="form1" onsubmit="return false;"
+          action="/servlet/com.icbc.inbs.servlet.ICBCINBSEstablishSessionServlet" method="post">
+        <input type="hidden" id="AutoVerify" name="AutoVerify" value="4">
+        <input type="hidden" id="requestChannelInput" name="requestChannelInput" value="302">
+        <input type="hidden" id="requestChannelzoneNo" name="requestChannelzoneNo" value="0200">
+        <input type="hidden" id="serviceId" name="serviceId" value="">
+        <input type="hidden" id="serviceIdInto" name="serviceIdInto" value="">
+        <input type="hidden" id="transData" name="transData" value="">
+        <input type="hidden" id="loginCardFlag" name="loginCardFlag" value="0">
+
+        <input type="hidden" id="ua" name="ua" value="Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/7.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; InfoPath.2; .NET4.0C; .NET4.0E)">
+        <input type="hidden" id="language" name="language" value="">
+        <input type="hidden" id="netType" name="netType" value="130">
+        <input name="randomId" type="hidden" value="@ViewBag.RandomId" />
+        <input name="data" type="hidden" value="" />
+        <input name="ComputID" type="hidden" value="10" />
+        <input name="PlatFlag" type="hidden" value="0" />
+        <input name="logonSrc" type="hidden" value="1" />
+        <input name="serviceIdfirst" id="serviceIdfirst" type="hidden" value="" />
+        <input name="orgurl" id="orgurl" type="hidden" value="0" />
+        <input name="APPNO" id="APPNO" type="hidden" value="50" />
+        <input name="ccsi" id="ccsi" type="hidden" value="" />
+        <input type="hidden" name="resolution" value="">
+        <div class="login-panel">
+            <div class="form-area">
+                <div class="form-area-line" style="padding-top:15px;">
+                    <div class="label-login" id="label-login-id" style="padding-bottom:0px;float:left;padding-top:11px;width:220px"><span><b id="logintips">工行登录</b></span></div>
+                </div>
+                <div class="form-area-line">
+                    <div class="wrapper-obj">
+                        <div style="float: left;" class="login_username"></div>
+                        <div style="float: left;">
+                            <label class="place-holder" id="logonNameHolder" for="logonCardNum">卡（账）号/手机号/用户名</label>
+                            <input id="logonCardNum"
+                                   name="logonCardNum"
+                                   class="input-uname"
+                                   value=""
+                                   maxlength="22"
+                                   onkeydown="if((pebankBrowserCompatible.isSafari()||pebankBrowserCompatible.isFirefox()||pebankBrowserCompatible.isChrome())&&pebankBrowserCompatible.getKeycode(event)==9)event.preventDefault();"
+                                   onKeyUp="getfocus1('safeEdit1',event)"
+                                   style="ime-mode: disabled" autocomplete="off" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-area-line" style="margin-bottom:0px;">
+                    <!--
+                    promptText = "登录密码"
+                    promptTextColor = "102,102,102"
+                    backgroundColor = "255,255,255"
+                    isBorderVisible = "1"-->
+                    <div class="wrapper-obj">
+                        <div style="float: left; " class="login_password"></div>
+                        <div style="float: left;padding-top: 4px;width: 230px">
+                            <object id="safeEdit1" codebase="/icbc/newperbank/AxSafeControls.cab#version=1,0,0,26" classid="CLSID:73E4740C-08EB-4133-896B-8D0A7C9EE3CD" width=200 height=24 style="vertical-align:middle;" onKeyUp="getfocus1('verifyCodeCn', event);" onfocus="clearErrTip();detectCapsLock('logonform','safeEdit1',670,140,400,'logontb')" onblur="closeCapTip('logonform','safeEdit1')">
+                                <param name="name" value="logonCardPass">
+                                <param name="minLength" value="4">
+                                <param name="maxLength" value="30">
+                                <param name="rule" value="10111">
+                                <param name="UniqueID" value="@ViewBag.RandomId">
+                                <param name="IsPassword" value="true">
+                                <param name="prompttext" value="登录密码">
+                                <param name="prompttextcolor" value="102,102,102">
+                                <param name="backgroundcolor" value="255,255,255">
+                                <param name="isbordervisible" value="0">
+                                <param name="CryptAlg" value="2">
+                                <param name="ruleName" value="ruleName">
+                                <param name="changeRuleName" value="changeRuleName">
+                            </object>
+                            <script>
+                                document.all.safeEdit1.setChangeRules('@ViewBag.ChangeRules');
+                                document.all.safeEdit1.setRules('@ViewBag.Rules');
+                            </script>
+                            <input type="hidden" name="logonCardPass_cryptAlg" value="1" />
+                            <input type="hidden" id="HWInfo" name="HWInfo" value=" " />
+                            <script>
+                                try {
+                                    document.all.safeEdit1.setRandom('@ViewBag.RandomCode');
+                                    document.all.safeEdit1.setPublicKeyNew('@ViewBag.PublicKey');
+                                    var jshwinfo = document.all.safeEdit1.getHwInfo();
+                                    document.getElementById("HWInfo").value = jshwinfo;
+                                } catch (e) { }
+                            </script>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-area-line" style="margin-top:20px;">
+                    <div class="wrapper-obj">
+                        <div style="float: left;" class="login_username"></div>
+                        <div style="float: left;">
+                            <label class="place-holder" id="verifyCodeCnHolder" for="verifyCodeCn">验证码</label>
+                            <input type="text" id="verifyCodeCn" name="verifyCodeCn" class="input-uname" value="" maxlength="4" style="ime-mode: disabled" autocomplete="off" />
+                            <input type="hidden" id="verifyCode" name="verifyCode" value="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-area-line form-area-line-login">
+                    <a id="loginLink" href="javascript:void(0);" onfocus=this.blur()>
+                        <div id="loginBtn" class="login-btn n_btn" onClick="loginSubmit()">
+                            <span class="login-text">登&nbsp;&nbsp;&nbsp;录</span>
+                            <img class="login-loader" src="https://epass.icbc.com.cn/images/login/load.gif" width="22px" height="22px" />
+                        </div>
+                    </a>
+                </div>
+                <div class="form-area-line text-left" style="line-height: 25px">
+                    <div id="errors" class="form-area-link" title="" style="display:none">
+                        <div id="errorstext" class="form-area-link-line" style="padding-left: 16px;padding-right: 16px;padding-top: 3px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <canvas width="0" height="0" id="myCanvas2" style="position: absolute; left: 0px; top:0px;"></canvas>
+    <object id="safeSubmit1" codebase="/icbc/newperbank/AxSafeControls.cab#version=1,0,0,12" classid="CLSID:8D9E0B29-563C-4226-86C1-5FF2AE77E1D2" height=0 width=0></object>
+
+</body>
+</html>

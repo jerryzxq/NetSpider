@@ -1,0 +1,86 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.ActivexLogin.App", "Vcredit.ActivexLogin.App\Vcredit.ActivexLogin.App.csproj", "{7123AF13-DCD6-4AF5-90B0-CBD2F40E55ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.ActivexLogin.Test", "Vcredit.ActivexLogin.Test\Vcredit.ActivexLogin.Test.csproj", "{93A9868C-A95E-464C-BE69-65C61C6E3C3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.ActivexLogin.Entity", "Vcredit.ActivexLogin.Entity\Vcredit.ActivexLogin.Entity.csproj", "{E4F836FC-B7AC-48B6-8F31-E7D3E1395A32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.ActivexLogin.FrameWork", "Vcredit.ActivexLogin.FrameWork\Vcredit.ActivexLogin.FrameWork.csproj", "{2BF25106-DBDB-4666-93C1-35C0C30AE571}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.ActivexLogin.Processor", "Vcredit.ActivexLogin.Processor\Vcredit.ActivexLogin.Processor.csproj", "{0A874311-0D23-499E-B6A4-2892A6D0476D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.ActivexLogin.Dto", "Vcredit.ActivexLogin.Dto\Vcredit.ActivexLogin.Dto.csproj", "{1818E8F0-25E0-403E-8812-1ADB1A677252}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.ActivexLogin.Common", "Vcredit.ActivexLogin.Common\Vcredit.ActivexLogin.Common.csproj", "{75F2968E-F7EE-413D-A840-9235AFA62318}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.ActivexLogin.WebApi", "Vcredit.ActivexLogin.WebApi\Vcredit.ActivexLogin.WebApi.csproj", "{9F3C7CA7-4A2A-4B65-89ED-6B127ECD5152}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.ActivexLogin.Attributes", "Vcredit.ActivexLogin.Attributes\Vcredit.ActivexLogin.Attributes.csproj", "{699793FE-53AC-436A-90FE-58FD09E3786E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.ActivexLogin.ConsoleApp", "Vcredit.ActivexLogin.ConsoleApp\Vcredit.ActivexLogin.ConsoleApp.csproj", "{382DE36A-4FE8-47F0-BCFA-6B53F7C2633D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vcredit.ActivexLogin.WebApp", "Vcredit.ActivexLogin.WebApp\Vcredit.ActivexLogin.WebApp.csproj", "{3E8BDE58-8F34-4491-935A-194350F57258}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7123AF13-DCD6-4AF5-90B0-CBD2F40E55ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7123AF13-DCD6-4AF5-90B0-CBD2F40E55ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7123AF13-DCD6-4AF5-90B0-CBD2F40E55ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7123AF13-DCD6-4AF5-90B0-CBD2F40E55ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93A9868C-A95E-464C-BE69-65C61C6E3C3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93A9868C-A95E-464C-BE69-65C61C6E3C3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93A9868C-A95E-464C-BE69-65C61C6E3C3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93A9868C-A95E-464C-BE69-65C61C6E3C3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4F836FC-B7AC-48B6-8F31-E7D3E1395A32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4F836FC-B7AC-48B6-8F31-E7D3E1395A32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4F836FC-B7AC-48B6-8F31-E7D3E1395A32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4F836FC-B7AC-48B6-8F31-E7D3E1395A32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BF25106-DBDB-4666-93C1-35C0C30AE571}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BF25106-DBDB-4666-93C1-35C0C30AE571}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BF25106-DBDB-4666-93C1-35C0C30AE571}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BF25106-DBDB-4666-93C1-35C0C30AE571}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A874311-0D23-499E-B6A4-2892A6D0476D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A874311-0D23-499E-B6A4-2892A6D0476D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A874311-0D23-499E-B6A4-2892A6D0476D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A874311-0D23-499E-B6A4-2892A6D0476D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1818E8F0-25E0-403E-8812-1ADB1A677252}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1818E8F0-25E0-403E-8812-1ADB1A677252}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1818E8F0-25E0-403E-8812-1ADB1A677252}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1818E8F0-25E0-403E-8812-1ADB1A677252}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75F2968E-F7EE-413D-A840-9235AFA62318}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75F2968E-F7EE-413D-A840-9235AFA62318}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75F2968E-F7EE-413D-A840-9235AFA62318}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75F2968E-F7EE-413D-A840-9235AFA62318}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F3C7CA7-4A2A-4B65-89ED-6B127ECD5152}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F3C7CA7-4A2A-4B65-89ED-6B127ECD5152}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F3C7CA7-4A2A-4B65-89ED-6B127ECD5152}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F3C7CA7-4A2A-4B65-89ED-6B127ECD5152}.Release|Any CPU.Build.0 = Release|Any CPU
+		{699793FE-53AC-436A-90FE-58FD09E3786E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{699793FE-53AC-436A-90FE-58FD09E3786E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{699793FE-53AC-436A-90FE-58FD09E3786E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{699793FE-53AC-436A-90FE-58FD09E3786E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{382DE36A-4FE8-47F0-BCFA-6B53F7C2633D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{382DE36A-4FE8-47F0-BCFA-6B53F7C2633D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{382DE36A-4FE8-47F0-BCFA-6B53F7C2633D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{382DE36A-4FE8-47F0-BCFA-6B53F7C2633D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E8BDE58-8F34-4491-935A-194350F57258}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E8BDE58-8F34-4491-935A-194350F57258}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E8BDE58-8F34-4491-935A-194350F57258}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E8BDE58-8F34-4491-935A-194350F57258}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

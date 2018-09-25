@@ -1,0 +1,92 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>农业银行安全控件破解</title>
+    <script src="~/Scripts/jquery-1.12.0.min.js"></script>
+    <script src="~/Scripts/bank/abc/writeObjectNew.js"></script>
+    <script src="~/Scripts/Json2.js"></script>
+</head>
+<body>
+    <div id="userNameLogin">
+        <form class="m-uesrform" id="userNameForm" name="userNameForm" action="upLogin.do" method="post">
+            <div class="m-uesrpassbox">
+                <div id="PowerEnterDiv_userName" style="display: inline; margin-left: 10px;">
+                    <script>
+                        password.WritePassObjectOrg("powerpass_ie", { "randomText": "@ViewBag.RandomText", "softkbdType": 0, "maxLength": "30", "minLength": "6", "accepts": "^[A-Za-z0-9-]*$", "width": "225", "height": "36", "borderColor": "#ffffff", "promptText": "请输入登录密码" }, 'powerpass_ie_dyn_Msg');
+                    </script>
+                </div>
+            </div>
+            <div class="pwdError" id="powerpass_ie_dyn_Msg"></div>
+
+            <input type="hidden" id="username" name="username" />
+            <input type="hidden" id="code" name="code" />
+            <input type="hidden" name="EntranceType" value="Common" />
+            <input type="hidden" name="abc_formId" value="" />
+            <input type="hidden" id="picCode" name="picCode" />
+            <input type="hidden" name="MachineCode" value="" />
+            <input type="hidden" name="MachineInfo" value="" />
+            <input type="hidden" name="token" value="" />
+            <input type="hidden" name="plattype" />
+            <input type="hidden" name="pwdField" />
+            <input type="hidden" name="pwdFieldKeys" />
+        </form>
+    </div>
+    @*<input type="button" name="logo" id="logo" value="获取">
+    <textarea type="text" id="store"></textarea>*@
+
+    @*<script type="text/javascript">
+        $(function () {
+            document.getElementById("powerpass_ie").focus();
+            $("#logo").click(function () {
+                getEncrypt();
+            });
+        });
+        function getEncrypt() {
+            //document.getElementById("powerpass_ie").focus();
+            var timeStamp = "@ViewBag.TimeStamp";
+            var encrypt = "";
+            var macInfo = password.GetMachineCode('powerpass_ie', timeStamp);
+            $('#userNameForm input[name="MachineCode"]').val(macInfo.machineCode);
+            $('#userNameForm input[name="MachineInfo"]').val(macInfo.machineInfo);
+
+            if (password.DealWithPwd("userNameForm", timeStamp, 'powerpass_ie_dyn_Msg'))
+                encrypt = getFormData($('#userNameForm'));
+
+            var str = JSON.stringify(encrypt);
+            addElement(str);
+        }
+        function getFormData($form) {
+            var unindexed_array = $form.serializeArray();
+            var indexed_array = {};
+
+            $.map(unindexed_array, function (n, i) {
+                indexed_array[n['name']] = n['value'];
+            });
+
+            return indexed_array;
+        }
+
+        var hdid = "hd_encrypt_string";
+        function addElement(value) {
+            var ele = document.createElement("input");
+            ele.id = hdid;
+            ele.type = "hidden";
+            ele.value = value;
+            document.body.appendChild(ele);
+        }
+        function removeElement() {
+            var ele = document.getElementById(hdid);
+            if (ele) {
+                document.body.removeChild(ele);
+            }
+        }
+
+    </script>*@
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0A874311-0D23-499E-B6A4-2892A6D0476D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vcredit.ActivexLogin.Processor</RootNamespace>
+    <AssemblyName>Vcredit.ActivexLogin.Processor</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NSoup">
+      <HintPath>..\Dll\NSoup.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dll\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Vcredit.Common">
+      <HintPath>..\Dll\Vcredit.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcredit.Framework.Queue">
+      <HintPath>..\Dll\Vcredit.Framework.Queue.dll</HintPath>
+    </Reference>
+    <Reference Include="Vcredit.NetSpider.Cache">
+      <HintPath>..\Dll\Vcredit.NetSpider.Cache.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bank\BocBankExecutorImpl.cs" />
+    <Compile Include="Bank\AbcBankExecutorImpl.cs" />
+    <Compile Include="Bank\PinganBankExecutorImpl.cs" />
+    <Compile Include="Bank\ShhBankExecutorImpl.cs" />
+    <Compile Include="Bank\PsbcBankExecutorImpl.cs" />
+    <Compile Include="Bank\NbcBankExecutorImpl.cs" />
+    <Compile Include="Bank\JsBankExecutorImpl.cs" />
+    <Compile Include="Bank\IcbcBankExecutorImpl.cs" />
+    <Compile Include="Bank\HxBankExecutorImpl.cs" />
+    <Compile Include="Bank\HzBankExecutorImpl.cs" />
+    <Compile Include="Bank\GznsBankExecutorImpl.cs" />
+    <Compile Include="Bank\FjnxBankExecutorImpl.cs" />
+    <Compile Include="Bank\CommBankExecutorImpl.cs" />
+    <Compile Include="Bank\CmbcBankExecutorImpl.cs" />
+    <Compile Include="Bank\CiticBankExecutorImpl.cs" />
+    <Compile Include="Bank\BocdBankExecutorImpl.cs" />
+    <Compile Include="Bank\CebBankExecutorImpl.cs" />
+    <Compile Include="Bank\CgbBankExecutorImpl.cs" />
+    <Compile Include="Bank\CmbBankExecutorImpl.cs" />
+    <Compile Include="Credit\RenHangNetWorkCreditExecutorImpl.cs" />
+    <Compile Include="ExecutorTemplate.cs" />
+    <Compile Include="Gjj\WuHanGjjExecutorImpl.cs" />
+    <Compile Include="Gjj\ShenZhenGjjExecutorImpl.cs" />
+    <Compile Include="Gjj\TianJinGjjExecutorImpl.cs" />
+    <Compile Include="IActivexLoginExecutor.cs" />
+    <Compile Include="Gjj\GuangZhouGjjExecutorImpl.cs" />
+    <Compile Include="ProcessorFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Vcredit.ActivexLogin.Attributes\Vcredit.ActivexLogin.Attributes.csproj">
+      <Project>{699793fe-53ac-436a-90fe-58fd09e3786e}</Project>
+      <Name>Vcredit.ActivexLogin.Attributes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.ActivexLogin.Common\Vcredit.ActivexLogin.Common.csproj">
+      <Project>{75F2968E-F7EE-413D-A840-9235AFA62318}</Project>
+      <Name>Vcredit.ActivexLogin.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.ActivexLogin.Dto\Vcredit.ActivexLogin.Dto.csproj">
+      <Project>{1818E8F0-25E0-403E-8812-1ADB1A677252}</Project>
+      <Name>Vcredit.ActivexLogin.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.ActivexLogin.Entity\Vcredit.ActivexLogin.Entity.csproj">
+      <Project>{E4F836FC-B7AC-48B6-8F31-E7D3E1395A32}</Project>
+      <Name>Vcredit.ActivexLogin.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vcredit.ActivexLogin.FrameWork\Vcredit.ActivexLogin.FrameWork.csproj">
+      <Project>{2BF25106-DBDB-4666-93C1-35C0C30AE571}</Project>
+      <Name>Vcredit.ActivexLogin.FrameWork</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

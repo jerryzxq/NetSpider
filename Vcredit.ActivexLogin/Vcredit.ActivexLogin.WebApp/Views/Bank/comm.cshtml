@@ -1,0 +1,375 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta charset="utf-8">
+    <meta http-equiv="renderer" content="ie-comp">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>交通银行个人网银</title>
+    <link rel="stylesheet" type="text/css" href="https://pbank.95559.com.cn/personbank/js/jslib/jquery-ui.css?cacheVersion=1.0.10" />
+    <link rel="stylesheet" type="text/css" href="https://pbank.95559.com.cn/personbank/css/login.css?cacheVersion=1.0.7">
+    <script type="text/javascript">
+        var Util = { contextPath: "https://pbank.95559.com.cn/personbank/", sessionId: "@ViewBag.PSessionId", time: "1503373454800", menuCode: "", channel: "0", mark: false, locale: "" };
+        try { document.cookie = 'oldold' === 'new' ? "oldSafeInput=true;path=/" : (!!window.ActiveXObject || "ActiveXObject" in window) ? "oldSafeInput=false;path=/" : "oldSafeInput=true;path=/"; } catch (e) { }
+    </script>
+    <script type="text/javascript" src="https://pbank.95559.com.cn/personbank/js/jslib/jquery.js?cacheVersion=1.0.5"></script>
+    <script type="text/javascript" src="https://pbank.95559.com.cn/personbank/js/jslib/jquery-ui.js?cacheVersion=1.0.5"></script>
+    <script type="text/javascript" src="https://pbank.95559.com.cn/personbank/js/common.js?cacheVersion=1.0.10"></script>
+    <script type="text/javascript" src="~/Scripts/bank/comm/jump-validation.js"></script>
+    <script type="text/javascript" src="~/Scripts/bank/comm/safeControl-support.js"></script>
+    <style type="text/css">
+        #input_captcha {
+            ime-mode: disabled;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <div class="head">
+
+        <img src="https://pbank.95559.com.cn/personbank/images/login/logo2.jpg" />
+
+    </div>
+    <!-- 内容区 登录表单 -->
+    <div class="ctn-login-box">
+        <div class="ctn-login">
+            <div class="login">
+                <div class="login-title">
+                    <!-- 用户名登录 -->
+                    <span>用户名登录</span>
+                </div>
+                <!-- 账户 -->
+                <div class="user">
+                    <input type="text" id="alias" alt="昵称、手机号、银行卡号、身份证" based="alt" validation="loginForm.alias" tabindex="1" autocomplete="off" />
+                    <span class="icon-user"></span>
+                </div>
+                <!-- 密码 -->
+                <div class="password">
+                    <div class="areaPwd">
+                        <script type="text/javascript">
+                            try {
+                                try { Util.oldSafeInput = Util.getCookie("oldSafeInput") === "true"; } catch (e) { Util.oldSafeInput = false };
+                                try { createSafeCommitControl(); } catch (e) { }
+                                createSafeControl('password', 'password', '@ViewBag.RandomText', '20', '6', '26', '200', 1, '10111', '100');
+                            } catch (e) { alert(e); }
+                        </script>
+                    </div>
+                    <span class="icon-password"></span>
+                    <a href="#" class="icon-tootip" id="iconTootip"></a>
+                    <div class="tooltip" id="tooltip">
+                        <span class="tooltip-icon"></span>
+                        <div class="tooltip-ctn">如您无法输入密码，请重新下载控件。</div>
+                    </div>
+                </div>
+                <!-- 控件下载 -->
+                <div class="widget">
+                    <span id="oldSafeinputCaption" style="display: none;">
+                        <p>如您无法输入密码请下载并安装下方控件</p>
+                        <a href="/personbank/download/BocomInput.exe">Win10用户请点此处</a> <a href="/personbank/download/BocomSetupInput.exe">其他Windows用户请点此处</a>
+                    </span>
+                    <span id="macSafeinputCaption" style="display: none;">
+                        如您无法输入密码请<a class="a1" href="{0}download/BocomEdit.2.0.dmg">下载并安装控件</a>
+                    </span>
+                    <span id="newSafeinputCaption" style="display: none;">
+                        如您无法输入密码请<a class="a1" href="{0}download/BocomSetupInput3.0.exe">下载</a>控件
+                    </span>
+                </div>
+                <!-- 验证码 -->
+                <div class="captchas">
+                    <div class="captchas-txt">
+                        <input type="text" id="input_captcha" maxlength="5" alt="请输入验证码" based="alt" validation="loginForm.captchaCode" tabindex="3" autocomplete="off" />
+                        <span id="captchaFlg" class="right-cpt" style="display: none;"></span>
+                    </div>
+                    <a href="#" class="captchasimg"><img class="captchas-img-bg" /><span>换一张</span></a>
+                    <div id="captchaErrMsg" class="error-cptn" style="display: none;">验证码输入错误，请重新输入。</div>
+                </div>
+                <!-- 登录按钮 -->
+                <div class="login-btn" id="loginBtn">
+                    <a href="#" id="login">登 录</a>
+                </div>
+                <!-- 遮罩层 -->
+                <div class="mask" id="certMask" style="display: none;">
+                    <span class="icon-warning"></span>
+                    <p>您尚未开启身份证登录或登录密码输入错误。<br />如需开启身份证登录，请使用昵称或卡号登录后，进入“网银设置-个人中心-网银资料-用户名登录”修改开启，即可使用。</p>
+                    <div class="btn-area">
+                        <a href="#" id="loginAndSet">登录并设置</a>
+                        <a href="#" id="btnCancel">取消</a>
+                    </div>
+                </div>
+                <!-- 遮罩层 -->
+                <div class="mask" id="safeinputMask" style="display: none;">
+                    <span class="icon-warning"></span>
+                    <p>目前暂不支持非IE内核的浏览器，请您使用IE浏览器或使用兼容模式。我们正在积极改进中，非常抱歉，给您带来不便。</p>
+                    <span id="safeinputClose" class="icon-close"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form name="loginForm" action="/bank/syLogin?token=@ViewBag.Token" method="post">
+        <input type="hidden" name="step" value="result" />
+        <input type="hidden" name="ReqSafeFields" value="@ViewBag.ReqSafeFields" />
+
+        <input type="hidden" name="PSessionId" value="@ViewBag.PSessionId" />
+        <input type="hidden" name="x-channel" value="0" />
+        <input type="hidden" name="menuCode" value="" />
+
+        <input type="hidden" name="alias" />
+        <input type="hidden" name="password" />
+        <input type="hidden" name="captchaCode" value="" />
+        <input type="hidden" name="validateAddr" value="0" />
+        <input type="hidden" name="safeInputVer" value="1" />
+        <input type="hidden" name="startMenu" value="" />
+        <input type="hidden" name="args" value="" />
+        <input type="hidden" name="ibpsProtocolReq" value="" />
+        <input type="hidden" name="callBack" value="" />
+    </form>
+
+    <script type="text/javascript">
+        Validation.addForm('loginForm', { "show": { "id": "show", "name": "show", "optional": true, "values": { "win": "system_show.win", "full": "system_show.full", "wbcs": "system_show.wbcs", "old": "system_show.old", "oldold": "system_show.oldold", "new": "system_show.new" } }, "alias": { "id": "alias", "name": "网银用户名", "optional": false, "rules": [] }, "password": { "id": "password", "name": "登录密码", "optional": false, "safe": true }, "captchaCode": { "id": "captchaCode", "name": "附加码", "optional": false, "rules": [{ "type": "min-length", "args": [5] }, { "type": "max-length", "args": [5] }] }, "safeInputVer": { "id": "safeInputVer", "name": "safeInputVer", "optional": true, "values": { "0": "system_boolean.0", "1": "system_boolean.1" } }, "loginByCert": { "id": "loginByCert", "name": "loginByCert", "optional": true, "values": { "0": "system_boolean.0", "1": "system_boolean.1" } }, "validateAddr": { "id": "validateAddr", "name": "是否校验IP地址", "optional": false, "values": { "0": "否", "1": "是" } }, "redirectUrl": { "id": "redirectUrl", "name": "redirectUrl", "optional": true, "rules": [] }, "args": { "id": "args", "name": "args", "optional": true, "rules": [] } });
+    </script>
+    <script type="text/javascript" src="https://pbank.95559.com.cn/personbank/js/writeNewActivxObjectForAssistant.js?cacheVersion=1.0.10"></script>
+
+    <script>
+        (function ($, window, document, Util, Validation, undefined) {
+            var clickBoolean = true;
+            var captchaEnable = 'true' === 'true';
+            var captchaChecked = captchaEnable ? 0 : 1;
+            var isSendCaptchaReq = false;
+            var isSendAliasReq = false;
+            var certChecked = {};
+            var captchaInput = {};
+            Util.mask = !Util.isIE();
+            var view = {
+                backgroudImageCache: function () {
+                    if (Util.isIE() && $.browser.version == "6.0") {
+                        try { document.execCommand('BackgroundImageCache', false, true); } catch (e) { alert(e); };
+                    }
+                    return this;
+                },
+                captcha: function () {
+                    if (captchaEnable) {
+                        $(".captchas").show();
+                        $("#loginBtn").css("top", "386px");
+                    } else {
+                        $(".captchas").hide();
+                        $("#loginBtn").css("top", "320px");
+                    }
+                    return this;
+                },
+                safeinputCaption: function () {
+                    var certError = "false";
+                    if (certError == "true") {
+                        Util.showObject(false);
+                        $("#certMask").show();
+                    }
+
+                    if (Util.isMacOSRequest()) {
+                        $("#macSafeinputCaption").show().find('a').each(function (i, o) {
+                            $(this).attr('href', Util.getMessage($(this).attr('href'), [Util.contextPath]));
+                        });
+                    } else if (Util.isIE()) {
+                        if (Util.oldSafeInput) {
+                            $("#oldSafeinputCaption").show();
+                        } else {
+                            $("#newSafeinputCaption").show().find('a').each(function (i, o) {
+                                $(this).attr('href', Util.getMessage($(this).attr('href'), [Util.contextPath]));
+                            });
+                        }
+                    } else if (navigator.userAgent.indexOf("Edge") > -1) {
+                        $("#newSafeinputCaption").show().find('a').each(function (i, o) {
+                            $(this).attr('href', Util.getMessage($(this).attr('href'), [Util.contextPath]));
+                        });
+                    } else {
+                        $("#newSafeinputCaption").show().find('a').each(function (i, o) {
+                            $(this).attr('href', Util.getMessage($(this).attr('href'), [Util.contextPath]));
+                        });
+                        if (certError == 'false') {
+                            Util.showObject(false);
+                            $("#safeinputMask").show();
+                        }
+                    }
+                    return this;
+                }
+            };
+            var events = {
+                tooltip: function (elementId, isOn) {
+                    return function () {
+                        if (isOn) {
+                            document.getElementById(elementId).style.display = 'block';
+                        } else {
+                            document.getElementById(elementId).style.display = 'none';
+                        }
+                    };
+                }
+            };
+
+            view.backgroudImageCache().safeinputCaption().captcha();
+
+            document.onkeypress = function () {
+                if (event.keyCode == 13) {
+                    $("#login").click();
+                }
+            };
+
+            $("#iconTootip").on('mouseover click', events.tooltip('tooltip', true)).on('mouseout', events.tooltip('tooltip', false));
+
+            $(".captchasimg").click(function () {
+                if (!$(this).is(":visible")) {
+                    return;
+                }
+                captchaChecked = 0;
+                captchaInput = {};
+                $(this).children("img").attr("src", Util.getFullPath("system/syCaptchaShow.image", false) + "&temp=" + Math.random());
+                $("#captchaErrMsg").hide();
+                $("#captchaFlg").hide();
+            }).click();
+
+            $("#input_captcha").focus(function () {
+                $("#captchaErrMsg").hide();
+                if (captchaChecked === 2) {
+                    this.value = '';
+                    $(".captchasimg").click();
+                }
+            }).keyup(function () {
+                var val = this.value;
+                var pos = Util.getCursorPos(this);
+                if (!/^[a-zA-Z]*$/.test(val)) {
+                    var old = $(this).attr("validValue");
+                    old = old ? old : "";
+                    this.value = old;
+                    Util.setCursorPos(this, pos - 1);
+                    captchaChecked = 0;
+                    $(this).change();
+                    return;
+                } else {
+                    $(this).attr("validValue", this.value);
+                }
+                if (val.length < 5) {
+                    $("#captchaFlg").hide();
+                    captchaChecked = 0;
+                    return;
+                }
+                var isMatch = /^[a-zA-Z]{5}$/.test(val);
+                if (val.length == 5 && !isMatch) {
+                    $("#captchaFlg").attr("class", 'error-cpt').show();
+                    captchaChecked = 0;
+                    return;
+                }
+                if (captchaInput[val]) {
+                    $("#captchaFlg").attr("class", 'right-cpt').show();
+                    captchaChecked = 1;
+                    return;
+                }
+                if (isMatch && !isSendCaptchaReq) {
+                    isSendCaptchaReq = true;
+                    $(this).blur();
+                    $.getJSON(Util.getFullPath("system/syCheckCaptcha.ajax", false) + "&temp=" + Math.random(), { captchaCode: val, sessionId: Util.sessionId }, function (result) {
+                        isSendCaptchaReq = false;
+                        $("#captchaErrMsg").hide();
+                        Util.result(result, function (data) {
+                            captchaInput[val] = 1;
+                            captchaChecked = 1;
+                            $("#captchaFlg").attr("class", 'right-cpt').show();
+                        }, function (result) {
+                            if (result.RSP_HEAD.ERROR_CODE == 'PEBS0004SY0223') {
+                                Util.error("session已超时，请重新刷新页面！", function () {
+                                    window.location.reload();
+                                });
+                            }
+                            captchaChecked = 2;
+                            $("#captchaFlg").attr("class", 'error-cpt').show();
+                        });
+                    });
+                }
+            });
+
+            $("#btnCancel").click(function () {
+                Util.showObject(true);
+                $("#certMask").hide();
+                $("#alias").focus();
+            });
+            $("#dispatchRegistClose").click(function () {
+                Util.showObject(true);
+                $("#dispatchRegistMask").hide();
+            });
+            $("#safeinputClose").click(function () {
+                Util.showObject(true);
+                $("#safeinputMask").hide();
+            });
+
+            $("#loginAndSet").click(function () {
+                var loginForm = document.forms.loginForm;
+                loginForm.startMenu.value = "P093000";
+                Util.showObject(true);
+                $("#certMask").hide();
+                $("#alias").focus();
+            });
+
+            $("#safeGuide").click(function () {
+                if (window.checkInstalled()) {
+                    if (!window.runAssistant('')) {
+                        window.location.href = "/personbank/download/AssistantDelopy/AssistantInstall/IBankWizSetup.exe";
+                    }
+                } else {
+                    window.location.href = "/personbank/download/AssistantDelopy/AssistantInstall/IBankWizSetup.exe";
+                }
+            });
+
+            $("#dispatchRegist").click(function () {
+                Util.showObject(false);
+                $("#dispatchRegistMask").show();
+            });
+            $("#regist").click(function () {
+                document.forms.registForm.submit();
+            });
+            $("#findAlias").click(function () {
+                document.forms.findAliasForm.submit();
+            });
+            $("#findPwd").click(function () {
+                document.forms.findPwdForm.submit();
+            });
+
+            $("#login").click(function () {
+                //if(captchaChecked !== 1){
+                //$("#captchaErrMsg").show();
+                //$("#captchaFlg").hide();
+                //return;
+                //}
+                var data = {};
+                if (clickBoolean) {
+                    data.alias = Util.val('#alias');
+                    if (captchaEnable) {
+                        data.captchaCode = Util.val('#input_captcha');
+                    } else {
+                        data.captchaCode = '00000';
+                    }
+                    data.validateAddr = "0";
+                    var loginForm = document.forms["loginForm"];
+                    if (Util.oldSafeInput) {
+                        loginForm.safeInputVer.value = "0";
+                    } else {
+                        loginForm.safeInputVer.value = "1";
+                    }
+                    data.password = '登录密码，至少输入6位字母、数字混合';
+                    Validation.submit("loginForm", data, function () {
+                        captchaEnable = true;
+                        clickBoolean = false;
+                    });
+                }
+            });
+
+            Util.ready();
+
+            writeAssistantActivxObject();
+        })(jQuery, window, document, Util, Validation);
+
+    </script>
+</body>
+</html>

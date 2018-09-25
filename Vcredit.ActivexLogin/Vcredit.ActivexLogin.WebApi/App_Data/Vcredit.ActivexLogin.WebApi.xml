@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Vcredit.ActivexLogin.WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:Vcredit.ActivexLogin.WebApi.SwaggerConfig">
+            <summary>
+            swagger 配置 访问路径为：http://localhost:5400/Swagger/ui/index
+            </summary>
+        </member>
+        <member name="M:Vcredit.ActivexLogin.WebApi.SwaggerConfig.GetXmlCommentsPath">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Vcredit.ActivexLogin.WebApi.Controllers.ActivexController">
+            <summary>
+            ActivexLoginController
+            </summary>
+        </member>
+        <member name="M:Vcredit.ActivexLogin.WebApi.Controllers.ActivexController.SendOriginalData(Vcredit.ActivexLogin.Dto.ActivexLoginReq)">
+            <summary>
+            发送原始加密信息，等待加密
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Vcredit.ActivexLogin.WebApi.Controllers.ActivexController.GetEncryptData(System.String,Vcredit.ActivexLogin.Common.ProjectEnums.WebSiteType)">
+            <summary>
+            获取加密后信息
+            </summary>
+            <param name="token"></param>
+            <param name="siteType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Vcredit.ActivexLogin.WebApi.Controllers.ActivexController.Init(Vcredit.ActivexLogin.Common.ProjectEnums.WebSiteType)">
+            <summary>
+            初始化
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Vcredit.ActivexLogin.WebApi.Controllers.ActivexController.DoRealLogin(Vcredit.ActivexLogin.Common.ProjectEnums.WebSiteType,System.String,System.String)">
+            <summary>
+            实际登录
+            </summary>
+            <param name="siteType"></param>
+            <param name="token"></param>
+            <param name="captcha"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Vcredit.ActivexLogin.WebApi.Controllers.ActivexController.RefreshCaptcha(Vcredit.ActivexLogin.Common.ProjectEnums.WebSiteType,System.String)">
+            <summary>
+            刷新验证码
+            </summary>
+            <param name="siteType"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Vcredit.ActivexLogin.WebApi.Filters.LogParamFilterAttribute">
+            <summary>
+            记录请求参数Filter
+            </summary>
+        </member>
+    </members>
+</doc>

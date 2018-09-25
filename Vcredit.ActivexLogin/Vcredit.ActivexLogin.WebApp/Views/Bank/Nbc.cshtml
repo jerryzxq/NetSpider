@@ -1,0 +1,143 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en" data-framework="angularjs" xmlns:ng="http://angularjs.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>宁波银行网上营业厅</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="keywords" content="宁波银行网上营业厅" />
+    <link rel="icon" href="/favicon_7392df1.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="https://e.nbcb.com.cn/favicon_7392df1.ico" type="image/x-icon" />
+    <link rel="bookmark" href="https://e.nbcb.com.cn/favicon_7392df1.ico" />
+
+    <!--公共样式-->
+    <!--首页样式-->
+
+    <link rel="stylesheet" type="text/css" href="https://e.nbcb.com.cn/less/global_9a5eb47.css" />
+    <link rel="stylesheet" type="text/css" href="https://e.nbcb.com.cn/less/common_718d74d.css" />
+    <link rel="stylesheet" type="text/css" href="https://e.nbcb.com.cn/less/app_d1d5efd.css" />
+
+    <script type="text/javascript">
+        //判断URL和IP
+        (function () {
+            var isIE6 = !-[1, ] && !window.XMLHttpRequest,
+                isIE7 = navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion.match(/7./i) == "7." && document.documentMode != "8",
+                currURL = window.location.href,
+                newPerUrl = '/nebank/',
+                paramIndex = currURL.indexOf('?'),
+                paramStr = '';
+            if (paramIndex != -1) {
+                paramStr = currURL.substr(paramIndex, currURL.length);
+            };
+
+            //IE6直接跳转网银登录页面
+            if (isIE6 || isIE7) {
+                window.location.href = newPerUrl + paramStr;
+            }
+        })();
+    </script>
+    <script type="text/javascript" src="https://e.nbcb.com.cn/vendor_release/lib_5e30a01.js"></script>
+    <script type="text/javascript" src="~/Scripts/bank/nbc/common_080f621.js"></script>
+    <script type="text/javascript" src="https://e.nbcb.com.cn/app/controllers_9421c80.js"></script>
+    <script type="text/javascript" src="~/Scripts/bank/nbc/main_77c02c9.js"></script>
+    <script type="text/javascript" src="https://e.nbcb.com.cn/app/login_6a86425.js"></script>
+    <script type="text/javascript" src="https://e.nbcb.com.cn/app/deposit_54432ac.js"></script>
+    <script type="text/javascript" src="https://e.nbcb.com.cn/app/error_8ea7c0c.js"></script>
+    <script type="text/javascript" src="https://e.nbcb.com.cn/app/finance_4e1ba58.js"></script>
+    <script type="text/javascript" src="https://e.nbcb.com.cn/app/electronAcc_a01f6bd.js"></script>
+    <script type="text/javascript" src="https://e.nbcb.com.cn/app/fund_4155566.js"></script>
+    <script type="text/javascript" src="https://e.nbcb.com.cn/app/white_2cf978a.js"></script>
+    <script type="text/javascript" src="https://e.nbcb.com.cn/app/appoint_4a525b9.js"></script>
+    <script type="text/javascript" src="https://e.nbcb.com.cn/app/userCenter_ccbb6d6.js"></script>
+    <script type="text/javascript" src="https://e.nbcb.com.cn/app/repassword_f98afec.js"></script>
+    <script type="text/javascript" src="https://e.nbcb.com.cn/app/loginPop_de7e3c1.js"></script>
+    <script type="text/javascript" src="https://e.nbcb.com.cn/app/consumption_2a1f2dc.js"></script>
+    <script type="text/javascript" src="https://e.nbcb.com.cn/app/directMarket_df702f6.js"></script>
+    <script type="text/javascript" src="https://e.nbcb.com.cn/app/taxCredit_3daa719.js"></script>
+    <script type="text/javascript" src="https://e.nbcb.com.cn/app/transfer_80abe1f.js"></script>
+    <script type="text/javascript" src="https://e.nbcb.com.cn/app/gold_c64d48e.js"></script>
+    <script type="text/javascript" src="https://e.nbcb.com.cn/app/uploadIdImg_721c307.js"></script>
+    <script type="text/javascript" src="https://e.nbcb.com.cn/app/order_64162d4.js"></script>
+    <script type="text/javascript" src="https://e.nbcb.com.cn/app/reservefund_fb7c22d.js"></script>
+    <script type="text/javascript" src="https://e.nbcb.com.cn/app/margin_24b6e3f.js"></script>
+    <script type="text/javascript" src="https://e.nbcb.com.cn/app/creditCard_94ed799.js"></script>
+    <script type="text/javascript" src="https://e.nbcb.com.cn/app/app_b664d20.js"></script>
+    <script type="text/javascript">
+        var strToken = '@ViewBag.Token';
+        var _iss = _iss || [];
+        window["_BFD"] = window["_BFD"] || {};
+        _BFD.client_id = "Cningbo";
+        _BFD.script = document.createElement("script");
+        _BFD.script.type = "text/javascript";
+        _BFD.script.async = true;
+        _BFD.script.charset = "utf-8";
+        //_BFD.script.src=(('https:'==document.location.protocol?'https://':'http://')+'12.99.106.77:8086/service/ningboyinhang/ningboyinhang.js?a578c9ceb87afa2d982895a862e5e5ea');
+        _BFD.script.src = (('https:' == document.location.protocol ? 'https://' : 'http://') + 'daq.nbcb.com.cn:8086/service/ningboyinhang/ningboyinhang.js?dea40a4af50d227e66fd4c28b67af5ca');
+
+        document.getElementsByTagName("head")[0].appendChild(_BFD.script);
+
+
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?077a59fb58754888f7db312d1e4c8296";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body ng-app="nbcbApp" id="ng-app">
+    <div ng-click="recordOperationTime();">
+        <div ng-controller="nbcbController">
+            <div id="header" ng-controller="headController">
+                @*<div class="logo" ng-click="logoClick();"></div>
+                    <div ng-mouseenter="isActive = true" ng-mouseleave="isActive = false" class="city_change" ng-class="{'current': isActive}" ng-click="isActive = !isActive">
+                        <div class="select" ng-bind="activeBranch"></div>
+                        <dl ng-class="{'ng-hide': !isActive}"><dd ng-repeat="branchInfo in branchList | orderBy:'+pinyin'" ng-click="selectBranch(branchInfo);"><a ng-bind="branchInfo.value" ng-class="{current:(branchInfo.value.indexOf(activeBranch) != -1)}"></a></dd></dl>
+                    </div>
+                    <div class="login_re" ng-show="!isShowLogin()" ng-style="{display:'block'}" style="display:none">
+                        <a ng-click="selectMenu('100');login();" ng-class="{current:('100' == activeIndex)}" class="login_btn">登录</a>
+                        <a ng-class="{current:('101' == activeIndex)}" ng-click="selectMenu('101');jumpPage('/HB00900');">注册</a>
+                    </div>
+                    <div class="login_re userinfo switchToFive" ng-show="isShowSwitch()" ng-style="{display:'block'}" style="display:none"><a ng-click="switchToFive();">切换至网银</a></div>
+                    <div class="login_re userinfo" ng-show="isLogin()" ng-style="{display:'block'}" style="display:none">
+                        <a ng-click="jumpPage('/perbank');">
+                            <img ng-src="{{ __userImg || userImg}}" width="50" height="50">
+                        </a>
+                        <a ng-class="{current:('102' == activeIndex)}" class="login_btn quit_btn" ng-click="selectMenu('102');quit();">退出</a>
+                    </div>
+                    <div class="menu">
+                        <dl ng-init="activeIndex=(iMenuList.length - 1);">
+                            <dd ng-repeat="menuInfo in iMenuList" ng-class="{current:($index==activeIndex),mousehover:(isMouseHover && ($index == mouseHoverIndex))}" ng-click="selectMenu($index,menuInfo);">
+                                <a ng-click="jumpMenu(menuInfo.url)" ng-bind="menuInfo.name" ng-mouseenter="setMouseHover($index,true);" ng-mouseleave="setMouseHover($index,false);" ng-class="{'has_child': menuInfo.iMenuList.length > 0}"></a>
+                                <div class="sec_menu" ng-if="menuInfo.iMenuList.length > 0" ng-mouseenter="setMouseHover($index,true);" ng-mouseleave="setMouseHover($index,false);">
+                                    <a ng-repeat="menuInfo in menuInfo.iMenuList" ng-click="jumpMenu(menuInfo.url)" ng-bind="menuInfo.name"></a>
+                                </div>
+                            </dd>
+                        </dl>
+                    </div>*@
+            </div>
+
+            @*<div class="placeholder90"></div>*@
+
+            <!-- 加载动态部分 -->
+            <div ng-view autoScroll></div>
+            @*<div id="footer"><dl class="w1200 f_menu"><dd class="f_logo"><p class="line1"><span class="title">全国客服热线：</span><span class="phone">95574</span></p><p class="line2"><a class="first" href="http://www.nbcb.com.cn/wzsm/" target="_blank">网站声明</a>|<a href=" http//www.nbcb.com.cn/wzdh/"  target="_blank">网站导航</a>|<a ng-click="addBookMark();">加入收藏</a></p><p><span class="copysign">&copy;</span> 宁波银行股份有限公司版权所有<span class="placeholder16"></span>浙ICP备<span class="placeholder8"></span>11055414号</p></dd><dd class="f_link"><dl><dt>关于我行</dt><dd><a href="http://www.nbcb.com.cn/investor_relations/basic_information/ningbo_profile/" target="_blank">我行简介</a></dd><dd><a href="http://www.nbcb.com.cn/investor_relations/corporate_announcement/" target="_blank">公司公告</a></dd></dl><dl><dt>常用链接</dt><dd><a href="http://zhaopin.nbcb.cn/recruit/com.nbcb.recruit.auth.index.flow" target="_blank">人才招聘</a></dd><dd><a href="http://www.nbcb.com.cn/lxwm/" target="_blank">联系我们</a></dd></dl><dl><dt>相关网站</dt><dd><a href="http://www.maxwealthfund.com" target="_blank">永赢基金</a></dd><dd><a href="https://zxyh.nbcb.com.cn/desktop/index.html#/main/firstPage" target="_blank">直销银行</a></dd></dl></dd><dd class="f_code"><font class="footer-font">手机银行</font><img class="footer-image" src="/assets/app/index/sjyh_ee184af.jpg" /></dd><dd class="f_code footer-imageposition"><font class="footer-font">官方微信</font><img class="footer-image" src="/assets/app/index/weixin_74bd964.jpg" /></dd></dl></div>*@
+        </div>
+        <pop style="display:none" caption="g_popObject.title" src="g_popObject.src" buttons="g_popObject.buttons" pop-type="g_popObject.type"
+             is-show="g_popObject.isShow" class-name="g_popObject.className" entity-class-name="g_popObject.entityClassName" on-close="g_popObject.onClose($type,$object)">
+        </pop>
+        <waiting style="display:none" caption="g_waitingObject.title" is-show="g_waitingObject.isShow"></waiting>
+    </div>
+    <iframe id="printIframe" style="left: 0px; top: 0px; width: 880px; height: 0px; border-top-color: currentColor; border-right-color: currentColor; border-bottom-color: currentColor; border-left-color: currentColor; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; position: absolute;"></iframe>
+    <iframe src="https://e.nbcb.com.cn/finger.html?ver=20170608" style="display:none" />
+</body>
+</html>

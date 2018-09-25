@@ -1,0 +1,116 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="renderer" content="ie-stand" />
+    <title lan="l1276">中国银行</title>
+</head>
+<body>
+    <div class="login-bg">
+        <ul class="layout-lr">
+            <li class="clearfix">
+                <div id="sec_container" class="item-con">
+                    <div id="div_password_79445" v="密码" style="width:198px;height:20px;"></div>
+                    <p class="text-gray hide mr10" lan="l10004" v="用户名和密码区分大小写字母">用户名和密码对大小写字母敏感，请注意区分</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <script src="~/Scripts/Json2.js"></script>
+
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/dojo/dojo.js.1.6.1.uncompressed.js?v=20170718030500330"></script>
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/dojo/dojo2.js?v=20170718030500330"></script>
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/lib/CFCASIPInput.min.js?v=20170718030500330"></script>
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/lib/secEditCtrl.js?v=20170718030500330"></script>
+
+    @*<script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/dojo/dojo.js.1.6.1.uncompressed.js?v=20170718030500330"></script>
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/dojo/NodeList-manipulate.js?v=20170718030500330"></script>
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/dojo/dojo2.js?v=20170718030500330"></script>
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/lib/spine.js?v=20170718030500330"></script>
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/lib/header.js?v=20170718030500330"></script>
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/lib/errorCode.js?v=20170718030500330"></script>
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/common.js?v=20170718030500330"></script>
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/dojo.common.js?v=20170718030500330"></script>
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/lib/dojo.tmpl.js?v=20170718030500330"></script>
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/lib/lan_login.js?v=20170718030500330"></script>
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/lib/json2.js?v=20170718030500330"></script>
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/lib/localize.js?v=20170718030500330"></script>
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/lib/itselect.js?v=20170718030500330"></script>
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/lib/tooltip.js?v=20170718030500330"></script>
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/lib/formValid.js?v=20170718030500330"></script>
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/lib/securityFactor.js?v=20170718030500330"></script>
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/lib/CFCASIPInput.min.js?v=20170718030500330"></script>
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/lib/secEditCtrl.js?v=20170718030500330"></script>
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/lib/devicePrint.js?v=20170718030500330"></script>
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/lib/antiCheat.js?v=20170718030500330"></script>
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/lib/hash.js?v=20170718030500330"></script>
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/util/stringUtil.js?v=20170718030500330"></script>
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/login.js?v=20170718030500330"></script>
+    <script type="text/javascript" src="https://ebsnew.boc.cn/boc15/scripts/lib/detachSigner.js?v=20170718030500330"></script>*@
+
+    <script>
+        $(function () {
+            var randomKey_S = "@ViewBag.RandomKey_S";
+            initPasswordInput(randomKey_S);
+        });
+
+        function initPasswordInput(randomKey_S) {
+            $("#div_password_79445").sec({ mode: 3, RandomKey_S: randomKey_S })
+            $("#div_password_79445").sec("Version")
+        }
+
+        function getEncrypt() {
+            var isDebitCard = false;
+            //var a = {
+            //    loginName: isDebitCard ? $("#txt_50514_741010").val() : $("#txt_50514_740882").val(),
+            //    validationChar: isDebitCard ? $("#txt_captcha_741012").val() : $("#txt_captcha_740885").val(),
+            //    activ: isDebitCard ? $("#div_password_79445").sec("Version") : $("#txt_50531_740884").sec("Version"),
+            //    state: isDebitCard ? $("#div_password_79445").sec("State") : $("#txt_50531_740884").sec("State")
+            //};
+            //isDebitCard
+            //?
+            //    (a.atmPassword = $("#div_password_79445").sec("Value"),
+            //    a.atmPassword_RC = $("#div_password_79445").sec("RandomKey_C"))
+            //:
+            //    (a.phoneBankPassword = $("#txt_50531_740884").sec("Value"),
+            //    a.phoneBankPassword_RC = $("#txt_50531_740884").sec("RandomKey_C"))
+
+            var a = {
+                loginName: "",
+                validationChar: "",
+                activ: $("#div_password_79445").sec("Version"),
+                state: $("#div_password_79445").sec("State")
+            };
+            a.atmPassword = $("#div_password_79445").sec("Value");
+            a.atmPassword_RC = $("#div_password_79445").sec("RandomKey_C");
+            a.phoneBankPassword = $("#div_password_79445").sec("Value");
+            a.phoneBankPassword_RC = $("#div_password_79445").sec("RandomKey_C");
+
+            var str = JSON.stringify(a);
+            console.log(str)
+            addElement(str);
+        }
+
+        var hdid = "hd_encrypt_string";
+        function addElement(value) {
+            var ele = document.createElement("input");
+            ele.id = hdid;
+            ele.type = "hidden";
+            ele.value = value;
+            document.body.appendChild(ele);
+        }
+        function removeElement() {
+            var ele = document.getElementById(hdid);
+            if (ele) {
+                document.body.removeChild(ele);
+            }
+        }
+    </script>
+</body>
+</html>
